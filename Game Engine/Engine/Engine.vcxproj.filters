@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Console">
+      <UniqueIdentifier>{d4bbef7f-567c-4463-815a-16ceed16c6ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameActor">
+      <UniqueIdentifier>{d1436f63-301d-48f7-9c92-5b2eb8ce740e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{b367536a-b4e9-4c02-8ca4-abdd7f92e632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyString">
+      <UniqueIdentifier>{584c8d17-635b-45f8-be48-9400e17168a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller Interface">
+      <UniqueIdentifier>{d819e249-6f99-4cf6-b080-2d42f402862f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vector">
+      <UniqueIdentifier>{88aa5cb2-1406-43c4-82e5-70ee28956430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vector\Vector2D">
+      <UniqueIdentifier>{4afbaf6e-87f6-4806-bbf9-f6c73fad7052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vector\Vector3D">
+      <UniqueIdentifier>{55b7bda0-5218-4ba7-8d6f-218d3affa5a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory Manager">
+      <UniqueIdentifier>{a6760d6d-8f15-4eab-a6dd-004e466b48c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory Manager\HeapManager">
+      <UniqueIdentifier>{31008da2-82a9-4ed0-bb2c-c7d5e51fd3ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory Manager\Allocator">
+      <UniqueIdentifier>{dd295d0a-d17e-4c86-b7cf-d25bafb4ad64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory Manager\BitArray">
+      <UniqueIdentifier>{5005d841-5c76-4dc2-98a5-15ec02cd17f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory Manager\Memory System">
+      <UniqueIdentifier>{bf61de2d-c67d-4305-9032-e53c9a0e2afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unit Tests">
+      <UniqueIdentifier>{4296f834-26c7-44b3-ae14-068a2e839843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory Manager\Fixed Size Allocator">
+      <UniqueIdentifier>{fcef742e-e03f-47e2-898b-4a42a4d71ee7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConsolePrint.h">
+      <Filter>Console</Filter>
+    </ClInclude>
+    <ClInclude Include="MyString.h">
+      <Filter>MyString</Filter>
+    </ClInclude>
+    <ClInclude Include="HeapManager.h">
+      <Filter>Memory Manager\HeapManager</Filter>
+    </ClInclude>
+    <ClInclude Include="HeapManagerProxy.h">
+      <Filter>Memory Manager\HeapManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Allocator.h">
+      <Filter>Memory Manager\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Vector\Vector2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3d.h">
+      <Filter>Vector\Vector3D</Filter>
+    </ClInclude>
+    <ClInclude Include="IpManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="BitArray.h">
+      <Filter>Memory Manager\BitArray</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSizeAllocator.h">
+      <Filter>Memory Manager\Fixed Size Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="MemorySystem.h">
+      <Filter>Memory Manager\Memory System</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConsolePrint.Win32.cpp">
+      <Filter>Console</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.h">
+      <Filter>GameActor</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameObjectController.h">
+      <Filter>Controller Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="HeapManager.cpp">
+      <Filter>Memory Manager\HeapManager</Filter>
+    </ClCompile>
+    <ClCompile Include="HeapManagerProxy.cpp">
+      <Filter>Memory Manager\HeapManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Allocator.cpp">
+      <Filter>Memory Manager\Allocator</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Vector\Vector2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3d.cpp">
+      <Filter>Vector\Vector3D</Filter>
+    </ClCompile>
+    <ClCompile Include="FixedSizeAllocator.cpp">
+      <Filter>Memory Manager\Fixed Size Allocator</Filter>
+    </ClCompile>
+    <ClCompile Include="HeapManager_UnitTest.cpp">
+      <Filter>Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="MyString.cpp">
+      <Filter>MyString</Filter>
+    </ClCompile>
+    <ClCompile Include="MemorySystem.cpp">
+      <Filter>Memory Manager\Memory System</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit_Test_FixedSizeAllocator.cpp">
+      <Filter>Unit Tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>
