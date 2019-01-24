@@ -12,4 +12,6 @@ Features:
 
 4) Memory Manager
 
-5)
+5) Game Controllers
+
+6) Game Objects
