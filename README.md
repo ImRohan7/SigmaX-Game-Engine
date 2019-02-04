@@ -1,6 +1,9 @@
 # SigmaX-Game-Engine
 A Game Engine ( C++ )
 
+>> Current Status : Adding Physics System (Velocity, Collisions, etc)
+>> Last Updated : 10 Jan, 2019
+
 Description
 
 Features:
