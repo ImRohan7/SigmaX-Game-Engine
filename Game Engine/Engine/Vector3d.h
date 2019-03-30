@@ -6,15 +6,13 @@ class Vector3d {
 public:
 	static const Vector3d Zero;
 	static const Vector3d Unit;
-
-	// TIP: Vector() = delete; ---will delete the default constructor
+	
 	Vector3d() : m_x(0.0f), m_y(0.0f), m_z(0.0f)
 	{}
 
 	Vector3d(float i_x, float i_y, float i_z)
 		: m_x(i_x), m_y(i_y), m_z(i_z)
-	{
-	}
+	{}
 
 	//Get
 	float x() const { return m_x; }
@@ -55,6 +53,8 @@ public:
 		temp.m_x = m_x / i_other.m_x;
 		temp.m_y = m_y / i_other.m_y;
 		temp.m_z = m_z / i_other.m_z;
+
+		return temp;
 	}
 
 	// Multiply
@@ -64,6 +64,8 @@ public:
 		temp.m_x = m_x * i_other.m_x;
 		temp.m_y = m_y * i_other.m_y;
 		temp.m_z = m_z * i_other.m_z;
+
+		return temp;
 	}
 
 	//Print
@@ -87,10 +89,12 @@ public:
 	{
 		m_x = -m_x;
 		m_y = -m_y;
+		m_z = -m_z;
 	}
-
 
 private:
 		float m_x, m_y, m_z;
 };
 
+//const Vector3d Vector3d::Zero(0.0f, 0.0f, 0.0f);
+//const Vector3d Vector3d::Unit(1.0f, 1.0f, 1.0f);

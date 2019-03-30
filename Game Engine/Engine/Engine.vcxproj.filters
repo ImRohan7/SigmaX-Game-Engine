@@ -13,29 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Console">
-      <UniqueIdentifier>{d4bbef7f-567c-4463-815a-16ceed16c6ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameActor">
       <UniqueIdentifier>{d1436f63-301d-48f7-9c92-5b2eb8ce740e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Input">
-      <UniqueIdentifier>{b367536a-b4e9-4c02-8ca4-abdd7f92e632}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MyString">
-      <UniqueIdentifier>{584c8d17-635b-45f8-be48-9400e17168a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Controller Interface">
       <UniqueIdentifier>{d819e249-6f99-4cf6-b080-2d42f402862f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Vector">
-      <UniqueIdentifier>{88aa5cb2-1406-43c4-82e5-70ee28956430}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Vector\Vector2D">
-      <UniqueIdentifier>{4afbaf6e-87f6-4806-bbf9-f6c73fad7052}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Vector\Vector3D">
-      <UniqueIdentifier>{55b7bda0-5218-4ba7-8d6f-218d3affa5a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Memory Manager">
       <UniqueIdentifier>{a6760d6d-8f15-4eab-a6dd-004e466b48c8}</UniqueIdentifier>
@@ -49,22 +31,76 @@
     <Filter Include="Memory Manager\BitArray">
       <UniqueIdentifier>{5005d841-5c76-4dc2-98a5-15ec02cd17f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Memory Manager\FSA">
+      <UniqueIdentifier>{fcef742e-e03f-47e2-898b-4a42a4d71ee7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Memory Manager\Memory System">
       <UniqueIdentifier>{bf61de2d-c67d-4305-9032-e53c9a0e2afb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Unit Tests">
+    <Filter Include="Physics">
+      <UniqueIdentifier>{abee8a2b-88d0-4ae0-9af8-a66f76a6c16c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{7393e354-fafa-4a13-9651-5dbf70c11e16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{b367536a-b4e9-4c02-8ca4-abdd7f92e632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math">
+      <UniqueIdentifier>{46119f35-c61e-4686-8198-5af7a1c14773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math\Point2D">
+      <UniqueIdentifier>{4afbaf6e-87f6-4806-bbf9-f6c73fad7052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math\Vector3D">
+      <UniqueIdentifier>{55b7bda0-5218-4ba7-8d6f-218d3affa5a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Console">
+      <UniqueIdentifier>{d4bbef7f-567c-4463-815a-16ceed16c6ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Engine">
+      <UniqueIdentifier>{c2cef0a2-825b-487a-8ee5-6103daddd134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\MyString">
+      <UniqueIdentifier>{584c8d17-635b-45f8-be48-9400e17168a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Timer">
+      <UniqueIdentifier>{f8575f65-de9f-43a9-b818-916d51fe6e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{efa38490-f170-4d34-8278-d46dd06dcacc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other\Unit Tests">
       <UniqueIdentifier>{4296f834-26c7-44b3-ae14-068a2e839843}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Memory Manager\Fixed Size Allocator">
-      <UniqueIdentifier>{fcef742e-e03f-47e2-898b-4a42a4d71ee7}</UniqueIdentifier>
+    <Filter Include="Core\Renderer">
+      <UniqueIdentifier>{8a5d5791-5479-434d-843e-180ef41b25cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua">
+      <UniqueIdentifier>{db816d82-ead5-4306-9c3d-889ce62b4c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PointerManagment">
+      <UniqueIdentifier>{d4f60766-942c-4c97-b8e9-7af71e5062db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PointerManagment\Weak Pointer %28Observers%29">
+      <UniqueIdentifier>{5a8769d0-0c6e-40d6-b4fb-e5c4c1f01b7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PointerManagment\Smart Pointer %28Owners%29">
+      <UniqueIdentifier>{9f7fe9c5-7b2e-4edd-94a6-cf9ed508ad60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Primary">
+      <UniqueIdentifier>{8216cf53-d5e5-4b9a-90b9-fee2ace796cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math\Matrix 4">
+      <UniqueIdentifier>{89b57b92-3fbd-4c51-931b-b61861db0bd8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsolePrint.h">
-      <Filter>Console</Filter>
+      <Filter>Core\Console</Filter>
     </ClInclude>
     <ClInclude Include="MyString.h">
-      <Filter>MyString</Filter>
+      <Filter>Core\MyString</Filter>
     </ClInclude>
     <ClInclude Include="HeapManager.h">
       <Filter>Memory Manager\HeapManager</Filter>
@@ -75,28 +111,64 @@
     <ClInclude Include="Allocator.h">
       <Filter>Memory Manager\Allocator</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Vector\Vector2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3d.h">
-      <Filter>Vector\Vector3D</Filter>
-    </ClInclude>
-    <ClInclude Include="IpManager.h">
-      <Filter>Input</Filter>
-    </ClInclude>
     <ClInclude Include="BitArray.h">
       <Filter>Memory Manager\BitArray</Filter>
     </ClInclude>
     <ClInclude Include="FixedSizeAllocator.h">
-      <Filter>Memory Manager\Fixed Size Allocator</Filter>
+      <Filter>Memory Manager\FSA</Filter>
     </ClInclude>
     <ClInclude Include="MemorySystem.h">
       <Filter>Memory Manager\Memory System</Filter>
     </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Core\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Core\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartPtr.h">
+      <Filter>PointerManagment\Smart Pointer %28Owners%29</Filter>
+    </ClInclude>
+    <ClInclude Include="WeakPtr.h">
+      <Filter>PointerManagment\Weak Pointer %28Observers%29</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaParser.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SigmaEngine.h">
+      <Filter>Core\Primary</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4d.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3d.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Point2D.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix_4x4.h">
+      <Filter>Core\Math\Matrix 4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsolePrint.Win32.cpp">
-      <Filter>Console</Filter>
+      <Filter>Core\Console</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.h">
       <Filter>GameActor</Filter>
@@ -113,26 +185,53 @@
     <ClCompile Include="Allocator.cpp">
       <Filter>Memory Manager\Allocator</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>Vector\Vector2D</Filter>
-    </ClCompile>
     <ClCompile Include="Vector3d.cpp">
-      <Filter>Vector\Vector3D</Filter>
+      <Filter>Core\Math\Vector3D</Filter>
     </ClCompile>
     <ClCompile Include="FixedSizeAllocator.cpp">
-      <Filter>Memory Manager\Fixed Size Allocator</Filter>
+      <Filter>Memory Manager\FSA</Filter>
     </ClCompile>
     <ClCompile Include="HeapManager_UnitTest.cpp">
-      <Filter>Unit Tests</Filter>
+      <Filter>Other\Unit Tests</Filter>
     </ClCompile>
     <ClCompile Include="MyString.cpp">
-      <Filter>MyString</Filter>
+      <Filter>Core\MyString</Filter>
     </ClCompile>
     <ClCompile Include="MemorySystem.cpp">
       <Filter>Memory Manager\Memory System</Filter>
     </ClCompile>
     <ClCompile Include="Unit_Test_FixedSizeAllocator.cpp">
-      <Filter>Unit Tests</Filter>
+      <Filter>Other\Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Core\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Core\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Core\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Point2D.cpp">
+      <Filter>Core\Math\Point2D</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixTest.cpp">
+      <Filter>Other\Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix_4x4.cpp">
+      <Filter>Core\Math\Matrix 4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

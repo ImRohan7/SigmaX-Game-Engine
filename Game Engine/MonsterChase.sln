@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assignment 1.1", "Assignment 1.1\Assignment 1.1.vcxproj", "{2A975027-785A-47E6-BF7B-C4320A112F4E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Assignment 1.1\Assignment 1.1.vcxproj", "{2A975027-785A-47E6-BF7B-C4320A112F4E}"
 	ProjectSection(ProjectDependencies) = postProject
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245} = {BDF98E69-FC1B-4010-B9D7-8DB75E26A245}
 		{C577A5AA-342A-4EB2-B3DD-4C7F404449FD} = {C577A5AA-342A-4EB2-B3DD-4C7F404449FD}
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA} = {B2AB67DE-B7FA-42BA-B060-959487392AEA}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{C577A5AA-342A-4EB2-B3DD-4C7F404449FD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SIGMA Engine", "Engine\Engine.vcxproj", "{C577A5AA-342A-4EB2-B3DD-4C7F404449FD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLib", "GLib\GLib.vcxproj", "{B2AB67DE-B7FA-42BA-B060-959487392AEA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua-WinLibs", "Lua\Lua-WinLibs.vcxproj", "{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +40,22 @@ Global
 		{C577A5AA-342A-4EB2-B3DD-4C7F404449FD}.Release|x64.Build.0 = Release|x64
 		{C577A5AA-342A-4EB2-B3DD-4C7F404449FD}.Release|x86.ActiveCfg = Release|Win32
 		{C577A5AA-342A-4EB2-B3DD-4C7F404449FD}.Release|x86.Build.0 = Release|Win32
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA}.Debug|x64.ActiveCfg = Debug|x64
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA}.Debug|x64.Build.0 = Debug|x64
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA}.Debug|x86.ActiveCfg = Debug|Win32
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA}.Debug|x86.Build.0 = Debug|Win32
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA}.Release|x64.ActiveCfg = Release|x64
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA}.Release|x64.Build.0 = Release|x64
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA}.Release|x86.ActiveCfg = Release|Win32
+		{B2AB67DE-B7FA-42BA-B060-959487392AEA}.Release|x86.Build.0 = Release|Win32
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}.Debug|x64.ActiveCfg = Debug|x64
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}.Debug|x64.Build.0 = Debug|x64
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}.Debug|x86.ActiveCfg = Debug|Win32
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}.Debug|x86.Build.0 = Debug|Win32
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}.Release|x64.ActiveCfg = Release|x64
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}.Release|x64.Build.0 = Release|x64
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}.Release|x86.ActiveCfg = Release|Win32
+		{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

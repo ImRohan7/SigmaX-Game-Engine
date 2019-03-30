@@ -22,17 +22,30 @@
     <ClInclude Include="Allocator.h" />
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="ConsolePrint.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="FixedSizeAllocator.h" />
-    <ClInclude Include="IpManager.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="HeapManager.h" />
     <ClInclude Include="HeapManagerProxy.h" />
+    <ClInclude Include="LuaParser.h" />
+    <ClInclude Include="Matrix_4x4.h" />
     <ClInclude Include="MemorySystem.h" />
     <ClInclude Include="MyString.h" />
-    <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="Point2D.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SigmaEngine.h" />
+    <ClInclude Include="SmartPtr.h" />
+    <ClInclude Include="Test.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector3d.h" />
+    <ClInclude Include="Vector4d.h" />
+    <ClInclude Include="WeakPtr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Allocator.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FixedSizeAllocator.cpp" />
     <ClCompile Include="GameObject.h" />
     <ClCompile Include="ConsolePrint.Win32.cpp" />
@@ -40,10 +53,18 @@
     <ClCompile Include="HeapManagerProxy.cpp" />
     <ClCompile Include="HeapManager_UnitTest.cpp" />
     <ClCompile Include="IGameObjectController.h" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MatrixTest.cpp" />
+    <ClCompile Include="Matrix_4x4.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Unit_Test_FixedSizeAllocator.cpp" />
     <ClCompile Include="MemorySystem.cpp" />
     <ClCompile Include="MyString.cpp" />
-    <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="Vector3d.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -102,10 +123,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)$(PlatformTarget)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)$(PlatformTarget)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)$(PlatformTarget)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)$(PlatformTarget)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -115,6 +142,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>_64_IT_IS;HEAP_DEBUG=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)GLib;$(SolutionDir)Lua</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -125,6 +153,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>_32_IT_IS;HEAP_DEBUG=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)GLib;$(SolutionDir)Lua</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,6 +167,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <PreprocessorDefinitions>_32_IT_IS;HEAP_RELEASE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)GLib;$(SolutionDir)Lua</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -155,6 +185,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <PreprocessorDefinitions>_64_IT_IS;HEAP_RELEASE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)GLib;$(SolutionDir)Lua</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
