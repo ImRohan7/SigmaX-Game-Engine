@@ -1,79 +1,82 @@
 #include "PhysicsComponent.h"
 #include "assert.h"
+#define TERMINAL_VEL 25.0f
+
 
 // Constrictor
 void PhysicsComponent::updatePhysics(float dt)
 {
+	SmartPtr<GameObject> _object = m_GameObject.AquireOwnership();
 
-	if (IsApplyingForce)
-	{
-		// pos3 = pos2 + (v2 + v3)/2 * dt;
-		SmartPtr<GameObject> _tempObject = m_GameObject.AquireOwnership();
+	if (_object->ToUseDrag)
+		ApplyDrag(_object, dt);
 
-		Point2D newPos = _tempObject->GetPosition() + _tempObject->velocity() * dt;
-		//d
-		_tempObject->SetPosition(newPos);
-	}
-	// Apply natural drag to stop
-	//else
-	{
-		
-	}
-	/*
-	f = f - m * 9.8 - drag;
-	f = appliedF - m * g;	
-	*/
-	
+	// Last but not the least
+	updatePosition(_object,dt);
 }
 
-void PhysicsComponent::addForce(Point2D iForce, float dt) {
+// updates position based on velocity
+void PhysicsComponent::updatePosition(SmartPtr<GameObject> _Object,const float dt)
+{
+	// pos3 = pos2 + (v2 + v3)/2 * dt;
+	Vector2 newPos = _Object->GetPosition() + _Object->getVelocity() * dt;
+	_Object->SetPosition(newPos);
+}
+
+// adds force and updates velocity	// Will be used while OnButtonPress to move object 
+void PhysicsComponent::addForce(Vector2 iForce, float dt) {
 
 	SmartPtr<GameObject> _tempObject = m_GameObject.AquireOwnership();
-	Point2D _prevVelocity = _tempObject->velocity();
+	Vector2 _prevVelocity = _tempObject->getVelocity();
 	
 	// a = f / m;
-	Point2D Acceleration = iForce / m_Mass;
+	Vector2 Acceleration = iForce / m_Mass;
 	// v = v0 + at;
-	Point2D newVelocity = _tempObject->velocity() + (Acceleration * dt);
+	Vector2 newVelocity = _tempObject->getVelocity() + (Acceleration * dt);
+	Vector2 TestVel = newVelocity;
+	// Terminal Velocity limit
+	TestVel.coolDown();	
 
+	if (TestVel.x() > TERMINAL_VEL)
+	{
+		float xv = (newVelocity.x() < 0) ? -TERMINAL_VEL : TERMINAL_VEL;
+		newVelocity.x(xv);
+	}
+	if (TestVel.y() > TERMINAL_VEL)
+	{
+		float yv = (newVelocity.y() < 0) ? -TERMINAL_VEL : TERMINAL_VEL;
+		newVelocity.y(yv);
+	}
+	DEBUG_PRINT("VEL: %f", newVelocity.x());
 	
-	// TODO: Make sure note more than terminal velocity
-	// V = (v0 + v1) / 2
-
 	_tempObject->setVelocity((_prevVelocity + newVelocity)/2);
 	IsApplyingForce = true;
 }
 
-void PhysicsComponent::removeForce(float dt) {
+// apply drag and updates velocity
+void PhysicsComponent::ApplyDrag(SmartPtr<GameObject> _Object, float dt) {
 	
-	SmartPtr<GameObject> _tempObject = m_GameObject.AquireOwnership();
-	// Add Natural Drag
-	Point2D DragToAdd = Point2D::Zero;
-	float vel_X = _tempObject->velocity().x();
-	float vel_Y = _tempObject->velocity().y();
+	Vector2 DragToAdd = Vector2::Zero;
+	float vel_X = _Object->getVelocity().x();
+	float vel_Y = _Object->getVelocity().y();
 
-	if (!(_tempObject->velocity() == Point2D::Zero))
+	if (!(_Object->getVelocity() == Vector2::Zero))
 	{
 		// Calculate drag to apply based on velocity
-		
-		if (vel_X)
+		if (vel_X)	// only apply drag if velocity is greater than zero
 		{
-			DragToAdd = DragToAdd + ((vel_X > 0) ? Point2D(-m_Drag.x(),0) : Point2D(m_Drag.x(),0));
+			DragToAdd = DragToAdd + ((vel_X > 0) ? Vector2(-m_Drag.x(),0) : Vector2(m_Drag.x(),0));
 		}
 		if (vel_Y)
 		{
-			DragToAdd = DragToAdd + ((vel_Y > 0) ? Point2D(0,-m_Drag.y()) : Point2D(0,m_Drag.x()));
+			DragToAdd = DragToAdd + ((vel_Y > 0) ? Vector2(0,-m_Drag.y()) : Vector2(0,m_Drag.x()));
 		}
 		DragToAdd = DragToAdd / m_Mass;
 
-		Point2D newVelocity = _tempObject->velocity() + (DragToAdd * dt);
-		
-		_tempObject->setVelocity(newVelocity);
+		Vector2 newVelocity = _Object->getVelocity() + (DragToAdd * dt);
+		_Object->setVelocity(newVelocity);
 	}
 }
 
 PhysicsComponent::~PhysicsComponent()
-{
-	//assert(m_GameObject);
-	//delete m_GameObject;
-}
+{}

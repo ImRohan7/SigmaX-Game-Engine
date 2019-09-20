@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "IGameObjectController.h"
-#include "Point2D.h"
+#include "Vector2.h"
 
 // Ghost will haunt either Player or Monster. Whoever is caught, becomes ghost. Probably for sometime or forever...who knmows. There is no way to escape !!!
 
@@ -16,18 +16,18 @@ public:
 	{
 		if (m_pHaunt)
 		{
-			m_pObject->SetPosition(m_pHaunt->GetPosition() + Point2D::Unit);
+			m_pObject->SetPosition(m_pHaunt->GetPosition() + Vector2::Unit);
 		}
 		else
 		{
-			Point2D temp(5.6f, 6.88f);
+			Vector2 temp(5.6f, 6.88f);
 			m_pObject->SetPosition(temp);
 		}
 	}
 
-	Point2D randomDirectionGenerator()
+	Vector2 randomDirectionGenerator()
 	{
-		Point2D tempRand(0.0f, 0.0f);
+		Vector2 tempRand(0.0f, 0.0f);
 		tempRand.Rand_Shuffle(-5, 5);
 		return tempRand;
 	}

@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "IGameObjectController.h"
 #include "stdlib.h"
-#include "Point2D.h"
+#include "Vector2.h"
 #include "MyString.h"
 
 class ZombieController : public IGameObjectController
@@ -15,7 +15,7 @@ public:
 	void UpdateGameObject() override
 	{
 		lifetime = lifetime + rand() % 3 - 1;
-		Point2D Direction;
+		Vector2 Direction;
 		if (m_pFocus)
 		{
 			Direction = m_pFocus->GetPosition() - m_pObject->GetPosition();
@@ -28,9 +28,9 @@ public:
 		m_pObject->SetPosition(m_pObject->GetPosition() + Direction);
 	}
 
-	Point2D randomDirectionGenerator()
+	Vector2 randomDirectionGenerator()
 	{
-		Point2D tempRand(0.0f, 0.0f);
+		Vector2 tempRand(0.0f, 0.0f);
 		tempRand.Rand_Shuffle(-5, 5);
 		return tempRand;
 	}
@@ -39,7 +39,7 @@ public:
 		return mName.getName();
 	}
 
-	Point2D getPos() {
+	Vector2 getPos() {
 		return m_pObject->GetPosition();
 	}
 

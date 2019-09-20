@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "IGameObjectController.h"
 #include "MyString.h"
-#include "Point2D.h"
+#include "Vector2.h"
 
 class PlayerController : public IGameObjectController
 {
@@ -22,14 +22,14 @@ public:
 	{
 		if (m_pObject)
 		{
-			Point2D Direction = GetDirectionFromUserInput();
+			Vector2 Direction = GetDirectionFromUserInput();
 			m_pObject->SetPosition(m_pObject->GetPosition() + Direction);
 		}
 	}
 
-	Point2D GetDirectionFromUserInput()
+	Vector2 GetDirectionFromUserInput()
 	{
-		Point2D temp(0.0f, 0.0f);
+		Vector2 temp(0.0f, 0.0f);
 		char dir;
 		std::cout << "Where you want to move ? \n";
 		std::cout << "	W: UP		S: DOWN		A: LEFT		D: RIGHT	\n";
@@ -80,7 +80,7 @@ public:
 		return mName.getName();
 	}
 
-	Point2D getPos() { return m_pObject->GetPosition(); }
+	Vector2 getPos() { return m_pObject->GetPosition(); }
 
 private:
 	GameObject * m_pObject;

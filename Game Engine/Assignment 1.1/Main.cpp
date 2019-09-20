@@ -14,16 +14,14 @@
 #include "GLib.h"
 #include "LuaParser.h"
 #include "MatrixTest.cpp"
-//#include "Allocator.h"
 
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
-	Math::test();
 
 	//_crtBreakAlloc = 23;
 	//Initializing Glib
 	// IMPORTANT: first we need to initialize GLib
-	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 1000, 720);
+	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 1200, 800);
 	
 	if (bSuccess)
 	{
@@ -31,9 +29,19 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		{
 			if (Game::Init())
 			{
-				// runs our Game until it’s done
-				Engine::Run();
-				Game::Shutdown(); 
+				bool toQuit = false;
+				do
+				{ 
+					// runs our Game until it’s done
+					Engine::Run();
+					Game::Update();
+					
+					if (Engine::QuitRequested())
+						break;
+
+				} while (!toQuit);
+				Game::Shutdown();
+
 			}
 			Engine::Shutdown(); // Release Everything
 		}
@@ -42,8 +50,5 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	// IMPORTANT:  Tell GLib to shutdown, releasing resources.
 	GLib::Shutdown();
 
-#if defined _DEBUG
-	_CrtDumpMemoryLeaks();
-#endif // _DEBUG
 
 }

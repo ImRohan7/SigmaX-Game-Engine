@@ -1,12 +1,12 @@
 #pragma once
 #include"Map.h"
-#include "Vector2D.h"
+#include "Vector2.h"
 
 class Player
 {
 	public:
 	
-	Vector2D position;
+	Vector2 position;
 	char *name;
 
 	void updatePlayerPos(const int &x1,const int &y1)

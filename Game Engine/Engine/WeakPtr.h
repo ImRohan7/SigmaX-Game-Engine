@@ -53,6 +53,7 @@ public:
 		m_refCount->weakCount++;
 	}
 
+	// basically to get the SmartPtr
 	SmartPtr<T> AquireOwnership()
 	{
 		if (m_refCount->smartCount > 0)

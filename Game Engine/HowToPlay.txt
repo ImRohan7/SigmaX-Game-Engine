@@ -1,0 +1,4 @@
+It's Car game!!! That's it.
+
+"W S A D" to move for sure and
+'Q' anytime if you think it's a bad game and you wanna Exit.

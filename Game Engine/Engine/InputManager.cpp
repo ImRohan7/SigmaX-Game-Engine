@@ -15,7 +15,7 @@ void InputManager::TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 	
 		//sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 		//OutputDebugStringA(Buffer);
-		DEBUG_PRINT("Key: %d is %c", i_VKeyID, (char)i_VKeyID);
+	//	DEBUG_PRINT("Key: %d is %c", i_VKeyID, (char)i_VKeyID);
 		
 	#endif // __DEBUG
 }

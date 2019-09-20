@@ -1,6 +1,9 @@
 #pragma once
 #include "Vector3d.h"
 #include "Vector4d.h"
+#include <xmmintrin.h>
+#include <intrin.h>
+
 namespace Math {
 
 	class Matrix_4x4
@@ -35,6 +38,7 @@ namespace Math {
 		// Inverse
 		void Invert(void);
 		Matrix_4x4 GetInverse(void) const; // return inverse of this instance
+		Matrix_4x4 getInverseSSE(void) const; // SSE Version
 
 		// Transpose
 		void Transpose(void);
@@ -42,6 +46,9 @@ namespace Math {
 
 		// operator * with similar type
 		Matrix_4x4 operator*(const Matrix_4x4 & i_Oth) const;
+		Matrix_4x4 MultiplySSE(const Matrix_4x4 & rhs) const;  // SSE Version
+
+
 		// float * M
 		Matrix_4x4 operator*(const float & i_float) const;
 
@@ -57,11 +64,17 @@ namespace Math {
 		void print_Me(void) const;
 
 	private:
-		float m_11, m_12, m_13, m_14;//m_11, m_12, m_13, m_14
-		float m_21, m_22, m_23, m_24;//m_21, m_22, m_23, m_24
-		float m_31, m_32, m_33, m_34;//m_31, m_32, m_33, m_34
-		float m_41, m_42, m_43, m_44;//m_41, m_42, m_43, m_44
-
+		union {
+			float mat[16];
+			__m128 m_row[4]; // 4 X 32
+			struct
+			{
+				float m_11, m_12, m_13, m_14;//m_11, m_12, m_13, m_14
+				float m_21, m_22, m_23, m_24;//m_21, m_22, m_23, m_24
+				float m_31, m_32, m_33, m_34;//m_31, m_32, m_33, m_34
+				float m_41, m_42, m_43, m_44;//m_41, m_42, m_43, m_44
+			};
+		};
 	};
 
 	// V4 = M * V ie. Right , Column Vector 

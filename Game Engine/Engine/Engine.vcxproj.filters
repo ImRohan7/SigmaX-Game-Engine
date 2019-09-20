@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="GameActor">
-      <UniqueIdentifier>{d1436f63-301d-48f7-9c92-5b2eb8ce740e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Controller Interface">
       <UniqueIdentifier>{d819e249-6f99-4cf6-b080-2d42f402862f}</UniqueIdentifier>
     </Filter>
@@ -48,12 +45,6 @@
     </Filter>
     <Filter Include="Core\Math">
       <UniqueIdentifier>{46119f35-c61e-4686-8198-5af7a1c14773}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Math\Point2D">
-      <UniqueIdentifier>{4afbaf6e-87f6-4806-bbf9-f6c73fad7052}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Math\Vector3D">
-      <UniqueIdentifier>{55b7bda0-5218-4ba7-8d6f-218d3affa5a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Console">
       <UniqueIdentifier>{d4bbef7f-567c-4463-815a-16ceed16c6ed}</UniqueIdentifier>
@@ -93,6 +84,30 @@
     </Filter>
     <Filter Include="Core\Math\Matrix 4">
       <UniqueIdentifier>{89b57b92-3fbd-4c51-931b-b61861db0bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Collision Handling">
+      <UniqueIdentifier>{54920fa7-d4c4-47cb-bc77-793959ecbeab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\RendererManager">
+      <UniqueIdentifier>{92066d17-8767-4602-b693-e299b1d7af72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math\Verctors">
+      <UniqueIdentifier>{261fe284-9ca4-419a-9bb8-a6efbaec6871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math\Verctors\Vector3D">
+      <UniqueIdentifier>{55b7bda0-5218-4ba7-8d6f-218d3affa5a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math\Verctors\Vector4D">
+      <UniqueIdentifier>{e7aa9541-5729-49e2-b0b1-b800902184ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math\Verctors\Vector2D">
+      <UniqueIdentifier>{4afbaf6e-87f6-4806-bbf9-f6c73fad7052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Delegates">
+      <UniqueIdentifier>{644f05df-3b3c-48db-96a3-0ec3075eac93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{d1436f63-301d-48f7-9c92-5b2eb8ce740e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,17 +168,26 @@
     <ClInclude Include="SigmaEngine.h">
       <Filter>Core\Primary</Filter>
     </ClInclude>
-    <ClInclude Include="Vector4d.h">
-      <Filter>Core\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3d.h">
-      <Filter>Core\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Point2D.h">
-      <Filter>Core\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Matrix_4x4.h">
       <Filter>Core\Math\Matrix 4</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionHandler.h">
+      <Filter>Physics\Collision Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="RendererManager.h">
+      <Filter>Core\Renderer\RendererManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4d.h">
+      <Filter>Core\Math\Verctors\Vector4D</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3d.h">
+      <Filter>Core\Math\Verctors\Vector3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Core\Math\Verctors\Vector2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Delegates.h">
+      <Filter>Core\Delegates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +195,7 @@
       <Filter>Core\Console</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.h">
-      <Filter>GameActor</Filter>
+      <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="IGameObjectController.h">
       <Filter>Controller Interface</Filter>
@@ -184,9 +208,6 @@
     </ClCompile>
     <ClCompile Include="Allocator.cpp">
       <Filter>Memory Manager\Allocator</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3d.cpp">
-      <Filter>Core\Math\Vector3D</Filter>
     </ClCompile>
     <ClCompile Include="FixedSizeAllocator.cpp">
       <Filter>Memory Manager\FSA</Filter>
@@ -202,9 +223,6 @@
     </ClCompile>
     <ClCompile Include="Unit_Test_FixedSizeAllocator.cpp">
       <Filter>Other\Unit Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Core\Timer</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp">
       <Filter>Physics</Filter>
@@ -224,14 +242,26 @@
     <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Point2D.cpp">
-      <Filter>Core\Math\Point2D</Filter>
-    </ClCompile>
     <ClCompile Include="MatrixTest.cpp">
       <Filter>Other\Unit Tests</Filter>
     </ClCompile>
     <ClCompile Include="Matrix_4x4.cpp">
       <Filter>Core\Math\Matrix 4</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionHandler.cpp">
+      <Filter>Physics\Collision Handling</Filter>
+    </ClCompile>
+    <ClCompile Include="RendererManager.cpp">
+      <Filter>Core\Renderer\RendererManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3d.cpp">
+      <Filter>Core\Math\Verctors\Vector3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Core\Math\Verctors\Vector2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Delegates.cpp">
+      <Filter>Core\Delegates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,19 +13,22 @@ public:
 	PhysicsComponent() = delete;
 
 	// Contsructor
-	PhysicsComponent(const SmartPtr<GameObject> i_Obj, const float i_mass, const Point2D i_drag) :
+	PhysicsComponent(const SmartPtr<GameObject> i_Obj, const float i_mass, const Vector2 i_drag) :
 		m_GameObject(i_Obj), m_Mass(i_mass), m_Drag(i_drag)
 	{ }
 
 	void updatePhysics(float DeltaTime);
-
+	
 	//set
 	//void setGameObject(GameObject* i_go) { mGameObject = i_go; }
 	void setMass(float iMass) { m_Mass = iMass; }
-	void setDrag(Point2D iDrag) { m_Drag = iDrag; }
+	void setDrag(Vector2 iDrag) { m_Drag = iDrag; }
 
-	void addForce(Point2D iForce, float DeltaTime);
-	void removeForce(float i_dt);
+	void addForce(Vector2 iForce, float DeltaTime);
+	void setDragStatus(bool i_state)
+	{
+		IsApplyingForce = i_state;
+	}
 
 	~PhysicsComponent();
 
@@ -33,6 +36,11 @@ private:
 	WeakPtr<GameObject>  m_GameObject;
 	
 	float m_Mass;
-	Point2D m_Drag;
+	Vector2 m_Drag;
 	bool IsApplyingForce = false;
+
+
+	void updatePosition(SmartPtr<GameObject> _Object,const float DeltaTime);
+	void ApplyDrag(SmartPtr<GameObject> _Object, float i_dt);
+
 };

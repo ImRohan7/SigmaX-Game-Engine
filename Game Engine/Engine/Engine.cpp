@@ -1,29 +1,36 @@
 #include "Engine.h"
 #include <vector>
+#include "RendererManager.h"
+#include "CollisionHandler.h"
+#define FORCE 20.0f
 
 static bool Input = false;
 
 namespace Engine {
 	
 	// TO DO: create a list for storing components
+	static std::vector<SmartPtr<GameObject>> _AllObjects;
 	static std::vector<PhysicsComponent*> _physicsComps;
 	static std::vector<Renderable*> _renderables;
-
-	// ptr stuff
-	static std::vector<SmartPtr<GameObject>> _AllObjects;
-	//static std::vector<WeakPtr<GameObject>> _Physics_Ptrs;
-
+	
 	static bool ToQuit = false;
+	static float ElapsedTime = 0.0f;
+	static long int ElapsedSeconds = 0;
+	static Modes m_Mode = Menu; // 0: Game, 1: Exir
 
 	bool Engine::Init()
 	{
 		DEBUG_PRINT("Engine starting up");
-
 		InputManager::InitService();
-
+		
 		return true;
 	}
-
+	int Engine::getElapsedTime() { return ElapsedSeconds; }
+	Modes Engine::getMode() { return m_Mode; }
+	void Engine::setMode(Modes m)
+	{
+		m_Mode = m;
+	}
 	void push_PhysicsComponentToList(PhysicsComponent * i_Obj)
 	{
 		_physicsComps.push_back(i_Obj);
@@ -39,23 +46,61 @@ namespace Engine {
 		_AllObjects.push_back(i_Obj);
 	}
 
+
 	bool Engine::Shutdown()
 	{
-		SmartPtr<GameObject> toFreeG = _AllObjects.at(0);
-		_AllObjects.pop_back();
-		
+			
+		int size = _AllObjects.size();
 		// relsease sprites
-		Renderable * toFreeR = _renderables.at(0);
-		_renderables.pop_back();
-		delete toFreeR;
+		for (unsigned i = 0; i < size; i++)
+		{
+			Renderable * toFreeR = _renderables.at(size-i-1);
+			_renderables.pop_back();
+			delete toFreeR;
+		}
 
-		PhysicsComponent * toFreeP = _physicsComps.at(0);
-		_physicsComps.pop_back();
-		delete toFreeP;
+		for (unsigned i = 0; i < size; i++)
+		{
+			PhysicsComponent * toFreeP = _physicsComps.at(size - i - 1);
+			_physicsComps.pop_back();
+			delete toFreeP;
+		}
+
+		for (unsigned i = 0; i < size; i++)
+		{
+					SmartPtr<GameObject> toFreeG = _AllObjects.at(size - i - 1);
+					_AllObjects.pop_back();
+		}
 
 		//DEBUG_PRINT("Size: %d", _physicsComps.size());
 		//DEBUG_PRINT("Engine shutting down");
 		return true;
+	}
+
+
+	void Engine::ClearAll()
+	{
+		int size = _AllObjects.size();
+		// relsease sprites
+		for (unsigned i = 0; i < size; i++)
+		{
+			Renderable * toFreeR = _renderables.at(size - i - 1);
+			_renderables.pop_back();
+			delete toFreeR;
+		}
+
+		for (unsigned i = 0; i < size; i++)
+		{
+			PhysicsComponent * toFreeP = _physicsComps.at(size - i - 1);
+			_physicsComps.pop_back();
+			delete toFreeP;
+		}
+
+		for (unsigned i = 0; i < size; i++)
+		{
+			SmartPtr<GameObject> toFreeG = _AllObjects.at(size - i - 1);
+			_AllObjects.pop_back();
+		}
 	}
 
 	bool Engine::QuitRequested()
@@ -66,17 +111,17 @@ namespace Engine {
 
 	// ****  not using anymore 
 	// Create Player 
-	void create_Player(const Point2D i_pos)
+	void create_Player(const Vector2 i_pos)
 	{
 		SmartPtr<GameObject> player;// = GameObject::Create(i_pos);
 		_AllObjects.push_back(player);
 
 		// this(overload '->') should get a copy of smartPtr and deal with gameobject velocity
-		player->setVelocity(Point2D::Unit);
+		player->setVelocity(Vector2::Unit);
 
 		
 		// create a physics component as well
-		PhysicsComponent * pComp = new PhysicsComponent(player, 5.0f, Point2D::Unit);
+		PhysicsComponent * pComp = new PhysicsComponent(player, 5.0f, Vector2::Unit);
 		_physicsComps.push_back(pComp);
 
 		float dt = Timer::calcLastFrameTime();
@@ -87,72 +132,123 @@ namespace Engine {
 
 	void Engine::Run()
 	{
-		bool bQuit = false;
-		do
-		{
+			bool bQuit = false;
 			// IMPORTANT: We need to let GLib do it's thing. 
 			GLib::Service(bQuit);
 	
 			// Calculating Last Frame time
 			float dt = Timer::calcLastFrameTime();
 			dt /= 1000;
-
+			ElapsedTime += dt;
+			if (ElapsedTime > 100)
+			{
+				ElapsedTime = 0.0f;
+				ElapsedSeconds++;
+			}
+			
+		//	DEBUG_PRINT("Elapsed: %d", ElapsedSeconds);
 			// applying input actions
 			// Update gameObjects based on user input
 			Input::CheckInput(dt);
-			
+
+			Engine::Physics::CollisionHandler cs;
+			cs.HandleCollisions(_AllObjects, dt);
+
 			//AI::Run(dt);          // Run AI 
-								  // (also apply user input).
 			// Applying Physics
 			Physics::Run(dt);
 
 			// Last but Not least Drawing
 			Renderer::Draw();
-
-			if (Engine::QuitRequested())
-				break;
-
-		} while (!bQuit);
 	}
 
 	void Physics::Run(float i_dt)
 	{
 		for (unsigned i = 0; i < _physicsComps.size(); i++)
+		{
 			_physicsComps.at(i)->updatePhysics(i_dt);
+		}
 	}
 
 	void Renderer::Draw()
 	{
-		for (unsigned i = 0; i < _renderables.size(); i++)
-			_renderables.at(i)->Draw();
+		RendererManager R;
+		R.Draw();
 	}
 
 	void Input::CheckInput(float i_dt)
 	{
-		if (InputManager::getKeyDown(KeyId::D))
+		float force = 15.0f;
+		// first (0th Object) is by default Player Controller
+		switch (m_Mode)
 		{
-			_physicsComps.at(0)->addForce(Point2D(3.0, 0), i_dt);
+			
+			case Menu:
+				if (InputManager::getKeyDown(KeyId::S))
+				{
+					m_Mode = Play;
+				}
+				else if (InputManager::getKeyDown(KeyId::Q))
+				{
+					ToQuit = true;
+				}
+			break;
+
+			case Play:
+				
+				if (InputManager::getKeyDown(KeyId::D))
+				{
+					_physicsComps.at(0)->addForce(Vector2(FORCE, 0), i_dt);
+				}
+				else if (InputManager::getKeyDown(KeyId::A))
+				{
+					_physicsComps.at(0)->addForce(Vector2(-FORCE, 0), i_dt);
+				}
+				else if (InputManager::getKeyDown(KeyId::W))
+				{
+					_physicsComps.at(0)->addForce(Vector2(0, FORCE), i_dt);
+				}
+				else if (InputManager::getKeyDown(KeyId::S))
+				{
+					_physicsComps.at(0)->addForce(Vector2(0, -FORCE), i_dt);
+				}
+				else if (InputManager::getKeyDown(KeyId::Q))
+				{
+					ToQuit = true;
+				}
+			break;
+
+			case Endscreen:
+				if (InputManager::getKeyDown(KeyId::Q))
+				{
+					ToQuit = true;
+				}
+			break;
+		default:
+			break;
 		}
-		else if (InputManager::getKeyDown(KeyId::A))
-		{
-			_physicsComps.at(0)->addForce(Point2D(-3.0, 0), i_dt);
-		}
-		else if (InputManager::getKeyDown(KeyId::W))
-		{
-			_physicsComps.at(0)->addForce(Point2D(0, 2.0), i_dt);
-		}
-		else if (InputManager::getKeyDown(KeyId::S))
-		{
-			_physicsComps.at(0)->addForce(Point2D(0, -2.0), i_dt);
-		}
-		else if (InputManager::getKeyDown(KeyId::Q))
-		{
-			ToQuit = true;
-		}
-		else
-		{
-			_physicsComps.at(0)->removeForce(i_dt);
-		}
+		
+		
+		
 	}
-	
+
+	// ------------getters----------------
+
+	// get physics component
+	PhysicsComponent* Engine::getPlayer_PhysicsComponent()
+	{
+		return _physicsComps.at(0);
+	}
+
+	// get player object
+	SmartPtr<GameObject> Engine::getPlayerObj()
+	{
+		return _AllObjects.at(0);
+	}
+
+	// get renderables
+	std::vector<Renderable*> getRenderables()
+	{
+		return _renderables;
+	}
 }

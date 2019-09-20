@@ -1,5 +1,6 @@
 #pragma once
 #include "iostream"
+#include "ConsolePrint.h"
 
 class Vector3d {
 
@@ -84,6 +85,19 @@ public:
 		if (m_z < 0) { m_z = -m_z; }
 	}
 	
+	// dot
+	inline float dot(const Vector3d &i_vec) const
+	{
+		float toReturn = m_x * i_vec.x() + m_y * i_vec.y() + m_z * i_vec.z();
+		return toReturn;
+	}
+
+	// Get Normal As AXIS
+	inline Vector3d getNormal() const
+	{
+		return Vector3d(-m_x, -m_y, -m_z);
+	}
+
 	// Negate
 	inline void negate() 
 	{
@@ -92,9 +106,13 @@ public:
 		m_z = -m_z;
 	}
 
+	// Print to Log
+	inline void printVectorInLOG() const
+	{
+		DEBUG_PRINT("X:%f Y:%f Z:%f", m_x, m_y, m_z);
+	}
+
 private:
 		float m_x, m_y, m_z;
 };
 
-//const Vector3d Vector3d::Zero(0.0f, 0.0f, 0.0f);
-//const Vector3d Vector3d::Unit(1.0f, 1.0f, 1.0f);

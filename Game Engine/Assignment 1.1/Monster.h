@@ -2,7 +2,7 @@
 #include"stdlib.h"
 #include"time.h"
 #include"iostream"
-#include "Point2D.h"
+#include "Vector2.h"
 #include "Map.h"
 #include "MyString.h"
 #include "assert.h"
@@ -12,7 +12,7 @@ class Monster
 public:
 
 	Monster* next;
-	Point2D position;
+	Vector2 position;
 
 	int lifetime;
 	char* name;

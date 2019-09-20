@@ -42,34 +42,34 @@ namespace Math {
 		return Matrix_4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 	}
 
-	Matrix_4x4 Matrix_4x4::CreateXRotation(float i_RotRadians)
+	Matrix_4x4 Matrix_4x4::CreateXRotation(float i_Degree)
 	{
-		float degree = i_RotRadians * D;
+		float Radians = i_Degree * D;
 		return Matrix_4x4(
 			1, 0, 0, 0,
-			0, cos(degree), -sin(degree), 0,
-			0, sin(degree), cos(degree), 0,
+			0, cos(Radians), -sin(Radians), 0,
+			0, sin(Radians), cos(Radians), 0,
 			0, 0, 0, 1
 		);
 	}
 
-	Matrix_4x4 Matrix_4x4::CreateYRotation(float i_RotRadians)
+	Matrix_4x4 Matrix_4x4::CreateYRotation(float i_degree)
 	{
-		float degree = i_RotRadians * D;
+		float Radians = i_degree * D;
 		return Matrix_4x4(
-			cos(degree), 0, sin(degree), 0,
+			cos(Radians), 0, sin(Radians), 0,
 			0, 1, 0, 0,
-			-sin(degree), 0, cos(degree), 0,
+			-sin(Radians), 0, cos(Radians), 0,
 			0, 0, 0, 1
 		);
 	}
 
-	Matrix_4x4 Matrix_4x4::CreateZRotation(float i_RotRadians)
+	Matrix_4x4 Matrix_4x4::CreateZRotation(float i_Degree)
 	{
-		float degree = i_RotRadians * D;
+		float Radians = i_Degree * D;
 		return Matrix_4x4(
-			cos(degree), -sin(degree), 0, 0,
-			sin(degree), cos(degree), 0, 0,
+			cos(Radians), -sin(Radians), 0, 0,
+			sin(Radians), cos(Radians), 0, 0,
 			0, 0, 1, 0,
 			0, 0, 0, 1
 		);
@@ -138,6 +138,67 @@ namespace Math {
 	{
 		*this = this->GetInverse();
 	}
+
+	Matrix_4x4 Matrix_4x4::MultiplySSE(const Matrix_4x4 & i_other) const
+	{
+		// get Rows
+		__m128 _row1 = _mm_load_ps(&i_other.m_11);
+		__m128 _row2 = _mm_load_ps(&i_other.m_21);
+		__m128 _row3 = _mm_load_ps(&i_other.m_31);
+		__m128 _row4 = _mm_load_ps(&i_other.m_41);
+
+
+		__m128 capture;
+		Matrix_4x4 toReturn;
+		
+		// calculate rows
+		// m_11 * i_other.row1
+		capture = _mm_mul_ps(_mm_load1_ps(&m_11), _row1);
+		// m_12 * i_other.row2
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_12), _row2));
+		// m_13 * i_other.row3
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_13), _row3));
+		// m_14 * i_other.row4
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_14), _row4));
+
+		// Store First Row
+		_mm_storel_pi(reinterpret_cast<__m64 *>(&toReturn.m_11), capture);
+		_mm_storeh_pi(reinterpret_cast<__m64 *>(&toReturn.m_13), capture);
+
+		capture = _mm_mul_ps(_mm_load1_ps(&m_21), _row1);
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_22), _row2));
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_23), _row3));
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_24), _row4));
+
+		// Store Second Row
+		_mm_storel_pi(reinterpret_cast<__m64 *>(&toReturn.m_21), capture);
+		_mm_storeh_pi(reinterpret_cast<__m64 *>(&toReturn.m_23), capture);
+
+		capture = _mm_mul_ps(_mm_load1_ps(&m_31), _row1);
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_32), _row2));
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_33), _row3));
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_34), _row4));
+
+		// Store Third Row
+		_mm_storel_pi(reinterpret_cast<__m64 *>(&toReturn.m_31), capture);
+		_mm_storeh_pi(reinterpret_cast<__m64 *>(&toReturn.m_33), capture);
+
+		capture = _mm_mul_ps(_mm_load1_ps(&m_41), _row1);
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_42), _row2));
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_43), _row3));
+		capture = _mm_add_ps(capture, _mm_mul_ps(_mm_load1_ps(&m_44), _row4));
+
+		// Store Fourth Row
+		_mm_storel_pi(reinterpret_cast<__m64 *>(&toReturn.m_41), capture);
+		_mm_storeh_pi(reinterpret_cast<__m64 *>(&toReturn.m_43), capture);
+
+		return toReturn;
+	}
+
+	/*Matrix_4x4 Matrix_4x4::MultiplySSE(const Matrix_4x4 & i_other) const
+	{
+		return ((*this) * i_other);
+	}*/
 
 	Matrix_4x4 Matrix_4x4::GetInverse() const
 	{
@@ -280,6 +341,115 @@ namespace Math {
 			return Inverse;
 		}
 	}
+
+	/*Matrix_4x4 Matrix_4x4::getInverseSSE() const
+	{
+		return ((*this).GetInverse());
+	}*/
+
+
+	Matrix_4x4 Matrix_4x4::getInverseSSE() const
+	{
+		__m128 tmp = { 0.0f };
+		__m128 _row0, _row1, _row2, _row3;
+		__m128 _minor0, _minor1, _minor2, _minor3;
+
+		tmp = _mm_loadh_pi(_mm_loadl_pi(tmp, reinterpret_cast<const __m64 *>(&m_11)), reinterpret_cast<const __m64 *>(&m_21));
+		_row1 = _mm_loadh_pi(_mm_loadl_pi(tmp, reinterpret_cast<const __m64 *>(&m_31)), reinterpret_cast<const __m64 *>(&m_41));
+		_row0 = _mm_shuffle_ps(tmp, _row1, 0x88);
+		_row1 = _mm_shuffle_ps(_row1, tmp, 0xDD);
+		tmp = _mm_loadh_pi(_mm_loadl_pi(tmp, reinterpret_cast<const __m64 *>(&m_13)), reinterpret_cast<const __m64 *>(&m_23));
+		_row3 = _mm_loadh_pi(_mm_loadl_pi(tmp, reinterpret_cast<const __m64 *>(&m_33)), reinterpret_cast<const __m64 *>(&m_43));
+		_row2 = _mm_shuffle_ps(tmp, _row3, 0x88);
+		_row3 = _mm_shuffle_ps(_row3, tmp, 0xDD);
+
+		// -----------------------------------------------
+		tmp = _mm_mul_ps(_row2, _row3);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0xB1);
+		_minor0 = _mm_mul_ps(_row1, tmp);
+		_minor1 = _mm_mul_ps(_row0, tmp);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0x4E);
+		_minor0 = _mm_sub_ps(_mm_mul_ps(_row1, tmp), _minor0);
+		_minor1 = _mm_sub_ps(_mm_mul_ps(_row0, tmp), _minor1);
+		_minor1 = _mm_shuffle_ps(_minor1, _minor1, 0x4E);
+
+		// -----------------------------------------------
+		tmp = _mm_mul_ps(_row1, _row2);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0xB1);
+		_minor0 = _mm_add_ps(_mm_mul_ps(_row3, tmp), _minor0);
+		_minor3 = _mm_mul_ps(_row0, tmp);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0x4E);
+		_minor0 = _mm_sub_ps(_minor0, _mm_mul_ps(_row3, tmp));
+		_minor3 = _mm_sub_ps(_mm_mul_ps(_row0, tmp), _minor3);
+		_minor3 = _mm_shuffle_ps(_minor3, _minor3, 0x4E);
+
+		// -----------------------------------------------
+		tmp = _mm_mul_ps(_mm_shuffle_ps(_row1, _row1, 0x4E), _row3);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0xB1);
+		_row2 = _mm_shuffle_ps(_row2, _row2, 0x4E);
+		_minor0 = _mm_add_ps(_mm_mul_ps(_row2, tmp), _minor0);
+		_minor2 = _mm_mul_ps(_row0, tmp);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0x4E);
+		_minor0 = _mm_sub_ps(_minor0, _mm_mul_ps(_row2, tmp));
+		_minor2 = _mm_sub_ps(_mm_mul_ps(_row0, tmp), _minor2);
+		_minor2 = _mm_shuffle_ps(_minor2, _minor2, 0x4E);
+
+		// -----------------------------------------------
+		tmp = _mm_mul_ps(_row0, _row1);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0xB1);
+		_minor2 = _mm_add_ps(_mm_mul_ps(_row3, tmp), _minor2);
+		_minor3 = _mm_sub_ps(_mm_mul_ps(_row2, tmp), _minor3);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0x4E);
+		_minor2 = _mm_sub_ps(_mm_mul_ps(_row3, tmp), _minor2);
+		_minor3 = _mm_sub_ps(_minor3, _mm_mul_ps(_row2, tmp));
+
+		// -----------------------------------------------
+		tmp = _mm_mul_ps(_row0, _row3);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0xB1);
+		_minor1 = _mm_sub_ps(_minor1, _mm_mul_ps(_row2, tmp));
+		_minor2 = _mm_add_ps(_mm_mul_ps(_row1, tmp), _minor2);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0x4E);
+		_minor1 = _mm_add_ps(_mm_mul_ps(_row2, tmp), _minor1);
+		_minor2 = _mm_sub_ps(_minor2, _mm_mul_ps(_row1, tmp));
+
+		// -----------------------------------------------
+		tmp = _mm_mul_ps(_row0, _row2);
+		tmp = _mm_shuffle_ps(tmp, tmp, 0xB1);
+		_minor1 = _mm_add_ps(_mm_mul_ps(_row3, tmp), _minor1);
+		_minor3 = _mm_sub_ps(_minor3, _mm_mul_ps(_row1, tmp));
+		tmp = _mm_shuffle_ps(tmp, tmp, 0x4E);
+		_minor1 = _mm_sub_ps(_minor1, _mm_mul_ps(_row3, tmp));
+		_minor3 = _mm_add_ps(_mm_mul_ps(_row1, tmp), _minor3);
+
+		// Calculate determinant
+		__m128 det;
+
+		det = _mm_mul_ps(_row0, _minor0);
+		det = _mm_add_ps(_mm_shuffle_ps(det, det, 0x4E), det);
+		det = _mm_add_ss(_mm_shuffle_ps(det, det, 0xB1), det);
+		tmp = _mm_rcp_ss(det);
+		det = _mm_sub_ss(_mm_add_ss(tmp, tmp), _mm_mul_ss(det, _mm_mul_ss(tmp, tmp)));
+		det = _mm_shuffle_ps(det, det, 0x00);
+
+		_minor0 = _mm_mul_ps(det, _minor0);
+		Matrix_4x4 ToReturn;
+		_mm_storel_pi(reinterpret_cast<__m64 *>(&ToReturn.m_11), _minor0);
+		_mm_storeh_pi(reinterpret_cast<__m64 *>(&ToReturn.m_13), _minor0);
+
+		_minor1 = _mm_mul_ps(det, _minor1);
+		_mm_storel_pi(reinterpret_cast<__m64 *>(&ToReturn.m_21), _minor1);
+		_mm_storeh_pi(reinterpret_cast<__m64 *>(&ToReturn.m_23), _minor1);
+
+		_minor2 = _mm_mul_ps(det, _minor2);
+		_mm_storel_pi(reinterpret_cast<__m64 *>(&ToReturn.m_31), _minor2);
+		_mm_storeh_pi(reinterpret_cast<__m64 *>(&ToReturn.m_33), _minor2);
+
+		_minor3 = _mm_mul_ps(det, _minor3);
+		_mm_storel_pi(reinterpret_cast<__m64 *>(&ToReturn.m_41), _minor3);
+		_mm_storeh_pi(reinterpret_cast<__m64 *>(&ToReturn.m_43), _minor3);
+		return ToReturn;
+	}
+
 
 	// * with float
 	Matrix_4x4 Matrix_4x4::operator*(const float & i_float) const

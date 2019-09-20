@@ -55,10 +55,10 @@ namespace Engine {
 				float * getter = new float[2];  // DELETE THIS !!!
 				
 				get_2DInfo(L_state, "Position", getter);
-				Point2D _pos(getter[0],getter[1]);
+				Vector2 _pos(getter[0],getter[1]);
 
 				get_2DInfo(L_state, "Velocity", getter);
-				Point2D _velocity(getter[0], getter[1]);
+				Vector2 _velocity(getter[0], getter[1]);
 
 			// create Player	
 				SmartPtr<GameObject> player = GameObject::Create(_pos,_name,_velocity);
@@ -91,14 +91,15 @@ namespace Engine {
 				lua_pop(L_state, 2);
 			// getting drag from table Physics = { drag = {,}}
 				get_2DInfo(L_state, "drag", getter);
-				Point2D _drag(getter[0],getter[1]);
+				Vector2 _drag(getter[0],getter[1]);
 
 				lua_pop(L_state, 1);
 
 				// Create Physics Component
 				PhysicsComponent * pComp = new PhysicsComponent(player, _mass, _drag);
 				Engine::push_PhysicsComponentToList(pComp);
-
+				
+				player->Set_Mass(_mass);
 
 			
 			// RENDERER
@@ -119,11 +120,16 @@ namespace Engine {
 
 				const char * path = lua_tostring(L_state, -1);
 
-				GLib::Sprites::Sprite * pGoodGuy = Engine::Renderer::CreateSprite(path);
-				Renderable *pRenderer = new Renderable(player, pGoodGuy);
-
+				// getting dimensions
+				float width, height;
+				GLib::Sprites::Sprite * pGoodGuy = Engine::Renderer::CreateSprite(path, width, height);
+				Vector2 Dimensions(width,height);
+				Renderable *pRenderer = new Renderable(player, pGoodGuy, Dimensions);
+				
 				if(pRenderer)
 					Engine::push_RendererToList(pRenderer);
+				// Set AABB
+				player->setAABB(Dimensions);
 
 				delete getter;
 				
@@ -138,6 +144,8 @@ namespace Engine {
 			{
 				DEBUG_PRINT("Error Loading a file");
 				assert(false);
+
+				return nullptr;
 			}
 		}
 
@@ -205,7 +213,7 @@ namespace Engine {
 					int t1 = lua_type(L_state, -2);
 					int t2 = lua_type(L_state, -1);
 					//t1 = lua_tonumber(L_state, -2);
-					t2 = lua_tonumber(L_state, -1);
+					t2 = static_cast<int>(lua_tonumber(L_state, -1));
 					//int x = lua_tonumber(L_state, -1);
 					int t3 = lua_type(L_state, -3);
 					const char *s = lua_tostring(L_state, -2);

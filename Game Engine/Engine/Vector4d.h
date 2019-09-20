@@ -1,7 +1,8 @@
 #pragma once
 #include "iostream"
 #include "Vector3d.h"
-
+#include "ConsolePrint.h"
+#include <xmmintrin.h>
 class Vector4d {
 
 public:
@@ -18,6 +19,11 @@ public:
 	Vector4d(const Vector3d & i_Vec, float i_4):
 		m_x(i_Vec.x()), m_y(i_Vec.y()), m_z(i_Vec.z()), m_w(i_4)
 	{}
+
+	Vector4d(__m128 vec) 
+	{
+		m_vec = vec;
+	}
 
 	//Get
 	float x() const { return m_x; }
@@ -43,8 +49,24 @@ public:
 	// Multiply
 	Vector4d operator*(const Vector4d &i_other) const;
 
+	// Check Equals with Float
+	inline bool operator==(const float &i_float) const
+	{
+		if (m_x == i_float && m_y == i_float && m_z == i_float && m_w == i_float)
+		{
+			return true;
+		}
+		return false;
+	}
+
 	//Print
 	void printVector() const;
+
+	// Print to Log
+	void printVectorInLOG() const
+	{
+		DEBUG_PRINT("Vector4:: X:%f Y:%f Z:%f", m_x, m_y, m_z);
+	}
 
 	// Normalise
 	inline void coolDown();
@@ -53,7 +75,14 @@ public:
 	inline void negate();
 
 private:
-	float m_x, m_y, m_z, m_w;
+	union
+	{
+		struct
+		{
+			float m_x, m_y, m_z, m_w;
+		};
+		__m128 m_vec;
+	};
 };
 
 //const Vector4d Vector4d::Zero(Vector3d::Zero, 0.0f);
@@ -61,46 +90,22 @@ private:
 
 inline Vector4d Vector4d::operator+(const Vector4d &i_other) const
 {
-	Vector4d temp;
-	temp.m_x = m_x + i_other.m_x;
-	temp.m_y = m_y + i_other.m_y;
-	temp.m_z = m_z + i_other.m_z;
-	temp.m_w = m_z + i_other.m_w;
-
-	return temp;
+	return Vector4d(_mm_add_ps(m_vec, i_other.m_vec));
 }
 
 inline Vector4d Vector4d::operator-(const Vector4d &i_other) const
 {
-	Vector4d temp;
-	temp.m_x = m_x - i_other.m_x;
-	temp.m_y = m_y - i_other.m_y;
-	temp.m_z = m_z - i_other.m_z;
-	temp.m_w = m_w - i_other.m_w;
-
-	return temp;
+	return Vector4d(_mm_sub_ps(m_vec, i_other.m_vec));
 }
 
 inline Vector4d Vector4d::operator/(const Vector4d &i_other) const
 {
-	Vector4d temp;
-	temp.m_x = m_x / i_other.m_x;
-	temp.m_y = m_y / i_other.m_y;
-	temp.m_z = m_z / i_other.m_z;
-	temp.m_w = m_w / i_other.m_w;
-
-	return temp;
+	return Vector4d(_mm_div_ps(m_vec, i_other.m_vec));
 }
 
 inline Vector4d Vector4d::operator*(const Vector4d &i_other) const
 {
-	Vector4d temp;
-	temp.m_x = m_x * i_other.m_x;
-	temp.m_y = m_y * i_other.m_y;
-	temp.m_z = m_z * i_other.m_z;
-	temp.m_w = m_w * i_other.m_w;
-
-	return temp;
+	return Vector4d(_mm_mul_ps(m_vec, i_other.m_vec));
 }
 
 inline void Vector4d::printVector() const

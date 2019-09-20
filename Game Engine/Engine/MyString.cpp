@@ -21,6 +21,7 @@ MyString::~MyString()
 	if (m_name != NULL)
 	{
 		delete[] m_name;
+		m_name = nullptr;
 	}
 }
 

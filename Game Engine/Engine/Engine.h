@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Point2D.h"
+#include "Vector2.h"
 #include "GameObject.h"
 #include "InputManager.h"
 #include "ConsolePrint.h"
@@ -11,8 +11,13 @@
 #include "InputManager.h"
 #include "Renderer.h"
 #include "SmartPtr.h"
+#include <vector>
+#include "Matrix_4x4.h"
 
 namespace Engine {
+	
+	enum Modes { Menu, Play, Endscreen };
+
 
 	bool Init();
 	bool Shutdown();
@@ -29,7 +34,18 @@ namespace Engine {
 
 	bool QuitRequested();
 
-	void create_Player(const Point2D i_pos);
+	void create_Player(const Vector2 i_pos);
+
+	std::vector<Renderable*> getRenderables();
+
+	PhysicsComponent* getPlayer_PhysicsComponent();
+	SmartPtr<GameObject> getPlayerObj();
+
+	int getElapsedTime();
+	Modes getMode();
+	void setMode(Modes m);
+
+	void ClearAll();
 
 	namespace Physics {
 		void Run(float i_dt);

@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-GLib::Sprites::Sprite * Engine::Renderer::CreateSprite(const char * i_pFilename)
+GLib::Sprites::Sprite * Engine::Renderer::CreateSprite(const char * i_pFilename, float &i_width, float &i_height)
 {
 	assert(i_pFilename);
 
@@ -26,6 +26,8 @@ GLib::Sprites::Sprite * Engine::Renderer::CreateSprite(const char * i_pFilename)
 
 	// Get the dimensions of the texture. We'll use this to determine how big it is on screen
 	bool result = GLib::GetDimensions(pTexture, width, height, depth);
+	i_width = width;
+	i_height = height;
 	assert(result == true);
 	assert((width > 0) && (height > 0));
 
@@ -82,31 +84,31 @@ void * Engine::Renderer::LoadFile(const char * i_pFilename, size_t & o_sizeFile)
 	return pBuffer;
 }
 
-void Renderable::Draw()
-{
-	// IMPORTANT: Tell GLib that we want to start rendering
-	GLib::BeginRendering();
-	// Tell GLib that we want to render some sprites
-	GLib::Sprites::BeginRendering();
-
-	if (m_pObject)
-	{
-		SmartPtr<GameObject> _tempObject = m_pObject.AquireOwnership();
-
-		GLib::Point2D temp = { _tempObject->GetPosition().x(), _tempObject->GetPosition().y() };
-		// if underlying pointer is available draw it
-		GLib::Sprites::RenderSprite(*m_pSprite, temp, 0.0f);
-	}
-	else
-	{
-		// Need to destroy this Renderable since the GameObject has been released
-	}
-
-	// Tell GLib we're done rendering sprites
-	GLib::Sprites::EndRendering();
-	// IMPORTANT: Tell GLib we're done rendering
-	GLib::EndRendering();
-}
+//void Renderable::Draw()
+//{
+//	// IMPORTANT: Tell GLib that we want to start rendering
+//	GLib::BeginRendering();
+//	// Tell GLib that we want to render some sprites
+//	GLib::Sprites::BeginRendering();
+//
+//	if (m_pObject)
+//	{
+//		SmartPtr<GameObject> _tempObject = m_pObject.AquireOwnership();
+//
+//		GLib::Vector2 temp = { _tempObject->GetPosition().x(), _tempObject->GetPosition().y() };
+//		// if underlying pointer is available draw it
+//		GLib::Sprites::RenderSprite(*m_pSprite, temp, 0.0f);
+//	}
+//	else
+//	{
+//		// Need to destroy this Renderable since the GameObject has been released
+//	}
+//
+//	// Tell GLib we're done rendering sprites
+//	GLib::Sprites::EndRendering();
+//	// IMPORTANT: Tell GLib we're done rendering
+//	GLib::EndRendering();
+//}
 
 Renderable::~Renderable()
 {

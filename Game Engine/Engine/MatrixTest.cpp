@@ -1,6 +1,6 @@
 #include "Vector3d.h"
 #include "Vector4d.h"
-#include "Point2D.h"
+#include "Vector2.h"
 #include "Matrix_4x4.h"
 
 namespace Math {
