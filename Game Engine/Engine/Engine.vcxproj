@@ -40,7 +40,6 @@
     <ClInclude Include="RendererManager.h" />
     <ClInclude Include="SigmaEngine.h" />
     <ClInclude Include="SmartPtr.h" />
-    <ClInclude Include="Test.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector3d.h" />
     <ClInclude Include="Vector4d.h" />
@@ -65,7 +64,6 @@
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RendererManager.cpp" />
-    <ClCompile Include="Test.cpp" />
     <ClCompile Include="Unit_Test_FixedSizeAllocator.cpp" />
     <ClCompile Include="MemorySystem.cpp" />
     <ClCompile Include="MyString.cpp" />
