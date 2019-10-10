@@ -67,6 +67,10 @@ namespace Engine {
 		}
 	};
 
+
+
+	// Multicast delegates
+	// ----------
 	template<class ... Params>
 	class MultiCastDelegate
 	{
