@@ -26,7 +26,7 @@ namespace Game
 	static float LeftEdge = -225;
 	static float RightEdge = 225;
 
-	static bool IsGameSetup = false;
+	static bool IsGameSetup = true;
 	static bool IsEndSetup = false;
 
 	mainCharacter* m1;

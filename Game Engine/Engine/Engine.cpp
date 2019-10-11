@@ -12,6 +12,7 @@ namespace Engine {
 	static std::vector<SmartPtr<GameObject>> _AllObjects;
 	static std::vector<PhysicsComponent*> _physicsComps;
 	static std::vector<Renderable*> _renderables;
+	Engine::Physics::CollisionHandler cs;
 	
 	static bool ToQuit = false;
 	static float ElapsedTime = 0.0f;
@@ -68,8 +69,8 @@ namespace Engine {
 
 		for (unsigned i = 0; i < size; i++)
 		{
-					SmartPtr<GameObject> toFreeG = _AllObjects.at(size - i - 1);
-					_AllObjects.pop_back();
+			SmartPtr<GameObject> toFreeG = _AllObjects.at(size - i - 1);
+			_AllObjects.pop_back();
 		}
 
 		//DEBUG_PRINT("Size: %d", _physicsComps.size());
@@ -153,7 +154,7 @@ namespace Engine {
 			// Update gameObjects based on user input
 			Input::CheckInput(dt);
 
-			Engine::Physics::CollisionHandler cs;
+			
 			cs.HandleCollisions(_AllObjects, dt);
 
 			//AI::Run(dt);          // Run AI 
@@ -199,11 +200,11 @@ namespace Engine {
 
 			case Play:
 				
-				if (InputManager::getKeyDown(KeyId::D))
+				/*if (InputManager::getKeyDown(KeyId::D))
 				{
 					_physicsComps.at(0)->addForce(Vector2(FORCE, 0), i_dt);
-				}
-				else if (InputManager::getKeyDown(KeyId::A))
+				}*/
+				if (InputManager::getKeyDown(KeyId::A))
 				{
 					_physicsComps.at(0)->addForce(Vector2(-FORCE, 0), i_dt);
 				}

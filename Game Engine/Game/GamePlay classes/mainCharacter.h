@@ -15,7 +15,11 @@
 		// Called every frame
 		virtual void Update() override
 		{
-
+			if (InputManager::getKeyDown(KeyId::D))
+			{
+				setVelocity(Vector2(2.5, 0));
+				//_physicsComps.at(0)->addForce(Vector2(FORCE, 0), i_dt);
+			}
 		}
 		
 		// called while collision happens
