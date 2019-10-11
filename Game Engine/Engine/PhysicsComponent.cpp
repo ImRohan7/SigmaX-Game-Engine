@@ -36,7 +36,7 @@ void PhysicsComponent::addForce(Vector2 iForce, float dt) {
 	Vector2 TestVel = newVelocity;
 	// Terminal Velocity limit
 	TestVel.coolDown();	
-
+	
 	if (TestVel.x() > TERMINAL_VEL)
 	{
 		float xv = (newVelocity.x() < 0) ? -TERMINAL_VEL : TERMINAL_VEL;
@@ -47,7 +47,7 @@ void PhysicsComponent::addForce(Vector2 iForce, float dt) {
 		float yv = (newVelocity.y() < 0) ? -TERMINAL_VEL : TERMINAL_VEL;
 		newVelocity.y(yv);
 	}
-	DEBUG_PRINT("VEL: %f", newVelocity.x());
+	//DEBUG_PRINT("VEL: %f", newVelocity.x());
 	
 	_tempObject->setVelocity((_prevVelocity + newVelocity)/2);
 	IsApplyingForce = true;
