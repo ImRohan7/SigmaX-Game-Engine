@@ -10,37 +10,58 @@ class PhysicsComponent
 {
 
 public:
-	PhysicsComponent() = delete;
+	PhysicsComponent() : m_Position(Vector2::Zero), m_Mass(0.0), m_Drag(Vector2::Zero),
+		m_Velocity(Vector2::Zero), m_Acceleration(Vector2::Zero), m_RotationZ(0.0)
+	{}
 
 	// Contsructor
-	PhysicsComponent(const SmartPtr<GameObject> i_Obj, const float i_mass, const Vector2 i_drag) :
+	/*PhysicsComponent(const SmartPtr<GameObject> i_Obj, const float i_mass, const Vector2 i_drag) :
 		m_GameObject(i_Obj), m_Mass(i_mass), m_Drag(i_drag)
-	{ }
+	{ }*/
 
-	void updatePhysics(float DeltaTime);
 	
-	//set
-	//void setGameObject(GameObject* i_go) { mGameObject = i_go; }
+	// ADD / UPDATE
+	// ===============
+	void addForce(Vector2 iForce, float DeltaTime);
+
+	// For ENGINE ONLY
+	// ===============
+	void updatePhysics(float DeltaTime);
+
+
+	// SET
+	//===============
+	void SetPosition(const Vector2& i_Position) { m_Position = i_Position; }
 	void setMass(float iMass) { m_Mass = iMass; }
 	void setDrag(Vector2 iDrag) { m_Drag = iDrag; }
+	void setVelocity(const Vector2& i_Velocity) { m_Velocity = i_Velocity; }
+	void setAcceleration(const Vector2& i_acc) { m_Acceleration = i_acc; }
+	void SetRotation(const float& i_RotX) { m_RotationZ = i_RotX; }
 
-	void addForce(Vector2 iForce, float DeltaTime);
-	void setDragStatus(bool i_state)
-	{
-		IsApplyingForce = i_state;
-	}
 
+	// GET
+	// ================
+	Vector2 getPosition() const { return m_Position; }
+	float getMass() const { return m_Mass; }
+	Vector2 getDrag() const { return m_Drag; }
+	Vector2 getVelocity() const { return m_Velocity; }
+	Vector2 getAcceleration() const { return m_Acceleration; }
+	float getRotationZ() const { return m_RotationZ; }
+	
+	
 	~PhysicsComponent();
 
+public:
+	bool ToUseDrag;	// to apply drag or not while calculating physics
+
 private:
-	WeakPtr<GameObject>  m_GameObject;
-	
+	Vector2 m_Position;
 	float m_Mass;
 	Vector2 m_Drag;
-	bool IsApplyingForce = false;
+	Vector2 m_Velocity;
+	Vector2 m_Acceleration;
+	float m_RotationZ;
 
-
-	void updatePosition(SmartPtr<GameObject> _Object,const float DeltaTime);
-	void ApplyDrag(SmartPtr<GameObject> _Object, float i_dt);
+	void ApplyDrag(float i_dt);
 
 };

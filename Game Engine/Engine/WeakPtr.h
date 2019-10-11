@@ -242,7 +242,7 @@ public:
 		return *m_Ptr;
 	}
 
-// NOOOOOOOOOOO WAYYYYY
+// NOOOOOOOOOOO WAYYYYY they are just observers
 	//T* operator->() const
 	//{
 	//	return m_Ptr;
