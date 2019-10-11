@@ -22,11 +22,11 @@
     <Filter Include="Container">
       <UniqueIdentifier>{7543df91-eb07-4afc-9bb9-917702223c63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GamePlay Classes">
+      <UniqueIdentifier>{feafcca8-d3fa-47ec-aa2d-007e382e0592}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ObjContainer.h">
       <Filter>Container</Filter>
     </ClInclude>
@@ -39,11 +39,11 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GamePlay classes\mainCharacter.h">
+      <Filter>GamePlay Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GhostController.h">
       <Filter>Header Files\GameControllers</Filter>
     </ClCompile>
@@ -73,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="ZombieController.h">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlay classes\mainCharacter.cpp">
+      <Filter>GamePlay Classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

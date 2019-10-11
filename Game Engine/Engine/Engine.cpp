@@ -16,7 +16,7 @@ namespace Engine {
 	static bool ToQuit = false;
 	static float ElapsedTime = 0.0f;
 	static long int ElapsedSeconds = 0;
-	static Modes m_Mode = Menu; // 0: Game, 1: Exir
+	static Modes m_Mode = Play; // 0: Game, 1: Exir
 
 	bool Engine::Init()
 	{
@@ -108,26 +108,21 @@ namespace Engine {
 		return ToQuit;
 	}
 
-
-	// ****  not using anymore 
-	// Create Player 
-	void create_Player(const Vector2 i_pos)
+	bool Engine::Init_Objects()
 	{
-		SmartPtr<GameObject> player;// = GameObject::Create(i_pos);
-		_AllObjects.push_back(player);
-
-		// this(overload '->') should get a copy of smartPtr and deal with gameobject velocity
-		player->setVelocity(Vector2::Unit);
-
-		
-		// create a physics component as well
-		PhysicsComponent * pComp = new PhysicsComponent(player, 5.0f, Vector2::Unit);
-		_physicsComps.push_back(pComp);
-
-		float dt = Timer::calcLastFrameTime();
-		dt /= 1000;
-		pComp->updatePhysics(dt);
-
+		// call Init method from gameObject interface
+		for (SmartPtr<GameObject> obj : _AllObjects)
+		{
+			if (obj != nullptr)
+			{
+				obj->Begin();
+			}
+			else
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	void Engine::Run()
@@ -148,6 +143,13 @@ namespace Engine {
 			
 		//	DEBUG_PRINT("Elapsed: %d", ElapsedSeconds);
 			// applying input actions
+
+			// call update method from gameObject interface
+			for (SmartPtr<GameObject> obj : _AllObjects)
+			{
+				obj->Update();
+			}
+
 			// Update gameObjects based on user input
 			Input::CheckInput(dt);
 
@@ -160,6 +162,7 @@ namespace Engine {
 
 			// Last but Not least Drawing
 			Renderer::Draw();
+
 	}
 
 	void Physics::Run(float i_dt)

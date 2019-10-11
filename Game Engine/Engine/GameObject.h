@@ -14,14 +14,28 @@ class GameObject
 {
 	
 public:
-	GameObject() = delete;
+	GameObject():m_Name("d") {} ;
 
-	static SmartPtr<GameObject> Create(const Vector2 & i_pos, const char * i_string, const Vector2 & i_vel)
-	{
-		return SmartPtr<GameObject>(new GameObject(i_pos, i_string, i_vel));
-	}
-	
+	//// no need of this
+	//static SmartPtr<GameObject> Create(const Vector2 & i_pos, const char * i_string, const Vector2 & i_vel)
+	//{
+	//	return SmartPtr<GameObject>(new GameObject(i_pos, i_string, i_vel));
+	//}
+
 	// Set
+	void setFromFile(const Vector2& i_pos, const char* i_string, const Vector2& i_vel)	
+	{
+		m_Position = i_pos;
+		m_Velocity = i_vel;
+	//	m_Name = i_string;
+		m_RotationZ = 0.0f;
+		m_Masss = 0.0f;
+		IsDynamic = true;
+		ToUseDrag = true;
+		tag = 0;
+
+	}
+
 	void SetPosition(const Vector2 &i_Position) { m_Position = i_Position; }
 	void setVelocity(const Vector2 &i_Velocity) { m_Velocity = i_Velocity; }
 	void SetRotation(const float &i_RotX) { m_RotationZ = i_RotX; }
@@ -68,11 +82,25 @@ public:
 		m_Velocity = Vector2(iSpeed / 5, 0); 
 	}
 	
-	~GameObject() {}
+	
 
 	bool IsDynamic;	// whether to move while colliding
 	bool ToUseDrag;	// to apply drag or not while calculating physics
 	unsigned int tag; // useful for collision check or other stuff || Default is 0
+
+	
+	// Virtual methods for derived classes
+	//====================================
+
+	// This will be called at the start of the game
+	virtual void Begin() {}
+	// Called every frame
+	virtual void Update() {}
+
+	// called while collision happens
+	virtual void OnCollision(SmartPtr<GameObject> i_collidedObj) {}
+
+~GameObject() {}
 
 private:
 	MyString m_Name;
@@ -82,9 +110,11 @@ private:
 	float m_Masss; // will be set while creating physics comp for now
 	AABB m_AABB;
 
-	GameObject(const Vector2 & i_pos, const char * i_string, const Vector2 & i_vel)
+	
+
+	GameObject(const Vector2& i_pos, const char* i_string, const Vector2& i_vel)
 		: m_Position(i_pos), m_Velocity(i_vel), m_Name(i_string), m_RotationZ(0.0f), m_Masss(0.0f)
-		,IsDynamic(true), ToUseDrag(true), tag(0)
+		, IsDynamic(true), ToUseDrag(true), tag(0)
 	{}
 
 };

@@ -18,6 +18,7 @@ namespace Engine {
 	
 	enum Modes { Menu, Play, Endscreen };
 
+	bool Init_Objects(); // run init method of objects
 
 	bool Init();
 	bool Shutdown();

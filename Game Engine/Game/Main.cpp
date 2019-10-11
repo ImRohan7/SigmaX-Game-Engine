@@ -1,4 +1,3 @@
-#include "stdafx.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -15,9 +14,10 @@
 #include "LuaParser.h"
 #include "MatrixTest.cpp"
 
+// application
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
-
+	
 	//_crtBreakAlloc = 23;
 	//Initializing Glib
 	// IMPORTANT: first we need to initialize GLib
@@ -29,19 +29,21 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		{
 			if (Game::Init())
 			{
-				bool toQuit = false;
-				do
-				{ 
-					// runs our Game until it’s done
-					Engine::Run();
-					Game::Update();
-					
-					if (Engine::QuitRequested())
-						break;
+				if (Engine::Init_Objects()) 
+				{
+					bool toQuit = false;
+					do
+					{
+						// runs our Game until it’s done
+						Engine::Run();
+						Game::Update();
 
-				} while (!toQuit);
-				Game::Shutdown();
+						if (Engine::QuitRequested())
+							break;
 
+					} while (!toQuit);
+					Game::Shutdown();
+				}
 			}
 			Engine::Shutdown(); // Release Everything
 		}

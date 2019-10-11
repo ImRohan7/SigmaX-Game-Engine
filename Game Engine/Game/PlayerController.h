@@ -1,5 +1,4 @@
 #pragma once
-#include "stdafx.h"
 #include "IGameObjectController.h"
 #include "MyString.h"
 #include "Vector2.h"
