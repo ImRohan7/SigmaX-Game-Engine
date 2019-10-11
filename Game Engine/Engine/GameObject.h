@@ -84,10 +84,10 @@ public:
 public:
 	bool IsDynamic;	// whether to move while colliding
 	unsigned int tag; // useful for collision check or other stuff || Default is 0
+	PhysicsComponent m_physics;
 
 private:
 	MyString m_Name;
-	PhysicsComponent m_physics;
 	AABB m_AABB;
 
 	GameObject(const Vector2& i_pos, const char* i_string, const Vector2& i_vel)

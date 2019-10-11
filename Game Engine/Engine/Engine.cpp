@@ -155,7 +155,7 @@ namespace Engine {
 			Input::CheckInput(dt);
 
 			
-			cs.HandleCollisions(_AllObjects, dt);
+			cs.HandleCollisions(_AllObjects, dt);  
 
 			//AI::Run(dt);          // Run AI 
 			// Applying Physics

@@ -17,7 +17,7 @@
 		{
 			if (InputManager::getKeyDown(KeyId::D))
 			{
-				setVelocity(Vector2(2.5, 0));
+				m_physics.setVelocity(Vector2(2.5, 0));
 				//_physicsComps.at(0)->addForce(Vector2(FORCE, 0), i_dt);
 			}
 		}
