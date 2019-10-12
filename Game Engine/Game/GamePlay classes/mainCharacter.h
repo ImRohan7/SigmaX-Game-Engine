@@ -17,9 +17,19 @@ public:
 	{
 		if (InputManager::getKeyDown(KeyId::D))
 		{
-			m_Physics->addForce(Vector2(0.5, 0));
-			DEBUG_PRINT("Down");
-			//_physicsComps.at(0)->addForce(Vector2(FORCE, 0), i_dt);
+			m_Physics->setVelocity(Vector2(5, 0));
+		}
+		else if(InputManager::getKeyDown(KeyId::A))
+		{
+			m_Physics->setVelocity(Vector2(-5, 0));
+		}
+		else if (InputManager::getKeyDown(KeyId::W))
+		{
+			m_Physics->setVelocity(Vector2(0, 5));
+		}
+		else if (InputManager::getKeyDown(KeyId::S))
+		{
+			m_Physics->setVelocity(Vector2(0, -5));
 		}
 	}
 

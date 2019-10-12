@@ -2,7 +2,7 @@
 #include <vector>
 #include "RendererManager.h"
 #include "CollisionHandler.h"
-#define FORCE 4.0f
+#define FORCE 10.0f
 
 static bool Input = false;
 
@@ -203,10 +203,11 @@ namespace Engine {
 				/*if (InputManager::getKeyDown(KeyId::D))
 				{
 					_physicsComps.at(0)->addForce(Vector2(FORCE, 0), i_dt);
-				}*/
+				}
 				if (InputManager::getKeyDown(KeyId::A))
 				{
 					_physicsComps.at(0)->addForce(Vector2(-FORCE, 0));
+					DEBUG_PRINT("Yess");
 				}
 				else if (InputManager::getKeyDown(KeyId::W))
 				{
@@ -219,7 +220,7 @@ namespace Engine {
 				else if (InputManager::getKeyDown(KeyId::Q))
 				{
 					ToQuit = true;
-				}
+				}*/
 			break;
 
 			case Endscreen:
