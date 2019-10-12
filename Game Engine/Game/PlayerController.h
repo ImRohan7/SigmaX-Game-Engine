@@ -22,7 +22,7 @@ public:
 		if (m_pObject)
 		{
 			Vector2 Direction = GetDirectionFromUserInput();
-			m_pObject->SetPosition(m_pObject->GetPosition() + Direction);
+		//	m_pObject->SetPosition(m_pObject->GetPosition() + Direction);
 		}
 	}
 
@@ -79,7 +79,7 @@ public:
 		return mName.getName();
 	}
 
-	Vector2 getPos() { return m_pObject->GetPosition(); }
+	//Vector2 getPos() { return m_pObject->GetPosition(); }
 
 private:
 	GameObject * m_pObject;

@@ -1,8 +1,8 @@
 #pragma once
-#include "GameObject.h"
 #include "ConsolePrint.h"
 #include "WeakPtr.h"
 #include "SmartPtr.h"
+#include "Vector2.h"
 
 static int ComponentsExisting = 0;
 
@@ -10,14 +10,13 @@ class PhysicsComponent
 {
 
 public:
-	/*PhysicsComponent() : m_Position(Vector2::Zero), m_Mass(0.0), m_Drag(Vector2::Zero),
-		m_Velocity(Vector2::Zero), m_Acceleration(Vector2::Zero), m_RotationZ(0.0)
-	{}*/
+	PhysicsComponent() = delete; // not required
 
 	// Contsructor
-	/*PhysicsComponent(const SmartPtr<GameObject> i_Obj, const float i_mass, const Vector2 i_drag) :
-		m_Object(i_Obj), m_Mass(i_mass), m_Drag(i_drag)
-	{ }*/
+	PhysicsComponent(const Vector2& i_pos, const Vector2& i_vel, const float i_mass, const Vector2 i_drag) :
+		m_Position(i_pos), m_Velocity(i_vel), m_Mass(i_mass), m_Drag(i_drag),
+		m_RotationZ(0), m_Acceleration(Vector2::Zero), m_ToUseDrag(true), m_IsDynamic(true)
+	{ }
 
 	
 	// ADD / UPDATE
@@ -49,17 +48,15 @@ public:
 	float getRotationZ() const { return m_RotationZ; }
 	
 	
-	~PhysicsComponent() {};
+	~PhysicsComponent();
 
 public:
-	bool ToUseDrag;	// to apply drag or not while calculating physics
+	bool m_ToUseDrag;	// to apply drag or not while calculating physics
+	bool m_IsDynamic;	// whether to move while colliding
 
 private:
-	// We need this in order to check the existence of the Object
-	// Before we update physics
-	// If the object exist then we can go ahead
-	// else we destroy the physics component or is it already destroyed by game object ???
-	WeakPtr<GameObject> m_Object;
+	// We don't need to store Weakptr to GameObject mow
+	// It is not possible now as well
 
 	Vector2 m_Position;
 	float m_Mass;

@@ -8,7 +8,7 @@ void PhysicsComponent::updatePhysics(float dt)
 {
 	//SmartPtr<GameObject> _object = m_GameObject.AquireOwnership();
 
-	if (ToUseDrag)
+	if (m_ToUseDrag)
 		ApplyDrag(dt);
 
 	// Position

@@ -68,10 +68,7 @@ namespace Engine {
 				get_2DInfo(L_state, "Velocity", getter);
 				Vector2 _velocity(getter[0], getter[1]);
 
-				// create Player	
-				//SmartPtr<GameObject> player = GameObject(_pos, _name, _velocity);
-				i_obj->setFromFile(_pos, _name, _velocity);
-				Engine::push_ObjectToList(i_obj); // push to engine
+				
 
 				lua_pushstring(L_state, "Physics");
 
@@ -104,8 +101,13 @@ namespace Engine {
 
 				lua_pop(L_state, 1);
 
-				// Create Physics Component-------------------------------------------------
-				PhysicsComponent* pComp = new PhysicsComponent(i_obj, _mass, _drag);
+				// Init OBJECT AND Create PHYSICS Component--------------------
+				// ============================================
+		
+				i_obj->setFromFile(_name);	// init name for now
+				Engine::push_ObjectToList(i_obj); // push to engine
+
+				PhysicsComponent* pComp = new PhysicsComponent(_pos, _velocity, _mass, _drag);
 				Engine::push_PhysicsComponentToList(pComp);
 
 
@@ -141,7 +143,7 @@ namespace Engine {
 				// Set AABB
 				i_obj->setAABB(Dimensions);
 
-				delete getter;
+				delete [] getter;
 
 
 				// close state
@@ -159,6 +161,9 @@ namespace Engine {
 			}
 		}
 
+		// =========
+		// OLD
+		// =======
 		// Parse .lua file and creates GameObject, PhysicsComponents and RendererComponent
 		static SmartPtr<GameObject> createObject(const char* i_file)
 		{
@@ -238,7 +243,7 @@ namespace Engine {
 				lua_pop(L_state, 1);
 
 				// Create Physics Component
-				PhysicsComponent * pComp = new PhysicsComponent(player, _mass, _drag);
+				PhysicsComponent* pComp;// = new PhysicsComponent(player, _mass, _drag);
 				Engine::push_PhysicsComponentToList(pComp);
 			
 			// RENDERER
@@ -270,8 +275,8 @@ namespace Engine {
 				// Set AABB
 				player->setAABB(Dimensions);
 
-				delete getter;
-				
+
+				delete [] getter;
 			
 				// close state
 				lua_close(L_state);

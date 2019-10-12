@@ -17,14 +17,14 @@ public:
 		Vector2 Direction;
 		if (m_pFocus)
 		{
-			Direction = m_pFocus->GetPosition() - m_pObject->GetPosition();
+		//	Direction = m_pFocus->GetPosition() - m_pObject->GetPosition();
 			Direction.coolDown();
 		}
 		else
 		{
 			Direction = randomDirectionGenerator();
 		}
-		m_pObject->SetPosition(m_pObject->GetPosition() + Direction);
+		//m_pObject->SetPosition(m_pObject->GetPosition() + Direction);
 	}
 
 	Vector2 randomDirectionGenerator()
@@ -39,7 +39,7 @@ public:
 	}
 
 	Vector2 getPos() {
-		return m_pObject->GetPosition();
+	//	return m_pObject->GetPosition();
 	}
 
 	int getLife() { return lifetime; }

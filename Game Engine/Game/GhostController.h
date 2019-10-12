@@ -15,12 +15,12 @@ public:
 	{
 		if (m_pHaunt)
 		{
-			m_pObject->SetPosition(m_pHaunt->GetPosition() + Vector2::Unit);
+			//m_pObject->SetPosition(m_pHaunt->GetPosition() + Vector2::Unit);
 		}
 		else
 		{
 			Vector2 temp(5.6f, 6.88f);
-			m_pObject->SetPosition(temp);
+		//	m_pObject->SetPosition(temp);
 		}
 	}
 

@@ -15,7 +15,7 @@ class GameObject
 {
 	
 public:
-	GameObject() :m_Name("d"), m_Physics(nullptr) 
+	GameObject() :m_Name("d"), m_Physics(nullptr), m_tag(0)
 	{ }
 
 	//// noy using this anymore
@@ -24,16 +24,13 @@ public:
 	//	return SmartPtr<GameObject>(new GameObject(i_pos, i_string, i_vel));
 	//}
 
-	// Set
-	void setFromFile(const Vector2& i_pos, const char* i_string, const Vector2& i_vel)	
+	// Set while parsing from lua
+	void setFromFile(const char* i_name)	
 	{
 		// TODO find a solution for name
 		//	m_Name = i_string;
 
-		m_Physics->SetPosition(i_pos);
-		m_Physics->setVelocity(i_vel);
-		IsDynamic = true;
-		tag = 0;
+		m_tag = 0;
 	}
 
 	
@@ -81,8 +78,8 @@ public:
 	~GameObject() {}
 
 
-	bool IsDynamic;	// whether to move while colliding
-	unsigned int tag; // useful for collision check or other stuff || Default is 0
+public:	
+	unsigned int m_tag; // useful for collision check or other stuff || Default is 0
 	PhysicsComponent * m_Physics;
 
 private:
@@ -90,7 +87,7 @@ private:
 	AABB m_AABB;
 
 	GameObject(const char* i_string)
-		: m_Name(i_string), IsDynamic(true)
+		: m_Name(i_string)
 	{}
 
 };

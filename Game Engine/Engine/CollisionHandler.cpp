@@ -21,12 +21,12 @@ namespace Engine {
 						if (i == 0)
 						{
 							SmartPtr<GameObject> other = i_Collidables[j];
-							other->tag;
+							/*other->tag;
 							if (other->tag == 3)
 							{
 								DEBUG_PRINT("Game Over");
 								Engine::setMode(Modes::Endscreen);
-							}
+							}*/
 						}
 						ApplyResponse(i_Collidables[i], i_Collidables[j], IsX);
 					}
@@ -175,9 +175,9 @@ namespace Engine {
 			float m2 = B->m_Physics->getMass();
 		
 		// Only move if their body is Dynamic
-			if (!A->IsDynamic)
+			if (!A->m_Physics->m_IsDynamic)
 				m1 = m2 * 5;
-			if (!B->IsDynamic)
+			if (!B->m_Physics->m_IsDynamic)
 				m2 = m1 * 5;
 
 			float mTotal = m1 + m2;
@@ -199,11 +199,11 @@ namespace Engine {
 			// refl = ori - 2(ori . norm) * norm
 			Vector2 refVel1 = v1n - (normal *(v1n.dot(normal) * 2));
 
-			if (A->IsDynamic)
+			if (A->m_Physics->m_IsDynamic)
 			{
 				A->m_Physics->setVelocity(v1n);
 			}
-			if (B->IsDynamic)
+			if (B->m_Physics->m_IsDynamic)
 			{
 				B->m_Physics->setVelocity(refVel1);
 			}
