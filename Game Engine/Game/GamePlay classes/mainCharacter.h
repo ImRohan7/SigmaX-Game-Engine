@@ -17,8 +17,8 @@ public:
 	{
 		if (InputManager::getKeyDown(KeyId::D))
 		{
-			m_Physics->addForce(Vector2(2.5, 0));
-
+			m_Physics->addForce(Vector2(0.5, 0));
+			DEBUG_PRINT("Down");
 			//_physicsComps.at(0)->addForce(Vector2(FORCE, 0), i_dt);
 		}
 	}

@@ -36,7 +36,7 @@ void PhysicsComponent::updatePhysics(float dt)
 		
 		//DEBUG_PRINT("VEL: %f", newVelocity.x());
 
-		 m_Velocity = (m_Velocity + newVel / 2);
+		 m_Velocity = (m_Velocity + newVel) / 2;
 
 	}
 
