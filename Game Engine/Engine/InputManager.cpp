@@ -30,7 +30,8 @@ bool InputManager::getKeyDown(char i_Key)
 {
 	if (KeyId == (int)i_Key && IsDown)
 		return true;
-	return NULL;
+
+	return false;
 }
 
 // Returns true when the key is UP/ Not Pressed state

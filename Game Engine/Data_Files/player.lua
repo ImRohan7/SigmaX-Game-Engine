@@ -7,8 +7,8 @@ Player = {
     Velocity = { 0.00, 0.00 },
 
     Physics = {
-        mass = 20.0,
-        drag = {2.0, 2.0}
+        mass = 80.0,
+        drag = {30.0, 30.0}
     },
 
     Renderer = {

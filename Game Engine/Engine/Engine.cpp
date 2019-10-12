@@ -2,7 +2,7 @@
 #include <vector>
 #include "RendererManager.h"
 #include "CollisionHandler.h"
-#define FORCE 20.0f
+#define FORCE 4.0f
 
 static bool Input = false;
 
