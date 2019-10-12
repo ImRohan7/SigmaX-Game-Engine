@@ -206,15 +206,15 @@ namespace Engine {
 				}*/
 				if (InputManager::getKeyDown(KeyId::A))
 				{
-					_physicsComps.at(0)->addForce(Vector2(-FORCE, 0), i_dt);
+					_physicsComps.at(0)->addForce(Vector2(-FORCE, 0));
 				}
 				else if (InputManager::getKeyDown(KeyId::W))
 				{
-					_physicsComps.at(0)->addForce(Vector2(0, FORCE), i_dt);
+					_physicsComps.at(0)->addForce(Vector2(0, FORCE));
 				}
 				else if (InputManager::getKeyDown(KeyId::S))
 				{
-					_physicsComps.at(0)->addForce(Vector2(0, -FORCE), i_dt);
+					_physicsComps.at(0)->addForce(Vector2(0, -FORCE));
 				}
 				else if (InputManager::getKeyDown(KeyId::Q))
 				{

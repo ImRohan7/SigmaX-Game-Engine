@@ -45,7 +45,7 @@ void PhysicsComponent::updatePhysics(float dt)
 }
 
 // adds force  
-void PhysicsComponent::addForce(Vector2 iForce, float dt) {
+void PhysicsComponent::addForce(Vector2 iForce) {
 	
 	// a = f / m;
 	m_Acceleration = m_Acceleration + iForce / m_Mass;

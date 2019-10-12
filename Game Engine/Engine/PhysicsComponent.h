@@ -21,7 +21,7 @@ public:
 	
 	// ADD / UPDATE
 	// ===============
-	void addForce(Vector2 iForce, float DeltaTime);
+	void addForce(Vector2 iForce);
 
 	// For ENGINE ONLY
 	// ===============
