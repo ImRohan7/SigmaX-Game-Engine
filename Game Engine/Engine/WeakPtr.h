@@ -126,6 +126,7 @@ public:
 					m_refCount = nullptr;
 					m_Ptr = nullptr;
 				}
+
 				// new reference
 				m_Ptr = i_oth.m_Ptr;
 				m_refCount = i_oth.m_refCount;

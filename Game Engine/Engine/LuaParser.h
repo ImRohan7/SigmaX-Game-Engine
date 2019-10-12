@@ -109,7 +109,7 @@ namespace Engine {
 
 				PhysicsComponent* pComp = new PhysicsComponent(_pos, _velocity, _mass, _drag);
 				Engine::push_PhysicsComponentToList(pComp);
-
+				i_obj->m_Physics = pComp;
 
 				// RENDERER
 

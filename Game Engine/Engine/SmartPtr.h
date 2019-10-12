@@ -236,6 +236,12 @@
 			return m_Ptr;
 		}
 
+		// get
+		T* getObj() const
+		{
+			return m_Ptr;
+		}
+
 		// Equality comparison with Own Types
 		bool operator==(const SmartPtr<T> & i_oth) const
 		{

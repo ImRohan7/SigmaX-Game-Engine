@@ -1,10 +1,12 @@
 #include "CollisionHandler.h"
 #include "ConsolePrint.h"
 #include "Matrix_4x4.h"
+#include "Delegates.h"
 
 namespace Engine {
 	namespace Physics {
 
+		typedef Delegate<SmartPtr<GameObject>> CollisionTriggerEvent;
 		
 		void CollisionHandler::HandleCollisions(std::vector<SmartPtr<GameObject>> i_Collidables, float t_EndFrame)
 		{
@@ -18,16 +20,20 @@ namespace Engine {
 					if (IsCollision(i_Collidables[i], i_Collidables[j], t_EndFrame, IsX))
 					{
 						// Do something here
-						if (i == 0)
-						{
-							SmartPtr<GameObject> other = i_Collidables[j];
-							/*other->tag;
-							if (other->tag == 3)
-							{
-								DEBUG_PRINT("Game Over");
-								Engine::setMode(Modes::Endscreen);
-							}*/
-						}
+						GameObject * A = i_Collidables[i].getObj();
+						GameObject * B = i_Collidables[i].getObj();
+						
+						// invoke oncollision method
+						CollisionTriggerEvent _x1 = CollisionTriggerEvent::Create
+							<GameObject, &GameObject::OnCollision>(A);
+
+						CollisionTriggerEvent _x2 = CollisionTriggerEvent::Create
+							<GameObject, & GameObject::OnCollision>(B);
+
+						// fire
+						_x1.ExecuteIfBound(B);
+						_x2.ExecuteIfBound(A);
+
 						ApplyResponse(i_Collidables[i], i_Collidables[j], IsX);
 					}
 				}
@@ -41,8 +47,9 @@ namespace Engine {
 			Vector2 pos1 = A->m_Physics->getPosition();
 			Vector2 pos2 = B->m_Physics->getPosition();
 
-			AABB ObjA = A->getAABB();//setAABB(AA->getSpriteDimensions());
-			AABB ObjB = B->getAABB();//setAABB(BB->getSpriteDimensions());
+			// getting the local dimensions
+			AABB ObjA = A->getAABB();
+			AABB ObjB = B->getAABB();
 
 			Math::Matrix_4x4 WorldToA = A->getWorldToBase(); //getWorldToBase(A->GetPosition(), A->getRotationZ());
 			Math::Matrix_4x4 AToWorld = A->getBaseToWorld(); // getBaseToWorld(A->GetPosition(), A->getRotationZ());
@@ -73,7 +80,7 @@ namespace Engine {
 			float tCloseX = 0;
 			float tOpenX = 100;
 			bool checkX = checkAxisCollision(AprojOnBX, velAInB.x(), ABBCenterInB.x(), ObjB.m_Center.x(), ObjB.m_Extents.x(), t_EndFrame, tCloseX, tOpenX);
-
+	// Y
 			float tCloseY = 0;
 			float tOpenY = 110;
 			bool checkY = checkAxisCollision(AprojOnBY, velAInB.y(), ABBCenterInB.y(), ObjB.m_Center.y(), ObjB.m_Extents.y(), t_EndFrame, tCloseY, tOpenY);
@@ -118,7 +125,7 @@ namespace Engine {
 			float leftEdge = BBdestCenter - expanded_B;	// left side of B
 			float rightEdge = BBdestCenter + expanded_B; // right side of B
 
-			// Check for Edge:  velocity is 0
+			// Check for Edge::  velocity is 0
 			if (relVel == 0)
 			{
 				//  We don't give a sh** about collision if A is not even in the boundary of B
@@ -142,7 +149,10 @@ namespace Engine {
 				// Check for Edge:: if TOpen < tClose
 				if (TOpen < TClose)
 				{
-					std::swap(TOpen, TClose);
+					// In this case Obj B is approching obj A in the opposite direction
+					// from what we assumed (Normal situation A--> <--B)
+					// ie. Right to Left (B--> <--A)
+					std::swap(TOpen, TClose); // so we just swap to adjust
 				}
 				// Check for Edge:: if TClose < tFrameEnd
 				if (TClose > t_EndFrame)	// ie Collisions might happen in next frame
@@ -161,7 +171,6 @@ namespace Engine {
 					return true;
 
 				}
-
 			}
 		}
 
@@ -199,6 +208,7 @@ namespace Engine {
 			// refl = ori - 2(ori . norm) * norm
 			Vector2 refVel1 = v1n - (normal *(v1n.dot(normal) * 2));
 
+			// update if it's dynamic
 			if (A->m_Physics->m_IsDynamic)
 			{
 				A->m_Physics->setVelocity(v1n);

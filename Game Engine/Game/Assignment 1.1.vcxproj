@@ -164,9 +164,13 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamePlay classes\mainCharacter.h" />
-    <ClInclude Include="Monster.h" />
     <ClInclude Include="ObjContainer.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Old Files\GhostController.h" />
+    <ClInclude Include="Old Files\Map.h" />
+    <ClInclude Include="Old Files\Monster.h" />
+    <ClInclude Include="Old Files\Player.h" />
+    <ClInclude Include="Old Files\PlayerController.h" />
+    <ClInclude Include="Old Files\ZombieController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -174,12 +178,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="GamePlay classes\mainCharacter.cpp" />
-    <ClCompile Include="GhostController.h" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerController.h" />
-    <ClCompile Include="ZombieController.h" />
+    <ClCompile Include="Old Files\Map.cpp" />
+    <ClCompile Include="Old Files\Monster.cpp" />
+    <ClCompile Include="Old Files\Player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

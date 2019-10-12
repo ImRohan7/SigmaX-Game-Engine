@@ -9,16 +9,15 @@
 #define LVL_UP_TIME 5		// the time(in seconds) after increase the difficulty
 #define INTENSITY 0.5f		// at what intesity we want to increase the difficulty
 
-typedef SmartPtr<GameObject> OBJ;	// 
+typedef SmartPtr<GameObject> OBJ;	
 
 namespace Game
 {
 	// game variables
-
 	static Engine::Modes GameMode;
 	static int timeTracker = 0;
 
-// level and speed
+	// level and speed
 	static int Level = 1;
 	static float Bottom = -400;
 	static float top = 400;
@@ -30,6 +29,7 @@ namespace Game
 	static bool IsEndSetup = false;
 
 	mainCharacter* m1;
+	mainCharacter* m2;
 
 	bool Game::Init()
 	{
@@ -40,12 +40,21 @@ namespace Game
 		LuaParser* lp = new LuaParser();
 
 		m1 = new mainCharacter(3);
+		m2 = new mainCharacter(4);
+		
 		// add to level in order to run the engine behavior for object
 		if (!LuaParser::createObject_and_addToScene(m1, "../Data_Files/player.lua"))
 		{
 			assert(false);
 		}
-		
+		if (!LuaParser::createObject_and_addToScene(m2, "../Data_Files/player1.lua"))
+		{
+			assert(false);
+		}
+
+
+		m2->m_Physics->SetPosition(Vector2(50, 0));
+
 		delete lp;
 		return true;
 	}
