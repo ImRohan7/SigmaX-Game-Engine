@@ -10,9 +10,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua-WinLibs", "Lua\Lua-WinLibs.vcxproj", "{BDF98E69-FC1B-4010-B9D7-8DB75E26A245}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Assignment 1.1.vcxproj", "{2A975027-785A-47E6-BF7B-C4320A112F4E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C577A5AA-342A-4EB2-B3DD-4C7F404449FD} = {C577A5AA-342A-4EB2-B3DD-4C7F404449FD}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

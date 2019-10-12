@@ -79,6 +79,7 @@
 			m_refCount->smartCount++;
 		}
 
+		// Destructor
 		~SmartPtr() 
 		{
 			// delete if only Smart Count is zero

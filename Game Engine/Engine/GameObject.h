@@ -15,7 +15,8 @@ class GameObject
 {
 	
 public:
-	GameObject():m_Name("d") {} ;
+	GameObject() :m_Name("d"), m_Physics(nullptr) 
+	{ }
 
 	//// noy using this anymore
 	//static SmartPtr<GameObject> Create(const Vector2 & i_pos, const char * i_string, const Vector2 & i_vel)
@@ -29,11 +30,10 @@ public:
 		// TODO find a solution for name
 		//	m_Name = i_string;
 
-		m_physics.SetPosition(i_pos);
-		m_physics.setVelocity(i_vel);
+		m_Physics->SetPosition(i_pos);
+		m_Physics->setVelocity(i_vel);
 		IsDynamic = true;
 		tag = 0;
-
 	}
 
 	
@@ -44,7 +44,6 @@ public:
 	}
 
 	
-	
 	char* getName() const{ return m_Name.getName(); }
 	int getNameLength() const { return m_Name.getLength(); }
 	AABB getAABB() const { return m_AABB; }
@@ -52,8 +51,8 @@ public:
 	// Base To World
 	Math::Matrix_4x4 getBaseToWorld() const
 	{
-		Math::Matrix_4x4 mRot = Math::Matrix_4x4::CreateZRotation(m_physics.getRotationZ());
-		Vector3d tmp = Vector3d(m_physics.getPosition().x(), m_physics.getPosition().y(), 1.0f);
+		Math::Matrix_4x4 mRot = Math::Matrix_4x4::CreateZRotation(m_Physics->getRotationZ());
+		Vector3d tmp = Vector3d(m_Physics->getPosition().x(), m_Physics->getPosition().y(), 1.0f);
 		Math::Matrix_4x4 mTrans = Math::Matrix_4x4::CreateTranslation(tmp);
 		Math::Matrix_4x4 mBaseToWorld = mTrans.MultiplySSE(mRot); //mTrans * mRot;
 		return mBaseToWorld;
@@ -79,18 +78,18 @@ public:
 	// called while collision happens
 	virtual void OnCollision(SmartPtr<GameObject> i_collidedObj) {}
 
-~GameObject() {}
+	~GameObject() {}
 
-public:
+
 	bool IsDynamic;	// whether to move while colliding
 	unsigned int tag; // useful for collision check or other stuff || Default is 0
-	PhysicsComponent m_physics;
+	PhysicsComponent * m_Physics;
 
 private:
 	MyString m_Name;
 	AABB m_AABB;
 
-	GameObject(const Vector2& i_pos, const char* i_string, const Vector2& i_vel)
+	GameObject(const char* i_string)
 		: m_Name(i_string), IsDynamic(true)
 	{}
 

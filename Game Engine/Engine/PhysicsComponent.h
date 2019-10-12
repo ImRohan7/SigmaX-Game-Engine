@@ -10,13 +10,13 @@ class PhysicsComponent
 {
 
 public:
-	PhysicsComponent() : m_Position(Vector2::Zero), m_Mass(0.0), m_Drag(Vector2::Zero),
+	/*PhysicsComponent() : m_Position(Vector2::Zero), m_Mass(0.0), m_Drag(Vector2::Zero),
 		m_Velocity(Vector2::Zero), m_Acceleration(Vector2::Zero), m_RotationZ(0.0)
-	{}
+	{}*/
 
 	// Contsructor
 	/*PhysicsComponent(const SmartPtr<GameObject> i_Obj, const float i_mass, const Vector2 i_drag) :
-		m_GameObject(i_Obj), m_Mass(i_mass), m_Drag(i_drag)
+		m_Object(i_Obj), m_Mass(i_mass), m_Drag(i_drag)
 	{ }*/
 
 	
@@ -49,12 +49,18 @@ public:
 	float getRotationZ() const { return m_RotationZ; }
 	
 	
-	~PhysicsComponent();
+	~PhysicsComponent() {};
 
 public:
 	bool ToUseDrag;	// to apply drag or not while calculating physics
 
 private:
+	// We need this in order to check the existence of the Object
+	// Before we update physics
+	// If the object exist then we can go ahead
+	// else we destroy the physics component or is it already destroyed by game object ???
+	WeakPtr<GameObject> m_Object;
+
 	Vector2 m_Position;
 	float m_Mass;
 	Vector2 m_Drag;

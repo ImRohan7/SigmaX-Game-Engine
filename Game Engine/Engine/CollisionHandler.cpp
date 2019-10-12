@@ -38,8 +38,8 @@ namespace Engine {
 		{
 			SmartPtr<GameObject> A = i_A;
 			SmartPtr<GameObject> B = i_B;
-			Vector2 pos1 = A->GetPosition();
-			Vector2 pos2 = B->GetPosition();
+			Vector2 pos1 = A->m_Physics->getPosition();
+			Vector2 pos2 = B->m_Physics->getPosition();
 
 			AABB ObjA = A->getAABB();//setAABB(AA->getSpriteDimensions());
 			AABB ObjB = B->getAABB();//setAABB(BB->getSpriteDimensions());
@@ -62,8 +62,8 @@ namespace Engine {
 			float AprojOnBY = fabs(AExtXInB.y()) + fabs(AExtYInB.y());
 
 			// Velocities
-			Vector2 velA = A->getVelocity();
-			Vector2 velB = B->getVelocity();
+			Vector2 velA = A->m_Physics->getVelocity();
+			Vector2 velB = B->m_Physics->getVelocity();
 			Vector2 velARelToB = velA - velB;
 			velARelToB.RoundTo2();
 			Vector4d vel(Vector3d(velARelToB.x(), velARelToB.y(), 0.0f), 0.0f);
@@ -168,11 +168,11 @@ namespace Engine {
 		void CollisionHandler::ApplyResponse(SmartPtr<GameObject> A, SmartPtr<GameObject> B, bool IsX) const
 		{
 			// get stuff
-			Vector2 v1 = A->getVelocity();
-			Vector2 v2 = B->getVelocity();
+			Vector2 v1 = A->m_Physics->getVelocity();
+			Vector2 v2 = B->m_Physics->getVelocity();
 			
-			float m1 = A->get_Mass();
-			float m2 = B->get_Mass();
+			float m1 = A->m_Physics->getMass();
+			float m2 = B->m_Physics->getMass();
 		
 		// Only move if their body is Dynamic
 			if (!A->IsDynamic)
@@ -201,11 +201,11 @@ namespace Engine {
 
 			if (A->IsDynamic)
 			{
-				A->setVelocity(v1n);
+				A->m_Physics->setVelocity(v1n);
 			}
 			if (B->IsDynamic)
 			{
-				B->setVelocity(refVel1);
+				B->m_Physics->setVelocity(refVel1);
 			}
 		}
 	}

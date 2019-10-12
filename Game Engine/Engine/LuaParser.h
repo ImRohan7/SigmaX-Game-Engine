@@ -108,8 +108,6 @@ namespace Engine {
 				PhysicsComponent* pComp = new PhysicsComponent(i_obj, _mass, _drag);
 				Engine::push_PhysicsComponentToList(pComp);
 
-				i_obj->Set_Mass(_mass);
-
 
 				// RENDERER
 
@@ -242,9 +240,6 @@ namespace Engine {
 				// Create Physics Component
 				PhysicsComponent * pComp = new PhysicsComponent(player, _mass, _drag);
 				Engine::push_PhysicsComponentToList(pComp);
-				
-				player->Set_Mass(_mass);
-
 			
 			// RENDERER
 				

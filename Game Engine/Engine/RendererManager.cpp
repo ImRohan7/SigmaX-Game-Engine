@@ -26,8 +26,8 @@ namespace Engine {
 					{
 						SmartPtr<GameObject> _tempObject = m_pObject.AquireOwnership();
 
-						GLib::Point2D pos = { _tempObject->GetPosition().x(), _tempObject->GetPosition().y() };
-						float RotX = _tempObject->getRotationZ();
+						GLib::Point2D pos = { _tempObject->m_Physics->getPosition().x(),  _tempObject->m_Physics->getPosition().y() };
+						float RotX = _tempObject->m_Physics->getRotationZ();
 						// if underlying pointer is available draw it
 						float Radians = RotX * D;
 						GLib::Sprites::RenderSprite(*toDraw->getSprite(), pos, Radians);
