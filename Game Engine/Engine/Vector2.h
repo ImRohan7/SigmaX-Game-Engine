@@ -124,6 +124,13 @@ public:
 		if (m_y < 0) { m_y = -m_y; }
 	}
 
+	// negative
+	inline Vector2 operator-()
+	{
+		Negate();
+		return *this;
+	}
+
 	// Negate
 	inline void Negate()
 	{

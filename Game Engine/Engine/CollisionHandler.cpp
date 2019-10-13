@@ -206,7 +206,8 @@ namespace Engine {
 			}
 
 			// refl = ori - 2(ori . norm) * norm
-			Vector2 refVel1 = v1n - (normal *(v1n.dot(normal) * 2));
+			Vector2 refVel2 = v2n - (normal *(v2n.dot(normal) * 2));
+			Vector2 refVel1 = v1n - (normal * (v1n.dot(normal) * 2));
 
 			// update if it's dynamic
 			if (A->m_Physics->m_IsDynamic)
@@ -215,7 +216,7 @@ namespace Engine {
 			}
 			if (B->m_Physics->m_IsDynamic)
 			{
-				B->m_Physics->setVelocity(refVel1);
+				B->m_Physics->setVelocity(refVel2);
 			}
 		}
 	}

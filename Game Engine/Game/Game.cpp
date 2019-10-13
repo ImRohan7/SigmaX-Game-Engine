@@ -52,7 +52,7 @@ namespace Game
 			assert(false);
 		}
 
-		m2->m_Physics->setVelocity(Vector2(-10, 0));
+		
 
 		delete lp;
 		return true;
@@ -62,6 +62,9 @@ namespace Game
 	// Write all user's game logic here
 	void Game::Update()
 	{
+		if(!m2->m_To)
+			m2->m_Physics->setVelocity(Vector2(-5, 0));
+		
 		GameMode = Engine::getMode();
 
 		RunGame();

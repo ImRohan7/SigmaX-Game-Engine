@@ -31,7 +31,9 @@ public:
 	// SET
 	//===============
 	void SetPosition(const Vector2& i_Position) { m_Position = i_Position; }
-	void setMass(float iMass) { m_Mass = iMass; }
+	void setMass(float iMass) {
+		m_Mass = iMass; 
+	}
 	void setDrag(Vector2 iDrag) { m_Drag = iDrag; }
 	void setVelocity(const Vector2& i_Velocity) { m_Velocity = i_Velocity; }
 	void setAcceleration(const Vector2& i_acc) { m_Acceleration = i_acc; }

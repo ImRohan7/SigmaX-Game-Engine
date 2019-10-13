@@ -7,7 +7,7 @@ Player = {
     Velocity = { 0.00, 0.00 },
 
     Physics = {
-        mass = 80.0,
+        mass = 90.0,
         drag = {2.0, 2.0}
     },
 
