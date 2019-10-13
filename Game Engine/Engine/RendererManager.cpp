@@ -29,8 +29,8 @@ namespace Engine {
 						GLib::Point2D pos = { _tempObject->m_Physics->getPosition().x(),  _tempObject->m_Physics->getPosition().y() };
 						float RotX = _tempObject->m_Physics->getRotationZ();
 						// if underlying pointer is available draw it
-						float Radians = RotX * D;
-						GLib::Sprites::RenderSprite(*toDraw->getSprite(), pos, Radians);
+						float RotInRadians = RotX * D;
+						GLib::Sprites::RenderSprite(*toDraw->getSprite(), pos, RotInRadians);
 					}
 					else
 					{

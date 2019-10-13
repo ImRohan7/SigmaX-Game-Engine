@@ -1,18 +1,18 @@
 #include "PhysicsComponent.h"
 #include "assert.h"
 #define TERMINAL_VEL 25.0f
+#define ANG_TERMINAL_VEL 10.0f; // in case we add rotation acceleration or we need to clamp the angular vel
 
 namespace
 {
 	float s_dt;
 
 }
-	// Constrictor
+	// Updates position based on Linear and Angular velocity
 	void PhysicsComponent::updatePhysics(float dt)
 	{
 		s_dt = dt;
-		//SmartPtr<GameObject> _object = m_GameObject.AquireOwnership();
-
+		
 		if (m_ToUseDrag)
 			ApplyDrag(dt);
 		
@@ -21,7 +21,7 @@ namespace
 			m_Position = m_Position + m_Velocity * dt;
 		}
 
-		// Velocity
+		// Linear Velocity
 		{
 			Vector2 newVel = m_Velocity + m_Acceleration * dt;
 			Vector2 testVel = newVel;
@@ -46,7 +46,9 @@ namespace
 		}
 
 		// Orientation if rotational velocity
-
+		{
+			m_RotationZ = m_RotationZ + m_AngVelocity * dt;
+		}
 	}
 
 	// adds force  
@@ -74,7 +76,7 @@ namespace
 			}
 			if (vel_Y)
 			{
-				DragToAdd = DragToAdd + ((vel_Y > 0) ? Vector2(0, -m_Drag.y()) : Vector2(0, m_Drag.x()));
+				DragToAdd = DragToAdd + ((vel_Y > 0) ? Vector2(0, -m_Drag.y()) : Vector2(0, m_Drag.y()));
 			}
 			DragToAdd = DragToAdd / m_Mass;
 

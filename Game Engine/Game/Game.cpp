@@ -52,8 +52,8 @@ namespace Game
 			assert(false);
 		}
 
-		
-
+		m1->m_Physics->SetRotation(120);
+		m2->m_Physics->SetAngularVelocity(1.0f);
 		delete lp;
 		return true;
 	}
@@ -62,8 +62,9 @@ namespace Game
 	// Write all user's game logic here
 	void Game::Update()
 	{
-		if(!m2->m_To)
-			m2->m_Physics->setVelocity(Vector2(-5, 0));
+		/*if(!m2->m_To)
+			m2->m_Physics->setVelocity(Vector2(-5, 0));*/
+		//m1->m_Physics->SetAngularVelocity(2.0f);
 		
 		GameMode = Engine::getMode();
 

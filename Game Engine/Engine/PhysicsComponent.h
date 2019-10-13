@@ -14,7 +14,7 @@ public:
 
 	// Contsructor
 	PhysicsComponent(const Vector2& i_pos, const Vector2& i_vel, const float i_mass, const Vector2 i_drag) :
-		m_Position(i_pos), m_Velocity(i_vel), m_Mass(i_mass), m_Drag(i_drag),
+		m_Position(i_pos), m_Velocity(i_vel), m_Mass(i_mass), m_Drag(i_drag), m_AngVelocity(0),
 		m_RotationZ(0), m_Acceleration(Vector2::Zero), m_ToUseDrag(true), m_IsDynamic(true)
 	{ }
 
@@ -31,14 +31,12 @@ public:
 	// SET
 	//===============
 	void SetPosition(const Vector2& i_Position) { m_Position = i_Position; }
-	void setMass(float iMass) {
-		m_Mass = iMass; 
-	}
+	void setMass(float iMass) { m_Mass = iMass; }
 	void setDrag(Vector2 iDrag) { m_Drag = iDrag; }
 	void setVelocity(const Vector2& i_Velocity) { m_Velocity = i_Velocity; }
 	void setAcceleration(const Vector2& i_acc) { m_Acceleration = i_acc; }
 	void SetRotation(const float& i_RotX) { m_RotationZ = i_RotX; }
-
+	void SetAngularVelocity(const float& i_rotVel) { m_AngVelocity = i_rotVel; }
 
 	// GET
 	// ================
@@ -48,6 +46,7 @@ public:
 	Vector2 getVelocity() const { return m_Velocity; }
 	Vector2 getAcceleration() const { return m_Acceleration; }
 	float getRotationZ() const { return m_RotationZ; }
+	float getAngularVelocity() const { return m_AngVelocity; }
 	
 	
 	~PhysicsComponent();
@@ -65,7 +64,9 @@ private:
 	Vector2 m_Drag;
 	Vector2 m_Velocity;
 	Vector2 m_Acceleration;
-	float m_RotationZ;
+	
+	float m_RotationZ;	// Quarternion in 3D but in 2D we just need z rotation
+	float m_AngVelocity;
 
 	void ApplyDrag(float i_dt);
 
