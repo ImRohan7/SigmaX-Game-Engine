@@ -34,8 +34,6 @@ namespace Math {
 
 		//m3.print_Me();
 		
-		
-		int stop;
 
 	}
 

@@ -31,8 +31,8 @@ GLib::Sprites::Sprite * Engine::Renderer::CreateSprite(const char * i_pFilename,
 	assert(result == true);
 	assert((width > 0) && (height > 0));
 
-	// Define the sprite edges
-	GLib::Sprites::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
+	// Define the sprite edges // here we can customize the center
+	GLib::Sprites::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f};
 	GLib::Sprites::SpriteUVs	UVs = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
 	GLib::RGBA							Color = { 255, 255, 255, 255 };
 
@@ -84,31 +84,6 @@ void * Engine::Renderer::LoadFile(const char * i_pFilename, size_t & o_sizeFile)
 	return pBuffer;
 }
 
-//void Renderable::Draw()
-//{
-//	// IMPORTANT: Tell GLib that we want to start rendering
-//	GLib::BeginRendering();
-//	// Tell GLib that we want to render some sprites
-//	GLib::Sprites::BeginRendering();
-//
-//	if (m_pObject)
-//	{
-//		SmartPtr<GameObject> _tempObject = m_pObject.AquireOwnership();
-//
-//		GLib::Vector2 temp = { _tempObject->GetPosition().x(), _tempObject->GetPosition().y() };
-//		// if underlying pointer is available draw it
-//		GLib::Sprites::RenderSprite(*m_pSprite, temp, 0.0f);
-//	}
-//	else
-//	{
-//		// Need to destroy this Renderable since the GameObject has been released
-//	}
-//
-//	// Tell GLib we're done rendering sprites
-//	GLib::Sprites::EndRendering();
-//	// IMPORTANT: Tell GLib we're done rendering
-//	GLib::EndRendering();
-//}
 
 Renderable::~Renderable()
 {
