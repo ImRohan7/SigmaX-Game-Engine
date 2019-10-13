@@ -24,7 +24,9 @@ public:
 	//	return SmartPtr<GameObject>(new GameObject(i_pos, i_string, i_vel));
 	//}
 
-	// Set while parsing from lua
+
+	// SET
+	// =========================
 	void setFromFile(const char* i_name)	
 	{
 		// TODO find a solution for name
@@ -33,17 +35,45 @@ public:
 		m_tag = 0;
 	}
 
-	
 	inline void setAABB(const Vector2 &i_Dim) // should be moved to a private function for sure
 	{
 		m_AABB.m_Center = Vector2(0, i_Dim.y() / 2);	// x = 0; y = dim.y/2;
 		m_AABB.m_Extents = Vector2(i_Dim.x() / 2, i_Dim.y() / 2);
 	}
 
-	
+	// GET
+	// ====================
 	char* getName() const{ return m_Name.getName(); }
 	int getNameLength() const { return m_Name.getLength(); }
 	AABB getAABB() const { return m_AABB; }
+
+	
+	// Virtual methods for derived classes
+	//====================================
+
+	// This will be called at the start of the game
+	virtual void Begin() {}
+	// Called every frame
+	virtual void Update() {}
+	// called while collision happens
+	virtual void OnCollision(SmartPtr<GameObject> i_collidedObj) {}
+
+	// Other
+	// =================
+	template<class T>
+	bool CastTo(T*& i_targetClassObj)
+	{
+		if (i_targetClassObj = dynamic_cast<T*>(this))
+			return true;
+		else
+			return false;
+	}
+
+	~GameObject() {}
+
+
+	// Move to Matrix functionality
+	// ============================
 
 	// Base To World
 	Math::Matrix_4x4 getBaseToWorld() const
@@ -60,22 +90,9 @@ public:
 	{
 		Math::Matrix_4x4 temp = getBaseToWorld();
 		Math::Matrix_4x4 worldToBase = temp.getInverseSSE(); // temp.GetInverse();
-		
+
 		return worldToBase;
 	}
-	
-	// Virtual methods for derived classes
-	//====================================
-
-	// This will be called at the start of the game
-	virtual void Begin() {}
-	// Called every frame
-	virtual void Update() {}
-
-	// called while collision happens
-	virtual void OnCollision(SmartPtr<GameObject> i_collidedObj) {}
-
-	~GameObject() {}
 
 
 public:	

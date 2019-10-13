@@ -21,7 +21,7 @@ namespace Engine {
 					{
 						// Do something here
 						GameObject * A = i_Collidables[i].getObj();
-						GameObject * B = i_Collidables[i].getObj();
+						GameObject * B = i_Collidables[j].getObj();
 						
 						// invoke oncollision method
 						CollisionTriggerEvent _x1 = CollisionTriggerEvent::Create
@@ -31,8 +31,8 @@ namespace Engine {
 							<GameObject, & GameObject::OnCollision>(B);
 
 						// fire
-						_x1.ExecuteIfBound(B);
-						_x2.ExecuteIfBound(A);
+						_x1.ExecuteIfBound(i_Collidables[j]);
+						_x2.ExecuteIfBound(i_Collidables[i]);
 
 						ApplyResponse(i_Collidables[i], i_Collidables[j], IsX);
 					}

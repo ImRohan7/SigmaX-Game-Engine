@@ -29,7 +29,7 @@ namespace Game
 	static bool IsEndSetup = false;
 
 	mainCharacter* m1;
-	//mainCharacter* m2;
+	mainCharacter* m2;
 
 	bool Game::Init()
 	{
@@ -40,19 +40,19 @@ namespace Game
 		LuaParser* lp = new LuaParser();
 
 		m1 = new mainCharacter(3);
-		//m2 = new mainCharacter(4);
+		m2 = new mainCharacter(4);
 		
 		// add to level in order to run the engine behavior for object
 		if (!LuaParser::createObject_and_addToScene(m1, "../Data_Files/player.lua"))
 		{
 			assert(false);
 		}
-		/*if (!LuaParser::createObject_and_addToScene(m2, "../Data_Files/player1.lua"))
+		if (!LuaParser::createObject_and_addToScene(m2, "../Data_Files/player1.lua"))
 		{
 			assert(false);
-		}*/
+		}
 
-		//m2->m_Physics->SetPosition(Vector2(50, 0));
+		m2->m_Physics->setVelocity(Vector2(-10, 0));
 
 		delete lp;
 		return true;
@@ -64,23 +64,8 @@ namespace Game
 	{
 		GameMode = Engine::getMode();
 
-		switch (GameMode)
-		{
-		case Engine::Modes::Menu:
+		RunGame();
 
-			break;
-
-		case Engine::Modes::Play:	// Do Gameplay Stuff
-			RunGame();
-			break;
-
-		case Engine::Modes::Endscreen:	// Display Score based on Level
-		
-			break;
-		default:
-			break;
-		}
-		
 	}
 
 	bool Game::Shutdown()

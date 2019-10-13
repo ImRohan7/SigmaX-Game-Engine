@@ -45,6 +45,9 @@
     <ClInclude Include="Old Files\ZombieController.h">
       <Filter>OLD\GameControllers</Filter>
     </ClInclude>
+    <ClInclude Include="GamePlay classes\Platform.h">
+      <Filter>GamePlay Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -56,15 +59,6 @@
     <ClCompile Include="GamePlay classes\mainCharacter.cpp">
       <Filter>GamePlay Classes</Filter>
     </ClCompile>
-    <ClCompile Include="GhostController.h">
-      <Filter>OLD\GameControllers</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerController.h">
-      <Filter>OLD\GameControllers</Filter>
-    </ClCompile>
-    <ClCompile Include="ZombieController.h">
-      <Filter>OLD\GameControllers</Filter>
-    </ClCompile>
     <ClCompile Include="Old Files\Map.cpp">
       <Filter>OLD</Filter>
     </ClCompile>
@@ -73,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="Old Files\Player.cpp">
       <Filter>OLD</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlay classes\Platform.cpp">
+      <Filter>GamePlay Classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
