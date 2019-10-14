@@ -1,6 +1,6 @@
 #include "PhysicsComponent.h"
 #include "assert.h"
-#define TERMINAL_VEL 25.0f
+#define TERMINAL_VEL 15.0f
 #define ANG_TERMINAL_VEL 10.0f; // in case we add rotation acceleration or we need to clamp the angular vel
 
 namespace
@@ -13,7 +13,7 @@ namespace
 	{
 		s_dt = dt;
 		
-		if (m_ToUseDrag)
+		if (m_UseDrag)
 			ApplyDrag(dt);
 		
 		// Position
@@ -45,9 +45,14 @@ namespace
 
 		}
 
-		// Orientation if rotational velocity
+		// Angular velocity
 		{
 			m_RotationZ = m_RotationZ + m_AngVelocity * dt;
+		}
+
+		// Gravitational Accelartion (affects Y velocity only)
+		{
+			
 		}
 	}
 

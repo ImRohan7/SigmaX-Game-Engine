@@ -24,6 +24,6 @@ public:
 		
 	}
 
-	unsigned int m_Gravity;
+	unsigned int m_testVar;
 	
 };

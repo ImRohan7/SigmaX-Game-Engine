@@ -4,6 +4,7 @@
 #include "SmartPtr.h"
 #include "Delegates.h"
 #include "GamePlay classes/mainCharacter.h"
+#include "GamePlay classes/Platform.h"
 
 #define MAX_SPEED 6.0f		// the max difficulty ( Legendary Mode ;-p )
 #define LVL_UP_TIME 5		// the time(in seconds) after increase the difficulty
@@ -28,8 +29,9 @@ namespace Game
 	static bool IsGameSetup = true;
 	static bool IsEndSetup = false;
 
-	mainCharacter* m1;
-	mainCharacter* m2;
+	mainCharacter* _player;
+	Platform* _platform;
+//	mainCharacter* m2;
 
 	bool Game::Init()
 	{
@@ -39,21 +41,24 @@ namespace Game
 
 		LuaParser* lp = new LuaParser();
 
-		m1 = new mainCharacter(3);
-		m2 = new mainCharacter(4);
+		_player = new mainCharacter(3);
+		_platform = new Platform();
+	//	m2 = new mainCharacter(4);
+
 		
 		// add to level in order to run the engine behavior for object
-		if (!LuaParser::createObject_and_addToScene(m1, "../Data_Files/player.lua"))
+		if (!LuaParser::createObject_and_addToScene(_player, "../Data_Files/player.lua"))
 		{
 			assert(false);
 		}
-		if (!LuaParser::createObject_and_addToScene(m2, "../Data_Files/player1.lua"))
+		if (!LuaParser::createObject_and_addToScene(_platform, "../Data_Files/platform.lua"))
 		{
 			assert(false);
 		}
 
-		m1->m_Physics->SetRotation(120);
-		m2->m_Physics->SetAngularVelocity(1.0f);
+		_platform->m_Physics->DisableGravity();
+		_platform->m_Physics->m_IsDynamic = false;
+		
 		delete lp;
 		return true;
 	}
