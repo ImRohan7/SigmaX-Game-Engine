@@ -209,7 +209,7 @@ namespace Engine {
 			Vector2 refVel2 = v2n - (normal *(v2n.dot(normal) * 2));
 			Vector2 refVel1 = v1n - (normal * (v1n.dot(normal) * 2));
 
-			// update if it's dynamic
+			// update if it's dynamica
 			if (A->m_Physics->m_IsDynamic)
 			{
 				A->m_Physics->setVelocity(v1n);

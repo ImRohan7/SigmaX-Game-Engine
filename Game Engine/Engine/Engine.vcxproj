@@ -34,7 +34,6 @@
     <ClInclude Include="MemorySystem.h" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="PhysicsComponent.h" />
-    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererManager.h" />
@@ -61,7 +60,6 @@
     <ClCompile Include="MatrixTest.cpp" />
     <ClCompile Include="Matrix_4x4.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
-    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RendererManager.cpp" />
     <ClCompile Include="Unit_Test_FixedSizeAllocator.cpp" />
