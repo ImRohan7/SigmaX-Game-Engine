@@ -19,6 +19,8 @@ public:
 	{
 		m_Acceleration = Vector2(0.0f,-m_Gravity);
 		m_UseGravity = true;
+		m_IsAPlatform = false;
+		m_IsOnGround = false;
 	}
 
 	
@@ -71,7 +73,8 @@ public:
 public:
 	bool m_UseDrag;	// to apply drag or not while calculating physics
 	bool m_IsDynamic;	// whether to move while colliding
-	
+	bool m_IsAPlatform; // doesn't apply collision response if it is a platform
+	bool m_IsOnGround; // whether the object is on ground
 
 private:
 	// We don't need to store Weakptr to GameObject mow
