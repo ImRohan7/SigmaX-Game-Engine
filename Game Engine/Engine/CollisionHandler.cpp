@@ -5,6 +5,14 @@
 
 namespace Engine {
 	namespace Physics {
+		// function declaration
+		// the ground collisions objects [0] object, [1] platform
+		void handleGroundCollision(SmartPtr<GameObject> i_O, SmartPtr<GameObject> i_P);
+		
+		// modify the ground status from the pair by checking if they are still colliding
+		void verifyGroundStatus();
+
+		std::vector<SmartPtr<GameObject>[2]> _groundPair;
 
 		typedef Delegate<SmartPtr<GameObject>> CollisionTriggerEvent;
 		
@@ -20,24 +28,77 @@ namespace Engine {
 					if (IsCollision(i_Collidables[i], i_Collidables[j], t_EndFrame, IsX))
 					{
 						// Do something here
-						GameObject * A = i_Collidables[i].getObj();
-						GameObject * B = i_Collidables[j].getObj();
+						GameObject* A = i_Collidables[i].getObj();
+						GameObject* B = i_Collidables[j].getObj();
+
+						// invoke collision triggers
+						{
+							// invoke oncollision method
+							CollisionTriggerEvent _x1 = CollisionTriggerEvent::Create
+								<GameObject, & GameObject::OnCollision>(A);
+
+							CollisionTriggerEvent _x2 = CollisionTriggerEvent::Create
+								<GameObject, & GameObject::OnCollision>(B);
+
+							// fire
+							_x1.ExecuteIfBound(i_Collidables[j]);
+							_x2.ExecuteIfBound(i_Collidables[i]);
+
+						}
 						
-						// invoke oncollision method
-						CollisionTriggerEvent _x1 = CollisionTriggerEvent::Create
-							<GameObject, &GameObject::OnCollision>(A);
-
-						CollisionTriggerEvent _x2 = CollisionTriggerEvent::Create
-							<GameObject, & GameObject::OnCollision>(B);
-
-						// fire
-						_x1.ExecuteIfBound(i_Collidables[j]);
-						_x2.ExecuteIfBound(i_Collidables[i]);
-
-						ApplyResponse(i_Collidables[i], i_Collidables[j], IsX);
+						if (A->m_Physics->m_IsAPlatform || B->m_Physics->m_IsAPlatform)
+						{
+							if (A->m_Physics->m_IsAPlatform && B->m_Physics->m_IsAPlatform)
+							{
+								// do nothing they are static
+							}
+							else if (A->m_Physics->m_IsAPlatform) // A platform
+							{
+								handleGroundCollision(i_Collidables[j], i_Collidables[i]);
+							}
+							else	// B Platform
+							{
+								handleGroundCollision(i_Collidables[i], i_Collidables[j]);
+							}
+						}
+						else 
+						{
+							A->m_Physics->m_IsOnGround = false;
+							B->m_Physics->m_IsOnGround = false;
+							// apply response
+							ApplyResponse(i_Collidables[i], i_Collidables[j], IsX);
+						}
 					}
 				}
 			}
+		}
+
+		void handleGroundCollision(SmartPtr<GameObject> obj, SmartPtr<GameObject> _pf)
+		{
+			// set the IsGround value
+			SmartPtr<GameObject> pair[2];
+
+			// insert to _groundpair	// 0: Object 1: Platform
+			if (!obj->m_Physics->m_IsOnGround)
+			{
+				obj->m_Physics->m_IsOnGround = true;
+				pair[0] = obj;
+				pair[1] = _pf;
+				_groundPair.push_back(pair);
+			}
+
+			// handle velocity
+			Vector2 vel = obj->m_Physics->getVelocity;
+			// avoid ground collision
+			if(vel.y<0)
+				obj->m_Physics->setVelocity(Vector2(vel.x, 0.0f));
+
+		}
+
+
+		void verifyGroundStatus()
+		{
+
 		}
 
 		bool CollisionHandler::IsCollision(SmartPtr<GameObject> i_A, SmartPtr<GameObject> i_B, float t_EndFrame, bool &IsX) const
@@ -212,11 +273,29 @@ namespace Engine {
 			// update if it's dynamica
 			if (A->m_Physics->m_IsDynamic)
 			{
-				A->m_Physics->setVelocity(v1n);
+				if (B->m_Physics->m_IsAPlatform)
+				{
+					Vector2 deduct_gravity(v1n.x(),0); // y zero
+					A->m_Physics->DisableGravity();
+					A->m_Physics->setVelocity(deduct_gravity);
+				}
+				else
+				{
+					A->m_Physics->setVelocity(v1n);
+				}
 			}
 			if (B->m_Physics->m_IsDynamic)
 			{
-				B->m_Physics->setVelocity(refVel2);
+				if (A->m_Physics->m_IsAPlatform)
+				{
+					Vector2 deduct_gravity(refVel2.x(), 0); // y zero
+					A->m_Physics->DisableGravity();
+					B->m_Physics->setVelocity(deduct_gravity);
+				}
+				else
+				{
+					B->m_Physics->setVelocity(refVel2);
+				}
 			}
 		}
 	}

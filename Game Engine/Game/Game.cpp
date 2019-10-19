@@ -58,6 +58,7 @@ namespace Game
 
 		_platform->m_Physics->DisableGravity();
 		_platform->m_Physics->m_IsDynamic = false;
+		_platform->m_Physics->m_IsAPlatform = true;
 		
 		delete lp;
 		return true;

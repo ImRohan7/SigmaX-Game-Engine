@@ -87,7 +87,7 @@ private:
 	Vector2 m_Acceleration;
 	bool m_UseGravity;
 	float m_Gravity;
-
+	
 	float m_RotationZ;	// Quarternion in 3D but in 2D we just need z rotation
 	float m_AngVelocity;
 

@@ -9,13 +9,15 @@ namespace
 
 }
 	// Updates position based on Linear and Angular velocity
-	void PhysicsComponent::updatePhysics(float dt)
+void PhysicsComponent::updatePhysics(float dt)
+{
+	s_dt = dt;
+
+	if (!m_IsAPlatform)
 	{
-		s_dt = dt;
-		
 		if (m_UseDrag)
 			ApplyDrag(dt);
-		
+
 		// Position
 		{
 			m_Position = m_Position + m_Velocity * dt;
@@ -52,9 +54,10 @@ namespace
 
 		// Gravitational Accelartion (affects Y velocity only)
 		{
-			
+
 		}
 	}
+}
 
 	// adds force  
 	void PhysicsComponent::addForce(Vector2 iForce) {

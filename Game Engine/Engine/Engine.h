@@ -31,11 +31,12 @@ namespace Engine {
 	//Renderable componenet to draw sprites
 	void push_RendererToList(Renderable*);
 
+	
 	void push_ObjectToList(const SmartPtr<GameObject>);
 
 	bool QuitRequested();
 
-	void create_Player(const Vector2 i_pos);
+	
 
 	std::vector<Renderable*> getRenderables();
 
