@@ -6,20 +6,19 @@
 namespace Engine {
 	namespace Physics {
 		// function declaration
-		// the ground collisions objects [0] object, [1] platform
-		void handleGroundCollision(SmartPtr<GameObject> i_O, SmartPtr<GameObject> i_P);
-		
-		// modify the ground status from the pair by checking if they are still colliding
-		void verifyGroundStatus();
+	
 
-		std::vector<SmartPtr<GameObject>[2]> _groundPair;
+		std::vector<std::pair<SmartPtr<GameObject>, SmartPtr<GameObject>>> _groundPair;
 
 		typedef Delegate<SmartPtr<GameObject>> CollisionTriggerEvent;
 		
 		void CollisionHandler::HandleCollisions(std::vector<SmartPtr<GameObject>> i_Collidables, float t_EndFrame)
 		{
 			const size_t count = i_Collidables.size();
-
+			bool tmp = false;
+			
+			verifyGroundStatus(t_EndFrame, tmp);
+			
 			for (size_t i = 0; i < (count - 1); i++)
 			{
 				for (size_t j = i + 1; j < count; j++)
@@ -73,32 +72,51 @@ namespace Engine {
 			}
 		}
 
-		void handleGroundCollision(SmartPtr<GameObject> obj, SmartPtr<GameObject> _pf)
+		void CollisionHandler::handleGroundCollision(SmartPtr<GameObject> obj, SmartPtr<GameObject> _pf)
 		{
 			// set the IsGround value
-			SmartPtr<GameObject> pair[2];
-
+			
 			// insert to _groundpair	// 0: Object 1: Platform
 			if (!obj->m_Physics->m_IsOnGround)
 			{
-				obj->m_Physics->m_IsOnGround = true;
-				pair[0] = obj;
-				pair[1] = _pf;
-				_groundPair.push_back(pair);
+				obj->m_Physics->m_IsOnGround = true;	
+				_groundPair.push_back(std::make_pair(obj, _pf));
 			}
 
 			// handle velocity
-			Vector2 vel = obj->m_Physics->getVelocity;
+			Vector2 vel = obj->m_Physics->getVelocity();
 			// avoid ground collision
-			if(vel.y<0)
-				obj->m_Physics->setVelocity(Vector2(vel.x, 0.0f));
+			if(vel.y()<0)
+				obj->m_Physics->setVelocity(Vector2(vel.x(), 0.0f));
 
 		}
 
 
-		void verifyGroundStatus()
+		void CollisionHandler::verifyGroundStatus(float t_EndFrame, bool IsX)
 		{
+			std::vector<int> toErase;
 
+			for(int i=0; i<_groundPair.size(); i++)
+			{
+				SmartPtr<GameObject> obj = _groundPair.at(i).first;
+				SmartPtr<GameObject> pf = _groundPair.at(i).second;
+				
+				if (!IsCollision(obj, pf, t_EndFrame, IsX))
+				{
+					obj->m_Physics->m_IsOnGround = false;
+					toErase.push_back(i);
+				}
+			}
+
+			// erase
+			int mod = 0;
+			for (auto x : toErase)
+			{
+				_groundPair.erase(_groundPair.begin()+ (x-mod));
+				mod++;
+			}
+
+			toErase.clear();
 		}
 
 		bool CollisionHandler::IsCollision(SmartPtr<GameObject> i_A, SmartPtr<GameObject> i_B, float t_EndFrame, bool &IsX) const

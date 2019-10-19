@@ -22,7 +22,7 @@ public:
 		{
 			if (InputManager::getKeyDown(KeyId::D))
 			{
-				m_Physics->setAcceleration(Vector2(0.5f,0.0f));
+				m_Physics->setVelocity(velX);
 				//m_Physics->setVelocity(velX);
 			}
 			else if (InputManager::getKeyDown(KeyId::A))

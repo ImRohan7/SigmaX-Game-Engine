@@ -23,6 +23,12 @@ namespace Engine {
 				// checks collision
 				bool IsCollision(SmartPtr<GameObject> i_A, SmartPtr<GameObject> i_B, float t_EndFrame, bool &IsX) const;
 
+				// the ground collisions objects [0] object, [1] platform
+				void handleGroundCollision(SmartPtr<GameObject> i_O, SmartPtr<GameObject> i_P);
+
+				// modify the ground status from the pair by checking if they are still colliding
+				void verifyGroundStatus(float t_EndFrame, bool IsX);
+
 				// check Axis collision and updates the time variables
 				bool checkAxisCollision(
 					float srcProj,
