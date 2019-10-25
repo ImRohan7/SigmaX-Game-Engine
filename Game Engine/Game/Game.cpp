@@ -70,7 +70,7 @@ namespace Game
 	{
 		/*if(!m2->m_To)
 			m2->m_Physics->setVelocity(Vector2(-5, 0));*/
-		//m1->m_Physics->SetAngularVelocity(2.0f);
+		//m1->m_Physics->SetAngularVelocity(2.0f);/*
 		
 		GameMode = Engine::getMode();
 

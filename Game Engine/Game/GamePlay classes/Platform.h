@@ -9,7 +9,7 @@ public:
 	// This will be called at the start of the game
 	virtual void Begin() override
 	{
-		
+		m_testVar = 5;
 	}
 
 	// Called every frame

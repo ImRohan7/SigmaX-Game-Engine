@@ -8,7 +8,6 @@
 #include "SmartPtr.h"
 #include "Engine.h"
 
-
 #define FPath "../Data/"
 
 namespace Engine {
@@ -165,7 +164,7 @@ namespace Engine {
 		// OLD
 		// =======
 		// Parse .lua file and creates GameObject, PhysicsComponents and RendererComponent
-		static SmartPtr<GameObject> createObject(const char* i_file)
+		/*static SmartPtr<GameObject> createObject(const char* i_file)
 		{
 			// Create a State
 			lua_State * L_state = luaL_newstate();
@@ -235,8 +234,9 @@ namespace Engine {
 				{
 					_mass = 25.0f;
 				}
+				
 				lua_pop(L_state, 2);
-			// getting drag from table Physics = { drag = {,}}
+			    // getting drag from table Physics = { drag = {,}}
 				get_2DInfo(L_state, "drag", getter);
 				Vector2 _drag(getter[0],getter[1]);
 
@@ -246,7 +246,7 @@ namespace Engine {
 				PhysicsComponent* pComp;// = new PhysicsComponent(player, _mass, _drag);
 				Engine::push_PhysicsComponentToList(pComp);
 			
-			// RENDERER
+				// RENDERER
 				
 				lua_pushstring(L_state, "Renderer");
 
@@ -291,9 +291,8 @@ namespace Engine {
 
 				return nullptr;
 			}
-		}
+		}*/
 
-		
 
 	};
 

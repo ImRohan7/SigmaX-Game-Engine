@@ -32,7 +32,6 @@ public:
 	// ===============
 	void updatePhysics(float DeltaTime);
 
-
 	// SET
 	//===============
 	void SetPosition(const Vector2& i_Position) { m_Position = i_Position; }

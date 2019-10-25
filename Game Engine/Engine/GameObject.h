@@ -61,7 +61,7 @@ public:
 	// Other
 	// =================
 	template<class T>
-	bool CastTo(T*& i_targetClassObj)
+	bool TryCastTo(T*& i_targetClassObj)
 	{
 		if (i_targetClassObj = dynamic_cast<T*>(this))
 			return true;
@@ -103,8 +103,8 @@ private:
 	MyString m_Name;
 	AABB m_AABB;
 
-	GameObject(const char* i_string)
+	/*GameObject(const char* i_string)
 		: m_Name(i_string)
-	{}
+	{}*/
 
 };
