@@ -8,11 +8,10 @@
 #include <crtdbg.h>
 #include <cstdlib>
 #endif // _DEBUG
-#include "Engine.h"
+#include "Engine/Engine.h"
 #include "Game.h"
 #include "GLib.h"
-#include "LuaParser.h"
-#include "MatrixTest.cpp"
+#include "Luaparser/LuaParser.h"
 
 // application
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)

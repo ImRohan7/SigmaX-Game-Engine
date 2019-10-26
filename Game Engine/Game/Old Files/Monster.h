@@ -2,9 +2,9 @@
 #include"stdlib.h"
 #include"time.h"
 #include"iostream"
-#include "Vector2.h"
+#include "Math/Vectors/Vector2.h"
 #include "Map.h"
-#include "MyString.h"
+#include "Mystring/MyString.h"
 #include "assert.h"
 
 class Monster

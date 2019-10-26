@@ -1,8 +1,8 @@
 #include "Game.h"
 #include <vector>
-#include "Vector3d.h"
-#include "SmartPtr.h"
-#include "Delegates.h"
+#include "Math/Vectors/Vector3d.h"
+#include "PointerManagment/SmartPtr.h"
+#include "Delegates/Delegates.h"
 #include "GamePlay classes/mainCharacter.h"
 #include "GamePlay classes/Platform.h"
 

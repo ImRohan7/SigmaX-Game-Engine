@@ -1,7 +1,7 @@
 #pragma once
-#include "Engine.h"
-#include "Renderer.h"
-#include "LuaParser.h"
+#include "Engine/Engine.h"
+#include "Renderer/Renderer.h"
+#include "Luaparser/LuaParser.h"
 
 namespace Game{
 

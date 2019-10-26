@@ -1,7 +1,6 @@
-#pragma once
-#pragma once
+#pragma once/*
 #include "ZombieController.h"
-#include "Vector2.h"
+#include "Engine/Math/Vectors/Vector2.h"
 
 class ObjContainer {
 
@@ -15,4 +14,4 @@ public:
 
 private:
 	ZombieController * mZombie;
-};
+};*/

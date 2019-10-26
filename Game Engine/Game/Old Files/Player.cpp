@@ -2,7 +2,7 @@
 #include "Map.h"
 #include "iostream"
 #include "assert.h"
-#include "MyString.h"
+#include "Mystring/MyString.h"
 
 Player::Player()
 {

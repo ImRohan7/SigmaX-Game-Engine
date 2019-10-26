@@ -1,7 +1,7 @@
 #pragma once
 #include "IGameObjectController.h"
 #include "stdlib.h"
-#include "Vector2.h"
+#include "Engine/Math/Vectors/Vector2.h"
 #include "MyString.h"
 
 class ZombieController : public IGameObjectController

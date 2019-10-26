@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Controller Interface">
       <UniqueIdentifier>{d819e249-6f99-4cf6-b080-2d42f402862f}</UniqueIdentifier>
     </Filter>
@@ -77,23 +73,11 @@
     <Filter Include="Core\Math\Matrix 4">
       <UniqueIdentifier>{89b57b92-3fbd-4c51-931b-b61861db0bd8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Collision Handling">
-      <UniqueIdentifier>{54920fa7-d4c4-47cb-bc77-793959ecbeab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Renderer\RendererManager">
       <UniqueIdentifier>{92066d17-8767-4602-b693-e299b1d7af72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Math\Verctors">
       <UniqueIdentifier>{261fe284-9ca4-419a-9bb8-a6efbaec6871}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Math\Verctors\Vector3D">
-      <UniqueIdentifier>{55b7bda0-5218-4ba7-8d6f-218d3affa5a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Math\Verctors\Vector4D">
-      <UniqueIdentifier>{e7aa9541-5729-49e2-b0b1-b800902184ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Math\Verctors\Vector2D">
-      <UniqueIdentifier>{4afbaf6e-87f6-4806-bbf9-f6c73fad7052}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Delegates">
       <UniqueIdentifier>{644f05df-3b3c-48db-96a3-0ec3075eac93}</UniqueIdentifier>
@@ -101,147 +85,163 @@
     <Filter Include="Actor">
       <UniqueIdentifier>{d1436f63-301d-48f7-9c92-5b2eb8ce740e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\CollisionSystem">
+      <UniqueIdentifier>{c80fcbfd-564b-4d8b-8dcd-66250e91fca5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConsolePrint.h">
+    <ClInclude Include="Physics\PhysicsComponent.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\CollisionSystem\CollisionHandler.h">
+      <Filter>Physics\CollisionSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\GameObject.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\IGameObjectController.h">
+      <Filter>Controller Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Console\ConsolePrint.h">
       <Filter>Core\Console</Filter>
     </ClInclude>
-    <ClInclude Include="MyString.h">
+    <ClInclude Include="Delegates\Delegates.h">
+      <Filter>Core\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Engine.h">
+      <Filter>Core\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix\Matrix_4x4.h">
+      <Filter>Core\Math\Matrix 4</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vectors\Vector2.h">
+      <Filter>Core\Math\Verctors</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vectors\Vector2D.h">
+      <Filter>Core\Math\Verctors</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vectors\Vector3d.h">
+      <Filter>Core\Math\Verctors</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vectors\Vector4d.h">
+      <Filter>Core\Math\Verctors</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Point2D.h">
+      <Filter>Core\Math\Verctors</Filter>
+    </ClInclude>
+    <ClInclude Include="MyString\MyString.h">
       <Filter>Core\MyString</Filter>
     </ClInclude>
-    <ClInclude Include="HeapManager.h">
-      <Filter>Memory Manager\HeapManager</Filter>
+    <ClInclude Include="Renderer\RendererManager.h">
+      <Filter>Core\Renderer\RendererManager</Filter>
     </ClInclude>
-    <ClInclude Include="HeapManagerProxy.h">
-      <Filter>Memory Manager\HeapManager</Filter>
+    <ClInclude Include="Renderer\Renderer.h">
+      <Filter>Core\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Allocator.h">
-      <Filter>Memory Manager\Allocator</Filter>
-    </ClInclude>
-    <ClInclude Include="BitArray.h">
-      <Filter>Memory Manager\BitArray</Filter>
-    </ClInclude>
-    <ClInclude Include="FixedSizeAllocator.h">
-      <Filter>Memory Manager\FSA</Filter>
-    </ClInclude>
-    <ClInclude Include="MemorySystem.h">
-      <Filter>Memory Manager\Memory System</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
+    <ClInclude Include="Timer\Timer.h">
       <Filter>Core\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Core\Input</Filter>
+    <ClInclude Include="MemoryManagment\BitArray.h">
+      <Filter>Memory Manager\BitArray</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
-      <Filter>Physics</Filter>
+    <ClInclude Include="MemoryManagment\FixedSizeAllocator.h">
+      <Filter>Memory Manager\FSA</Filter>
     </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Core\Engine</Filter>
+    <ClInclude Include="MemoryManagment\HeapManager.h">
+      <Filter>Memory Manager\HeapManager</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Core\Renderer</Filter>
+    <ClInclude Include="MemoryManagment\HeapManagerProxy.h">
+      <Filter>Memory Manager\HeapManager</Filter>
     </ClInclude>
-    <ClInclude Include="SmartPtr.h">
+    <ClInclude Include="MemoryManagment\MemorySystem.h">
+      <Filter>Memory Manager\Memory System</Filter>
+    </ClInclude>
+    <ClInclude Include="PointerManagment\SmartPtr.h">
       <Filter>PointerManagment\Smart Pointer %28Owners%29</Filter>
     </ClInclude>
-    <ClInclude Include="WeakPtr.h">
+    <ClInclude Include="PointerManagment\WeakPtr.h">
       <Filter>PointerManagment\Weak Pointer %28Observers%29</Filter>
     </ClInclude>
-    <ClInclude Include="LuaParser.h">
-      <Filter>Lua</Filter>
+    <ClInclude Include="MemoryManagment\Allocator.h">
+      <Filter>Memory Manager\Allocator</Filter>
     </ClInclude>
-    <ClInclude Include="SigmaEngine.h">
-      <Filter>Core\Primary</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix_4x4.h">
-      <Filter>Core\Math\Matrix 4</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionHandler.h">
-      <Filter>Physics\Collision Handling</Filter>
-    </ClInclude>
-    <ClInclude Include="RendererManager.h">
-      <Filter>Core\Renderer\RendererManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector4d.h">
-      <Filter>Core\Math\Verctors\Vector4D</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3d.h">
-      <Filter>Core\Math\Verctors\Vector3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Core\Math\Verctors\Vector2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Delegates.h">
-      <Filter>Core\Delegates</Filter>
-    </ClInclude>
+    <ClInclude Include="SigmaEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConsolePrint.Win32.cpp">
-      <Filter>Core\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.h">
-      <Filter>Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="IGameObjectController.h">
-      <Filter>Controller Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="HeapManager.cpp">
-      <Filter>Memory Manager\HeapManager</Filter>
-    </ClCompile>
-    <ClCompile Include="HeapManagerProxy.cpp">
-      <Filter>Memory Manager\HeapManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Allocator.cpp">
-      <Filter>Memory Manager\Allocator</Filter>
-    </ClCompile>
-    <ClCompile Include="FixedSizeAllocator.cpp">
-      <Filter>Memory Manager\FSA</Filter>
-    </ClCompile>
-    <ClCompile Include="HeapManager_UnitTest.cpp">
-      <Filter>Other\Unit Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="MyString.cpp">
-      <Filter>Core\MyString</Filter>
-    </ClCompile>
-    <ClCompile Include="MemorySystem.cpp">
-      <Filter>Memory Manager\Memory System</Filter>
-    </ClCompile>
-    <ClCompile Include="Unit_Test_FixedSizeAllocator.cpp">
-      <Filter>Other\Unit Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsComponent.cpp">
+    <ClCompile Include="Physics\PhysicsComponent.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Core\Input</Filter>
+    <ClCompile Include="Physics\CollisionSystem\CollisionHandler.cpp">
+      <Filter>Physics\CollisionSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Engine.cpp">
+    <ClCompile Include="Console\ConsolePrint.Win32.cpp">
+      <Filter>Core\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="Delegates\Delegates.cpp">
+      <Filter>Core\Delegates</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Engine.cpp">
       <Filter>Core\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Core\Renderer</Filter>
+    <ClCompile Include="Input\InputManager.cpp">
+      <Filter>Core\Input</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixTest.cpp">
-      <Filter>Other\Unit Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix_4x4.cpp">
+    <ClCompile Include="Math\Matrix\Matrix_4x4.cpp">
       <Filter>Core\Math\Matrix 4</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionHandler.cpp">
-      <Filter>Physics\Collision Handling</Filter>
+    <ClCompile Include="Math\Vectors\Vector2.cpp">
+      <Filter>Core\Math\Verctors</Filter>
     </ClCompile>
-    <ClCompile Include="RendererManager.cpp">
+    <ClCompile Include="Math\Vectors\Vector2D.cpp">
+      <Filter>Core\Math\Verctors</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vectors\Vector3d.cpp">
+      <Filter>Core\Math\Verctors</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Point2D.cpp">
+      <Filter>Core\Math\Verctors</Filter>
+    </ClCompile>
+    <ClCompile Include="MyString\MyString.cpp">
+      <Filter>Core\MyString</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\RendererManager.cpp">
       <Filter>Core\Renderer\RendererManager</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3d.cpp">
-      <Filter>Core\Math\Verctors\Vector3D</Filter>
+    <ClCompile Include="Renderer\Renderer.cpp">
+      <Filter>Core\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.cpp">
-      <Filter>Core\Math\Verctors\Vector2D</Filter>
+    <ClCompile Include="MemoryManagment\FixedSizeAllocator.cpp">
+      <Filter>Memory Manager\FSA</Filter>
     </ClCompile>
-    <ClCompile Include="Delegates.cpp">
-      <Filter>Core\Delegates</Filter>
+    <ClCompile Include="MemoryManagment\HeapManager.cpp">
+      <Filter>Memory Manager\HeapManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryManagment\HeapManagerProxy.cpp">
+      <Filter>Memory Manager\HeapManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryManagment\MemorySystem.cpp">
+      <Filter>Memory Manager\Memory System</Filter>
+    </ClCompile>
+    <ClCompile Include="Other\HeapManager_UnitTest.cpp">
+      <Filter>Other\Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Other\MatrixTest.cpp">
+      <Filter>Other\Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Other\Unit_test_const.cpp">
+      <Filter>Other\Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Other\Unit_Test_FixedSizeAllocator.cpp">
+      <Filter>Other\Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Other\Unit_TestFixedSizeAllocator.cpp">
+      <Filter>Other\Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryManagment\Allocator.cpp">
+      <Filter>Memory Manager\Allocator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 #pragma once
-#include "IGameObjectController.h"
-#include "MyString.h"
-#include "Vector2.h"
+#include "../Engine/Controller/IGameObjectController.h"
+#include "../Engine/MyString/MyString.h"
+#include "../Engine/Math/Vectors/Vector2.h"
 
 class PlayerController : public IGameObjectController
 {

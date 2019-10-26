@@ -1,6 +1,6 @@
 #pragma once
 #include "IGameObjectController.h"
-#include "Vector2.h"
+#include "Engine/Math/Vectors/Vector2.h"
 
 // Ghost will haunt either Player or Monster. Whoever is caught, becomes ghost. Probably for sometime or forever...who knmows. There is no way to escape !!!
 
