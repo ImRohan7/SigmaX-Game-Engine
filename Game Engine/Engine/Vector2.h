@@ -57,6 +57,12 @@ public:
 		return temp;
 	}
 
+	// shorthand addition
+	inline Vector2 operator+=(const Vector2 &i_other) const
+	{
+		return (*this + i_other);
+	}
+
 	// Multiplication
 	inline Vector2 operator*(const Vector2 &i_other) const
 	{

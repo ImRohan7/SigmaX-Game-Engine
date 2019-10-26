@@ -31,6 +31,8 @@ namespace Game
 
 	mainCharacter* _player;
 	Platform* _platform;
+	Platform* _platform1;
+
 //	mainCharacter* m2;
 
 	bool Game::Init()
@@ -43,6 +45,7 @@ namespace Game
 
 		_player = new mainCharacter(3);
 		_platform = new Platform();
+		_platform1 = new Platform();
 	//	m2 = new mainCharacter(4);
 
 		
@@ -55,10 +58,20 @@ namespace Game
 		{
 			assert(false);
 		}
+		if (!LuaParser::createObject_and_addToScene(_platform1, "../Data_Files/platform.lua"))
+		{
+			assert(false);
+		}
 
 		_platform->m_Physics->DisableGravity();
 		_platform->m_Physics->m_IsDynamic = false;
 		_platform->m_Physics->m_IsAPlatform = true;
+
+		_platform1->m_Physics->DisableGravity();
+		_platform1->m_Physics->m_IsDynamic = false;
+		_platform1->m_Physics->m_IsAPlatform = true;
+		Vector2 p = _platform->m_Physics->getPosition();
+		_platform->m_Physics->SetPosition(Vector2(p.x() + 300, p.y()));
 		
 		delete lp;
 		return true;

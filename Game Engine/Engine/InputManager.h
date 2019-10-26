@@ -9,6 +9,7 @@ enum KeyId
 	A = 'A',
 	D = 'D',
 	Q = 'Q',
+	Space = '20',
 	num_1 = '1',
 	num_2 = '2',
 	num_3 = '3'

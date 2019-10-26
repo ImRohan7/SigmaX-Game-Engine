@@ -14,10 +14,12 @@ public:
 
 	// Contsructor
 	PhysicsComponent(const Vector2& i_pos, const Vector2& i_vel, const float i_mass, const Vector2 i_drag) :
-		m_Position(i_pos), m_Velocity(i_vel), m_Mass(i_mass), m_Gravity(0.6f), m_Drag(i_drag), m_AngVelocity(0),
+		m_Position(i_pos), m_Velocity(i_vel), m_Mass(i_mass), m_Gravity(6.6f), m_Drag(i_drag), m_AngVelocity(0),
 		m_RotationZ(0), m_UseDrag(true), m_IsDynamic(true)
 	{
-		m_Acceleration = Vector2(0.0f,-m_Gravity);
+		m_Acceleration = Vector2::Zero;
+		m_assistedAcceleration = Vector2::Zero;
+		m_gravitationalAcceleration = Vector2(0.0f, -m_Gravity / m_Mass);
 		m_UseGravity = true;
 		m_IsAPlatform = false;
 		m_IsOnGround = false;
@@ -46,7 +48,15 @@ public:
 		if (!m_UseGravity)
 		{
 			m_UseGravity = true;
-			m_Acceleration = m_Acceleration + Vector2(0.0f , -m_Gravity) ;
+			m_gravitationalAcceleration = Vector2(0.0f, -m_Gravity / m_Mass);
+		}
+	}
+	void DisableGravity()
+	{
+		if (m_UseGravity)
+		{
+			m_UseGravity = false;
+			m_gravitationalAcceleration = Vector2::Zero;
 		}
 	}
 
@@ -59,14 +69,7 @@ public:
 	Vector2 getAcceleration() const { return m_Acceleration; }
 	float getRotationZ() const { return m_RotationZ; }
 	float getAngularVelocity() const { return m_AngVelocity; }
-	void DisableGravity()
-	{
-		if (m_UseGravity)
-		{
-			m_UseGravity = false;
-			m_Acceleration = m_Acceleration + Vector2(0.0f, m_Gravity);
-		}
-	}
+	
 	~PhysicsComponent();
 
 public:
@@ -83,7 +86,9 @@ private:
 	float m_Mass;
 	Vector2 m_Drag;
 	Vector2 m_Velocity;
+	Vector2 m_assistedAcceleration;
 	Vector2 m_Acceleration;
+	Vector2 m_gravitationalAcceleration;
 	bool m_UseGravity;
 	float m_Gravity;
 	
