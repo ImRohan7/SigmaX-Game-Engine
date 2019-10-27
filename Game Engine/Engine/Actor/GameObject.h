@@ -15,8 +15,7 @@ class GameObject
 {
 	
 public:
-	GameObject() :m_Name("d"), m_Physics(nullptr), m_tag(0)
-	{ }
+	GameObject() {};
 
 	//// noy using this anymore
 	//static SmartPtr<GameObject> Create(const Vector2 & i_pos, const char * i_string, const Vector2 & i_vel)
@@ -32,7 +31,6 @@ public:
 		// TODO find a solution for name
 		//	m_Name = i_string;
 
-		m_tag = 0;
 	}
 
 	inline void setAABB(const Vector2 &i_Dim) // should be moved to a private function for sure
@@ -96,8 +94,8 @@ public:
 
 
 public:	
-	unsigned int m_tag; // useful for collision check or other stuff || Default is 0
 	PhysicsComponent * m_Physics;
+	MyString m_Tag;	// useful for collision check or other stuff || Default is 0
 
 private:
 	MyString m_Name;

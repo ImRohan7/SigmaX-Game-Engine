@@ -60,7 +60,8 @@ public:
 	// shorthand addition
 	inline Vector2 operator+=(const Vector2 &i_other) const
 	{
-		return (*this + i_other);
+		Vector2 tmp = *this + i_other;
+		return tmp;
 	}
 
 	// Multiplication

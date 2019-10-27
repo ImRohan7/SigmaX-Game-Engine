@@ -18,11 +18,12 @@ public:
 
 
 	// user functions
-	mainCharacter(int id) : m_Id(id), m_To(false) {}
+	mainCharacter(int id) : m_Id(id), m_To(false), OnGround(true) {}
 
 	void doJump();
 
 public:
+	bool OnGround;
 	bool m_To;
 	unsigned int m_Id;
 

@@ -12,9 +12,13 @@ public:
 
 	MyString();
 	MyString(const char *);
-	MyString(const MyString& i_string);
+	MyString(const MyString&);
 	
-	MyString operator=(const MyString& i_string);
+	MyString operator=(const MyString&);
+	MyString operator=(const char*);
+
+	bool operator==(const MyString&);
+	bool operator==(const char*);
 
 	// Get
 	inline char* getName() const { return data; }

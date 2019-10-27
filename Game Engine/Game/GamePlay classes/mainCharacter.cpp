@@ -25,19 +25,27 @@ void mainCharacter::Update()
 		}
 		else if (InputManager::getKeyDown(KeyId::A))
 		{
-			m_Physics->setVelocity(-velX);
-			m_Physics->addForce(Vector2(0,10));
+			//m_Physics->setVelocity(-velX);
+			
 			DEBUG_PRINT("A");
 		}
-		else if (InputManager::getKeyDown(KeyId::W))
+		else if (InputManager::getKeyDown(KeyId::W) && OnGround)
 		{
-			m_Physics->setVelocity(velY);
+			m_Physics->addForce(Vector2(0, 2));
+			if (OnGround)
+			{
+			//	m_Physics->addForce(Vector2(0, -100));
+			//	OnGround = false;
+			}
 		}
 		else if (InputManager::getKeyDown(KeyId::S))
 		{
 			m_Physics->setVelocity(-velY);
+			OnGround = true;
 		}
 	}
+	
+	
 }
 
 // called while collision happens
@@ -49,6 +57,12 @@ void mainCharacter::OnCollision(SmartPtr<GameObject> i_collidedObj)
 	//if (i_collidedObj->CastTo(cd))
 	{
 		// cast succedded
+	}
+
+	// ground check
+	if (i_collidedObj->m_Tag == "PF")
+	{
+		//OnGround = true;
 	}
 
 	//int m = t->m_Gravity;

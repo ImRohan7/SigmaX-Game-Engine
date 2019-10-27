@@ -1,7 +1,6 @@
 #include "Game.h"
 #include <vector>
 #include "Math/Vectors/Vector3d.h"
-
 #include "PointerManagment/SmartPtr.h"
 #include "Delegates/Delegates.h"
 #include "GamePlay classes/mainCharacter.h"
@@ -38,7 +37,20 @@ namespace Game
 
 	bool Game::Init()
 	{
-	
+		// strig test
+		/*MyString m;
+		MyString n("Heyya");
+		MyString o(n);
+		MyString a = "gaga";
+
+		
+
+		if (n == "Helyaa")
+		{
+			m = o;
+		}*/
+		/////////////////////////
+
 		DEBUG_PRINT("Game Started");
 		using namespace Engine;
 		GameMode = Menu;
@@ -68,10 +80,13 @@ namespace Game
 		_platform->m_Physics->DisableGravity();
 		_platform->m_Physics->m_IsDynamic = false;
 		_platform->m_Physics->m_IsAPlatform = true;
+		_platform->m_Tag = "PF";
 
 		_platform1->m_Physics->DisableGravity();
 		_platform1->m_Physics->m_IsDynamic = false;
 		_platform1->m_Physics->m_IsAPlatform = true;
+		_platform1->m_Tag = "PF";
+
 		Vector2 p = _platform->m_Physics->getPosition();
 		_platform->m_Physics->SetPosition(Vector2(p.x() + 300, p.y()));
 		
