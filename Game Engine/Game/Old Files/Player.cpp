@@ -6,7 +6,7 @@
 
 Player::Player()
 {
-	char pos;
+	/*char pos;
 	char temp[50];
 
 	std::cout << "Enter the name of the Player (not more than 50 characters) : \n";
@@ -26,7 +26,7 @@ Player::Player()
 	if (pos == 'G' || 'g') {  position.x(5); position.y(10); }
 	if (pos == 'H' || 'h') {  position.x(10); position.y(12); }
 	if (pos == 'J' || 'j') {  position.x(18); position.y(16); }
-	else { std::cout << std::endl<< "Wrong entry"; }
+	else { std::cout << std::endl<< "Wrong entry"; }*/
 }
 
 Player::~Player()

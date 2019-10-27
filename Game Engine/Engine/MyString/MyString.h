@@ -1,24 +1,31 @@
 #pragma once
 #include "iostream"
 
-int m_countLength(char string[50]);
-int m_countLength_(const char *);
+/* Very simple string class with limited functionalities
+ *	for my Engine to use
+*/
+
 
 class MyString {
 
 public:
+
+	MyString();
 	MyString(const char *);
+	MyString(const MyString& i_string);
+	
+	MyString operator=(const MyString& i_string);
 
 	// Get
-	char* getName() const { return m_name; }
-	int getLength() const { return m_length; }
+	inline char* getName() const { return data; }
+	inline int getLength() const { return length; }
 
 	// Destructor
 	~MyString();
 
 private:
-	int m_length;
-	char * m_name; // = new char[m_length]; << This was wrong for the Entire First Semester
-					// Should have listened to joe and implemented guardbanding 
+	int length;
+	char * data;
 };
+
 

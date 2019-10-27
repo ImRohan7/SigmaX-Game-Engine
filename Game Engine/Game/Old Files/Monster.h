@@ -19,7 +19,7 @@ public:
 		
 		void createMonster() 
 		{
-			int randX, randY;
+			/*int randX, randY;
 			char temp[50];
 
 			std::cout << "Enter the Name for Monster :";
@@ -36,7 +36,7 @@ public:
 			randY = rand() % 19 + 0;
 
 			position.x(randX);
-			position.y(randY);
+			position.y(randY);*/
 		}
 
 		void updateMonsterPos(const int &x1,const int &y1)

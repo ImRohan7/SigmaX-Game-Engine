@@ -62,7 +62,7 @@
     <ClCompile Include="MemoryManagment\HeapManager.cpp" />
     <ClCompile Include="MemoryManagment\HeapManagerProxy.cpp" />
     <ClCompile Include="MemoryManagment\MemorySystem.cpp" />
-    <ClCompile Include="MyString\MyString.cpp" />
+    <ClCompile Include="MyString.cpp" />
     <ClCompile Include="Other\HeapManager_UnitTest.cpp" />
     <ClCompile Include="Other\MatrixTest.cpp" />
     <ClCompile Include="Other\Unit_TestFixedSizeAllocator.cpp" />

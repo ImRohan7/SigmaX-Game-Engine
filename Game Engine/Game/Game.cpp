@@ -1,10 +1,12 @@
 #include "Game.h"
 #include <vector>
 #include "Math/Vectors/Vector3d.h"
+
 #include "PointerManagment/SmartPtr.h"
 #include "Delegates/Delegates.h"
 #include "GamePlay classes/mainCharacter.h"
 #include "GamePlay classes/Platform.h"
+#include "MyString/MyString.h"
 
 #define MAX_SPEED 6.0f		// the max difficulty ( Legendary Mode ;-p )
 #define LVL_UP_TIME 5		// the time(in seconds) after increase the difficulty
@@ -17,7 +19,6 @@ namespace Game
 	// game variables
 	static Engine::Modes GameMode;
 	static int timeTracker = 0;
-
 	// level and speed
 	static int Level = 1;
 	static float Bottom = -400;
@@ -37,6 +38,7 @@ namespace Game
 
 	bool Game::Init()
 	{
+	
 		DEBUG_PRINT("Game Started");
 		using namespace Engine;
 		GameMode = Menu;

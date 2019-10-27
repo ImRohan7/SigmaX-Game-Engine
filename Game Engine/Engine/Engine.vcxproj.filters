@@ -204,9 +204,6 @@
     <ClCompile Include="Math\Point2D.cpp">
       <Filter>Core\Math\Verctors</Filter>
     </ClCompile>
-    <ClCompile Include="MyString\MyString.cpp">
-      <Filter>Core\MyString</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer\RendererManager.cpp">
       <Filter>Core\Renderer\RendererManager</Filter>
     </ClCompile>
@@ -242,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="MemoryManagment\Allocator.cpp">
       <Filter>Memory Manager\Allocator</Filter>
+    </ClCompile>
+    <ClCompile Include="MyString.cpp">
+      <Filter>Core\MyString</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
