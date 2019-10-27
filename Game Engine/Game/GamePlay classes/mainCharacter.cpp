@@ -45,7 +45,6 @@ void mainCharacter::Update()
 		}
 	}
 	
-	
 }
 
 // called while collision happens
