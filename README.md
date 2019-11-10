@@ -6,7 +6,6 @@ A Simple Game Engine ( C++ )
 >> Last Updated : 10 November, 2019
 
 Read Dev Blog here: https://rohanpatel1899.wixsite.com/portfolio/sigmax
-(writing soon)
 
 Description
 
