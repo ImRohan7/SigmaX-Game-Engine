@@ -1,7 +1,7 @@
 # SigmaX-Game-Engine
 A Simple Game Engine ( C++ )
 
->> Current Status : Adding Gravity System
+>> Current Status : Adding Collision (Implementing Object->GetAllCollidableObjects() Function for getting list of all collided objects)
 
 >> Last Updated : 10 November, 2019
 
