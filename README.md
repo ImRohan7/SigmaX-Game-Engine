@@ -2,18 +2,18 @@
 A Simple Game Engine ( C++ )
 
 >> Current Status : Adding Collision (Implementing Object->GetAllCollidableObjects() Function for getting list of all collided objects)
-
+										: Adding camera  
 >> Last Updated : 10 November, 2019
 
 Read Dev Blog here: https://rohanpatel1899.wixsite.com/portfolio/sigmax
 
 Description
-
+(This engine is most likely suitable for a basic 2D platformer Game)
 Features:
 
 1) Memory Manager
 
-2) Very basic physics system with drag and force to move objects naturally per frame.
+2) Very basic physics system with drag and force to move objects naturally per frame with Gravity and also ground detection feature)
 
 3) Lua to store and parse data files to cretae different gameObjects
 
