@@ -1,8 +1,10 @@
 # SigmaX-Game-Engine
 A Simple Game Engine ( C++ )
 
->> Current Status : Adding Collision (Implementing Object->GetAllCollidableObjects() Function for getting list of all collided objects)
-	  
+>> Current Status : 1) Adding Collision (Implementing Object->GetAllCollidableObjects() Function for getting list of all collided objects)
+	 
+	 2) Also planning to create an event system
+	 
 >> Last Updated : 10 November, 2019
 
 Read Dev Blog here: https://rohanpatel1899.wixsite.com/portfolio/sigmax
