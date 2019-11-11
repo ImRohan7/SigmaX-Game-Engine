@@ -14,8 +14,10 @@ void mainCharacter::Update()
 	{
 		if (InputManager::getKeyDown(KeyId::D))
 		{
+
+			//	Vector2 a = m_Physics->getVelocity() + velX;
+		//	m_Physics->addForce(Vector2(0.4f, 0));
 			m_Physics->setVelocity(velX);
-			//m_Physics->setVelocity(velX);
 			DEBUG_PRINT("D");
 		}
 		else if (InputManager::getKeyDown(KeyId::Space))
@@ -31,7 +33,7 @@ void mainCharacter::Update()
 		}
 		else if (InputManager::getKeyDown(KeyId::W) && OnGround)
 		{
-			m_Physics->addForce(Vector2(0, 0.7f));
+			m_Physics->addForce(Vector2(0, 0.2f));
 			if (OnGround)
 			{
 			//	m_Physics->addForce(Vector2(0, -100));
@@ -65,4 +67,17 @@ void mainCharacter::OnCollision(SmartPtr<GameObject> i_collidedObj)
 	}
 
 	//int m = t->m_Gravity;
+}
+void mainCharacter::doJump()
+{
+
+}
+
+void mainCharacter::TriggerDeath()
+{
+
+}
+int mainCharacter::getHealth()
+{
+	return 100;
 }

@@ -88,7 +88,7 @@ namespace Game
 		_platform1->m_Tag = "PF";
 
 		Vector2 p = _platform->m_Physics->getPosition();
-		_platform->m_Physics->SetPosition(Vector2(p.x() + 600, p.y()));
+		_platform->m_Physics->SetPosition(Vector2(p.x() + 450, p.y()));
 		
 		delete lp;
 		return true;

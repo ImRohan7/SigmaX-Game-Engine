@@ -12,6 +12,6 @@ Player = {
     },
 
     Renderer = {
-        path = "../Data_Files/sprites/GoodGuy.dds"
+        path = "../Data_Files/sprites/dude.dds"
     },
 }
