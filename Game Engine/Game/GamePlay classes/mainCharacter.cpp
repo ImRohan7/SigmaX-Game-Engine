@@ -25,13 +25,13 @@ void mainCharacter::Update()
 		}
 		else if (InputManager::getKeyDown(KeyId::A))
 		{
-			//m_Physics->setVelocity(-velX);
+			m_Physics->setVelocity(-velX);
 			
 			DEBUG_PRINT("A");
 		}
 		else if (InputManager::getKeyDown(KeyId::W) && OnGround)
 		{
-			m_Physics->addForce(Vector2(0, 2));
+			m_Physics->addForce(Vector2(0, 0.7f));
 			if (OnGround)
 			{
 			//	m_Physics->addForce(Vector2(0, -100));

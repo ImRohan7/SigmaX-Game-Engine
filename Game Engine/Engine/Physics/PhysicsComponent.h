@@ -14,7 +14,7 @@ public:
 
 	// Contsructor
 	PhysicsComponent(const Vector2& i_pos, const Vector2& i_vel, const float i_mass, const Vector2 i_drag) :
-		m_Position(i_pos), m_Velocity(i_vel), m_Mass(i_mass), m_Gravity(6.6f), m_Drag(i_drag), m_AngVelocity(0),
+		m_Position(i_pos), m_Velocity(i_vel), m_Mass(i_mass), m_Gravity(9.6f), m_Drag(i_drag), m_AngVelocity(0),
 		m_RotationZ(0), m_UseDrag(true), m_IsDynamic(true)
 	{
 		m_Acceleration = Vector2::Zero;

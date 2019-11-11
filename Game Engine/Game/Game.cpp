@@ -76,7 +76,7 @@ namespace Game
 		{
 			assert(false);
 		}
-
+		
 		_platform->m_Physics->DisableGravity();
 		_platform->m_Physics->m_IsDynamic = false;
 		_platform->m_Physics->m_IsAPlatform = true;
@@ -88,7 +88,7 @@ namespace Game
 		_platform1->m_Tag = "PF";
 
 		Vector2 p = _platform->m_Physics->getPosition();
-		_platform->m_Physics->SetPosition(Vector2(p.x() + 300, p.y()));
+		_platform->m_Physics->SetPosition(Vector2(p.x() + 600, p.y()));
 		
 		delete lp;
 		return true;
