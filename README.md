@@ -13,20 +13,15 @@ Features:
 
 1) Memory Manager
 
-2) Very basic physics system with drag and force to move objects naturally per frame with Gravity and also ground detection feature)
+2) Very basic physics system with drag and force to move objects naturally per frame with Gravity  )
 
-3) Lua to store and parse data files to cretae different gameObjects
+3) Lua to store and parse data files to create different gameObjects
+ 
+4) Maths features  such as Vectors, Matrices
 
-4) Basic Game with Graphics Library GLib
+5) Base GameObject class which users need to inherit while making their own character classes in order to run the engine functionalities.
 
-5) Maths such as Vectors, Matrices
-
-6) Base GameObject class which users need to inherit while making their own character classes in order to run the engine functionalities.
-
-7) String class
-
-8) Game Objects and cotrollers
-
-9) Collision system with ground detection
-
-10) 
+6) String class
+ 
+7) Collision system with ground detection feature
+ 
