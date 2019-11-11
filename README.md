@@ -1,12 +1,11 @@
 # SigmaX-Game-Engine
 A Simple Game Engine ( C++ )
 
->> Current Status : Adding collision System
+>> Current Status : Adding Gravity System
 
->> Last Updated : 1 April, 2019
+>> Last Updated : 10 November, 2019
 
-Read Dev Blog here: https://rohanpatel1899.wixsite.com/portfolio/sigmax-dev-log
-(writing soon)
+Read Dev Blog here: https://rohanpatel1899.wixsite.com/portfolio/sigmax
 
 Description
 
@@ -22,8 +21,12 @@ Features:
 
 5) Maths such as Vectors, Matrices
 
-6) BitArray
+6) Base GameObject class which users need to inherit while making their own character classes in order to run the engine functionalities.
 
 7) String class
 
 8) Game Objects and cotrollers
+
+9) Collision system with ground detection
+
+10) 
