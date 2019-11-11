@@ -2,7 +2,7 @@
 A Simple Game Engine ( C++ )
 
 >> Current Status : Adding Collision (Implementing Object->GetAllCollidableObjects() Function for getting list of all collided objects)
-										: Adding camera  
+										\n: Adding camera  
 >> Last Updated : 10 November, 2019
 
 Read Dev Blog here: https://rohanpatel1899.wixsite.com/portfolio/sigmax
