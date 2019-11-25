@@ -47,6 +47,14 @@ public:
 		return false;
 	}
 
+	// assign
+	inline Vector2 operator=(const Vector2& iOth)
+	{
+		m_x = iOth.m_x;
+		m_y = iOth.m_y;
+		return *this;
+	}
+
 	// Addition
 	inline Vector2 operator+(const Vector2 &i_other) const
 	{
@@ -58,10 +66,9 @@ public:
 	}
 
 	// shorthand addition
-	inline Vector2 operator+=(const Vector2 &i_other) const
+	inline void operator+=(const Vector2 &i_other)
 	{
-		Vector2 tmp = *this + i_other;
-		return tmp;
+		*this = *this + i_other;
 	}
 
 	// Multiplication

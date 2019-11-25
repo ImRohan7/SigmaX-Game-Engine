@@ -39,7 +39,7 @@ namespace Engine {
 							CollisionTriggerEvent _x2 = CollisionTriggerEvent::Create
 								<GameObject, & GameObject::OnCollision>(B);
 
-							// fire
+							// fire collision events
 							_x1.ExecuteIfBound(i_Collidables[j]);
 							_x2.ExecuteIfBound(i_Collidables[i]);
 

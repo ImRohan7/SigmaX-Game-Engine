@@ -38,19 +38,12 @@ namespace Game
 	bool Game::Init()
 	{
 		// strig test
-		/*MyString m;
-		MyString n("Heyya");
-		MyString o(n);
-		MyString a = "gaga";
+		Vector2 a(2, 3);
+		Vector2 b(0, 0);
+		b += a;
 
-		
-
-		if (n == "Helyaa")
-		{
-			m = o;
-		}*/
 		/////////////////////////
-
+		Vector2 c = a;
 		DEBUG_PRINT("Game Started");
 		using namespace Engine;
 		GameMode = Menu;
