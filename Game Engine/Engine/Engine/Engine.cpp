@@ -151,10 +151,16 @@ namespace Engine {
 			// Update gameObjects based on user input
 			Input::CheckInput(dt);
 
-			cs.HandleCollisions(_AllObjects, dt);  
-
+			
 			// Applying Physics
 			Physics::Run(dt);
+
+			cs.HandleCollisions(_AllObjects, dt);
+
+			if (_AllObjects.at(0)->m_Physics->getVelocity().y() > 0)
+			{
+				DEBUG_PRINT("NOOOO");
+			}
 
 			// Last but Not least Drawing
 			Renderer::Draw();

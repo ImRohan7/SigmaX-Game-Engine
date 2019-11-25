@@ -69,7 +69,7 @@ namespace Game
 		{
 			assert(false);
 		}
-		
+		_player->m_Tag = "Player";
 		_platform->m_Physics->DisableGravity();
 		_platform->m_Physics->m_IsDynamic = false;
 		_platform->m_Physics->m_IsAPlatform = true;

@@ -19,8 +19,13 @@ void PhysicsComponent::updatePhysics(float dt)
 			ApplyDrag(dt);
 
 		// acceleration
+		if(!m_IsOnGround)
 		{
 			m_Acceleration = m_gravitationalAcceleration;// +m_assistedAcceleration;
+		}
+		else
+		{
+			m_Acceleration.y(0.0);
 		}
 
 		// Linear Velocity
@@ -50,11 +55,6 @@ void PhysicsComponent::updatePhysics(float dt)
 		// Angular velocity
 		{
 			m_RotationZ = m_RotationZ + m_AngVelocity * dt;
-		}
-
-		// Gravitational Accelartion (affects Y velocity only)
-		{
-
 		}
 
 		// Position

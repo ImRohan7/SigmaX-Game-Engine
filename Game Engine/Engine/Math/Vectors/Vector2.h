@@ -12,7 +12,7 @@ public:
 
 	Vector2() : m_x(0.0f), m_y(0.0f) {}
 
-	// Constructor
+	// ConstructorAdmin233
 	Vector2(float i_x, float i_y)
 	{
 		m_x = i_x;
