@@ -17,13 +17,7 @@ class GameObject
 public:
 	GameObject() {};
 
-	//// noy using this anymore
-	//static SmartPtr<GameObject> Create(const Vector2 & i_pos, const char * i_string, const Vector2 & i_vel)
-	//{
-	//	return SmartPtr<GameObject>(new GameObject(i_pos, i_string, i_vel));
-	//}
-
-
+	
 	// SET
 	// =========================
 	void setFromFile(const char* i_name)	

@@ -54,8 +54,8 @@ void mainCharacter::OnCollision(SmartPtr<GameObject> i_collidedObj)
 {
 	m_To = true;
 	// create a casting function
-	//mainCharacter* cd;
-	//if (i_collidedObj->CastTo(cd))
+	mainCharacter* cd;
+	if (i_collidedObj->TryCastTo(cd))
 	{
 		// cast succedded
 	}

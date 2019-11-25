@@ -142,9 +142,6 @@ namespace Engine {
 				ElapsedSeconds++;
 			}
 			
-		//	DEBUG_PRINT("Elapsed: %d", ElapsedSeconds);
-			// applying input actions
-
 			// call update method from gameObject interface
 			for (SmartPtr<GameObject> obj : _AllObjects)
 			{
@@ -154,10 +151,8 @@ namespace Engine {
 			// Update gameObjects based on user input
 			Input::CheckInput(dt);
 
-			
 			cs.HandleCollisions(_AllObjects, dt);  
 
-			//AI::Run(dt);          // Run AI 
 			// Applying Physics
 			Physics::Run(dt);
 
