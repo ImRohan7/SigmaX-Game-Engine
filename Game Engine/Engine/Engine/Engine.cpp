@@ -151,7 +151,6 @@ namespace Engine {
 			// Update gameObjects based on user input
 			Input::CheckInput(dt);
 
-			
 			// Applying Physics
 			Physics::Run(dt);
 

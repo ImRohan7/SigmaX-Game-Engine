@@ -15,7 +15,7 @@ class GameObject
 {
 	
 public:
-	GameObject() {};
+	GameObject() :m_Physics(nullptr) {};
 
 	
 	// SET
