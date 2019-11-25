@@ -1,5 +1,9 @@
 #include "mainCharacter.h"
 
+namespace {
+	Vector2 maxvel(11, 8);
+}
+
 void mainCharacter::Begin()
 {
 	//m_Id = 50;
@@ -8,17 +12,15 @@ void mainCharacter::Begin()
 // Called every frame
 void mainCharacter::Update()
 {
-	Vector2 velX(5, 0);
-	Vector2 velY(0, 5);
+	Vector2 velX(2, 0);
+	Vector2 velY(0, 2);
+	Vector2 velToAdd(0, 0);
+
 	if (m_Id == 3)
 	{
 		if (InputManager::getKeyDown(KeyId::D))
 		{
-
-			//	Vector2 a = m_Physics->getVelocity() + velX;
-		//	m_Physics->addForce(Vector2(0.4f, 0));
-			m_Physics->setVelocity(velX);
-			DEBUG_PRINT("D");
+			velToAdd = velX;
 		}
 		else if (InputManager::getKeyDown(KeyId::Space))
 		{
@@ -27,23 +29,25 @@ void mainCharacter::Update()
 		}
 		else if (InputManager::getKeyDown(KeyId::A))
 		{
-			m_Physics->setVelocity(-velX);
-			
-			DEBUG_PRINT("A");
+			velToAdd = -velX;
 		}
 		else if (InputManager::getKeyDown(KeyId::W) && OnGround)
 		{
-			m_Physics->addForce(Vector2(0, 0.2f));
+			velToAdd = velY;
 			if (OnGround)
 			{
-			//	m_Physics->addForce(Vector2(0, -100));
-			//	OnGround = false;
 			}
 		}
 		else if (InputManager::getKeyDown(KeyId::S))
 		{
-			m_Physics->setVelocity(-velY);
+			velToAdd = -velY;
 			OnGround = true;
+		}
+
+		Vector2 cur = m_Physics->getVelocity();
+		if (cur + velToAdd < maxvel && cur + velToAdd > -maxvel )
+		{
+			m_Physics->setVelocity(cur+velToAdd);
 		}
 	}
 	

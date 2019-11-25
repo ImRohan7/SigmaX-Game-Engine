@@ -37,6 +37,25 @@ public:
 		return false;
 	}
 
+	// check less than
+	inline bool operator<(const Vector2& i_other) const
+	{
+		if (m_x < i_other.x() && m_y < i_other.y())
+		{
+			return true;
+		}
+		return false;
+	}
+
+	inline bool operator>(const Vector2& i_other) const
+	{
+		if (m_x > i_other.x() && m_y > i_other.y())
+		{
+			return true;
+		}
+		return false;
+	}
+
 	// Check Equals with Float
 	inline bool operator==(const float &i_float) const
 	{
