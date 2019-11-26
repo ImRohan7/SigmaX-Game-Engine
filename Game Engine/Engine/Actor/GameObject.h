@@ -50,7 +50,7 @@ public:
 	// called while collision happens
 	virtual void OnCollision(SmartPtr<GameObject> i_collidedObj) {}
 
-	// Other
+	// Other utilities
 	// =================
 	template<class T>
 	bool TryCastTo(T*& i_targetClassObj)
@@ -73,7 +73,7 @@ public:
 		Math::Matrix_4x4 mRot = Math::Matrix_4x4::CreateZRotation(m_Physics->getRotationZ());
 		Vector3d tmp = Vector3d(m_Physics->getPosition().x(), m_Physics->getPosition().y(), 1.0f);
 		Math::Matrix_4x4 mTrans = Math::Matrix_4x4::CreateTranslation(tmp);
-		Math::Matrix_4x4 mBaseToWorld = mTrans.MultiplySSE(mRot); //mTrans * mRot;
+		Math::Matrix_4x4 mBaseToWorld = mTrans.MultiplySSE(mRot); 
 		return mBaseToWorld;
 	}
 

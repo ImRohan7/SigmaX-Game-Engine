@@ -45,7 +45,7 @@ void mainCharacter::Update()
 		}
 
 		Vector2 cur = m_Physics->getVelocity();
-		if (cur + velToAdd < maxvel && cur + velToAdd > -maxvel )
+		if (cur + velToAdd < maxvel  )
 		{
 			m_Physics->setVelocity(cur+velToAdd);
 		}

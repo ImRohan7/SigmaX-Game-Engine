@@ -14,7 +14,6 @@ public:
 	// called while collision occurs
 	virtual void OnCollision(SmartPtr<GameObject> i_collidedObj) override;
 
-
 	// user defined functions
 	// ===================================
 	mainCharacter(int id) : m_Id(id), m_To(false), OnGround(true), health(200) {}

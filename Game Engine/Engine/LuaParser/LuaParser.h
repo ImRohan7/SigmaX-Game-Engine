@@ -67,8 +67,6 @@ namespace Engine {
 				get_2DInfo(L_state, "Velocity", getter);
 				Vector2 _velocity(getter[0], getter[1]);
 
-				
-
 				lua_pushstring(L_state, "Physics");
 
 				// getting mass from table Physics = { mass = xx.yy }	
@@ -111,7 +109,6 @@ namespace Engine {
 				i_obj->m_Physics = pComp;
 
 				// RENDERER
-
 				lua_pushstring(L_state, "Renderer");
 
 				// getting path from table Renderer = { mass = xx.yy }	
