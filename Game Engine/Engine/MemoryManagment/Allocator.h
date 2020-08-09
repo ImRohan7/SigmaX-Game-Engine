@@ -29,7 +29,7 @@
 //
 //// malloc, free
 //void * __cdecl malloc(size_t);
-//void __cdecl free(void*);
+////void __cdecl free(void*);
 //
 //// new[], delete[]
 //void *operator new[](size_t);

@@ -1,5 +1,5 @@
 //#include "Allocator.h"
-//#include "ConsolePrint.h"
+//#include "_Console/ConsolePrint.h"
 //
 //#if HEAP_DEBUG == 1
 ////#define LOG(x) std::cout << x << std::endl
@@ -35,21 +35,21 @@
 //	return (void*)pReturn;
 //}
 //
-//void __cdecl free(void * i_ptr) 
-//{
-//	LOG("Overloaded free() called");
-//	// Find FSA
-//	FixedSizeAllocator* pFSA = FindFixedSizeAllocator(i_ptr);
-//	// If FSA==NULL then go check for Default Heap
-//	if (pFSA){
-//		LOG("Calling free() from FSA");
-//		pFSA->_free(i_ptr);
-//	}
-//	else{
-//		LOG("Calling free from DefaultHeap");
-//		HeapManagerProxy::_free(getHeap(),i_ptr);
-//	}
-//}
+////void __cdecl free(void * i_ptr) 
+////{
+////	LOG("Overloaded free() called");
+////	// Find FSA
+////	FixedSizeAllocator* pFSA = FindFixedSizeAllocator(i_ptr);
+////	// If FSA==NULL then go check for Default Heap
+////	if (pFSA){
+////		LOG("Calling free() from FSA");
+////		pFSA->_free(i_ptr);
+////	}
+////	else{
+////		LOG("Calling free from DefaultHeap");
+////		HeapManagerProxy::_free(getHeap(),i_ptr);
+////	}
+////}
 //
 //// New
 //void *operator new(size_t i_size)

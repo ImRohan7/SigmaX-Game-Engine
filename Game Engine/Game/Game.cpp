@@ -37,6 +37,10 @@ namespace Game
 
 	bool Game::Init()
 	{
+		int aa = sizeof(uint64_t);
+		int bb = sizeof(int);
+		int cc = sizeof(unsigned int);
+
 		// strig test
 		Vector2 a(2, 3);
 		Vector2 b(0, 0);
@@ -81,7 +85,7 @@ namespace Game
 		_platform1->m_Tag = "PF";
 
 		Vector2 p = _platform->m_Physics->getPosition();
-		_platform->m_Physics->SetPosition(Vector2(p.x() + 450, p.y()));
+		_platform->m_Physics->SetPosition(Vector2(p.x() + 300, p.y()));
 		
 		delete lp;
 		return true;

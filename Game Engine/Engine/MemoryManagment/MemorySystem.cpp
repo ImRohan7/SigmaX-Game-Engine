@@ -41,7 +41,7 @@ bool InitializeMemorySystem(void * i_pHeapMemory, size_t i_sizeHeapMemory, unsig
 
 	// Initialize FSA
 	for (int i = 0; i < 3; i++) {
-		FSA[i] = FixedSizeAllocator::createFSA(RunBoy, FSAdesci[i].sizeBlock, FSAdesci[i].numBlocks);
+		FSA[i] = FixedSizeAllocator::createFSA(RunBoy, FSAdesci[i].sizeBlock, FSAdesci[i].numBlocks); // create FSA and BitArray
 		
 		RunBoy = static_cast<unsigned char*>(RunBoy) + FSAdesci[i].sizeBlock * FSAdesci[i].numBlocks + FSAdesci[i].numBlocks / 8 + 1 + sizeof(FixedSizeAllocator);
 		static_cast<unsigned char*>(RunBoy);

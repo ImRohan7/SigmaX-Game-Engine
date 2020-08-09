@@ -80,7 +80,7 @@ public:
 
 private:
 	// We don't need to store Weakptr to GameObject mow
-	// It is not possible now as well
+	// It is not possible now as well as we store the physics reference in gameobject
 
 	Vector2 m_Position;
 	float m_Mass;

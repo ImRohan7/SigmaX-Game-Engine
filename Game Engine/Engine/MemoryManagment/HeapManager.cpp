@@ -6,7 +6,7 @@
 #define _SHOW_LOGS
 #endif
 
-	HeapManager* HeapManager::create(void * i_pMemory, size_t i_sizeMemory, unsigned int i_numDescriptors)
+	HeapManager* HeapManager::create(void * i_pMemory, size_t i_sizeMemory, unsigned int i_numDescriptors) // for my design I do not need descriptors
 	{
 			head = static_cast<unsigned char*>(i_pMemory);	//Set head to the begining of the heap
 			tail = static_cast<unsigned char*>(i_pMemory) + i_sizeMemory - 1; // Last adrress of the heap
@@ -71,7 +71,6 @@
 
 			return NULL;	//Returns null if no space
 		}
-
 	}
 
 	void* HeapManager::alloc(size_t i_size, unsigned int i_alignment) 
@@ -161,6 +160,7 @@
 		return true;
 	}
 
+	// collect free blocks / grabage collection
 	void HeapManager::_collect()
 	{
 		unsigned int totalMerged=0;  //Keep track of the number of blocks merged
@@ -181,7 +181,7 @@
 				IsMerged = true;
 			}
 		
-			//Changing only if _cur is not at the end
+			//moving only if _cur is not at the end
 			if (reinterpret_cast<uintptr_t>(_cur) < reinterpret_cast<uintptr_t>(current))
 			{
 				_prev = (Block*)_cur;

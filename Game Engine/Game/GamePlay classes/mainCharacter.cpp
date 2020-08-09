@@ -1,7 +1,7 @@
 #include "mainCharacter.h"
 
 namespace {
-	Vector2 maxvel(11, 8);
+	Vector2 maxvel(7, 13);
 }
 
 void mainCharacter::Begin()
@@ -13,7 +13,7 @@ void mainCharacter::Begin()
 void mainCharacter::Update()
 {
 	Vector2 velX(2, 0);
-	Vector2 velY(0, 2);
+	Vector2 velY(0, 3);
 	Vector2 velToAdd(0, 0);
 
 	if (m_Id == 3)

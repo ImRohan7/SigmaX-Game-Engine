@@ -7,7 +7,7 @@ namespace Engine {
 	namespace Physics {
 		// function declaration
 	
-
+		// ground and the object that is on ground
 		std::vector<std::pair<SmartPtr<GameObject>, SmartPtr<GameObject>>> _groundPair;
 
 		typedef Delegate<SmartPtr<GameObject>> CollisionTriggerEvent;
@@ -91,7 +91,7 @@ namespace Engine {
 
 		}
 
-
+		// check in map instead
 		void CollisionHandler::verifyGroundStatus(float t_EndFrame, bool IsX)
 		{
 			std::vector<int> toErase;

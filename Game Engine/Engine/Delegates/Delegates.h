@@ -33,7 +33,6 @@ namespace Engine {
 		void operator()(Params ... i_Parameters) const
 		{
 			assert(m_pMethodStub);
-
 			return (*m_pMethodStub)(m_pInstance, i_Parameters);
 		}
 

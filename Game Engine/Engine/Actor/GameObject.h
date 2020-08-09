@@ -43,12 +43,12 @@ public:
 	// Virtual methods for derived classes
 	//====================================
 
-	// This will be called at the start of the game
-	virtual void Begin() {}
-	// Called every frame
-	virtual void Update() {}
-	// called while collision happens
-	virtual void OnCollision(SmartPtr<GameObject> i_collidedObj) {}
+	virtual void Begin() {}	// This will be called at the start of the game
+	
+	virtual void Update() {} // Called every frame
+	
+	virtual void OnCollision(SmartPtr<GameObject> i_collidedObj) {} // called while collision happens
+	
 
 	// Other utilities
 	// =================
@@ -61,7 +61,8 @@ public:
 			return false;
 	}
 
-	~GameObject() {}
+	// to avoid undefined behavior when trying to delete a derived class object using base class pointer
+	virtual ~GameObject() {}
 
 
 	// Move to Matrix functionality
