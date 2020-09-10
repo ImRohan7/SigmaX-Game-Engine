@@ -88,6 +88,9 @@
     <Filter Include="Physics\CollisionSystem">
       <UniqueIdentifier>{c80fcbfd-564b-4d8b-8dcd-66250e91fca5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Math\Tools">
+      <UniqueIdentifier>{64dcda42-e0ac-4c6e-a028-77a9aa0c9d9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Physics\PhysicsComponent.h">
@@ -169,6 +172,9 @@
       <Filter>Memory Manager\Allocator</Filter>
     </ClInclude>
     <ClInclude Include="SigmaEngine.h" />
+    <ClInclude Include="Math\Tools\Intersection.h">
+      <Filter>Core\Math\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Physics\PhysicsComponent.cpp">
@@ -242,6 +248,9 @@
     </ClCompile>
     <ClCompile Include="MyString.cpp">
       <Filter>Core\MyString</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Tools\Intersection.cpp">
+      <Filter>Core\Math\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

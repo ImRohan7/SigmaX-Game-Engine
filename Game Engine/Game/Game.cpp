@@ -6,6 +6,7 @@
 #include "GamePlay classes/mainCharacter.h"
 #include "GamePlay classes/Platform.h"
 #include "MyString/MyString.h"
+#include "Math/Tools/Intersection.h"
 
 #define MAX_SPEED 6.0f		// the max difficulty ( Legendary Mode ;-p )
 #define LVL_UP_TIME 5		// the time(in seconds) after increase the difficulty
@@ -37,17 +38,20 @@ namespace Game
 
 	bool Game::Init()
 	{
+		
+		Vector2 p0(0, 0);
+		Vector2 p1(500, 500);
+		Vector2 p2(400, 0);
+		Vector2 p3(0, 600);
+
+		auto res = Math::Intersection::getIntersectionPoint(p0, p1, p2, p3);
+
 		int aa = sizeof(uint64_t);
 		int bb = sizeof(int);
 		int cc = sizeof(unsigned int);
 
-		// strig test
-		Vector2 a(2, 3);
-		Vector2 b(0, 0);
-		b += a;
-
+		
 		/////////////////////////
-		Vector2 c = a;
 		DEBUG_PRINT("Game Started");
 		using namespace Engine;
 		GameMode = Menu;

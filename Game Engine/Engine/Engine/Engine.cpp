@@ -21,7 +21,7 @@ namespace Engine {
 
 	bool Engine::Init()
 	{
-		DEBUG_PRINT("Engine starting up");
+		DEBUG_PRINT("Engine starting up.");
 		InputManager::InitService();
 		
 		return true;

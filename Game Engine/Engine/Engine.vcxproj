@@ -27,6 +27,7 @@
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Math\Matrix\Matrix_4x4.h" />
     <ClInclude Include="Math\Point2D.h" />
+    <ClInclude Include="Math\Tools\Intersection.h" />
     <ClInclude Include="Math\Vectors\Vector2.h" />
     <ClInclude Include="Math\Vectors\Vector2D.h" />
     <ClInclude Include="Math\Vectors\Vector3d.h" />
@@ -54,6 +55,7 @@
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Math\Matrix\Matrix_4x4.cpp" />
     <ClCompile Include="Math\Point2D.cpp" />
+    <ClCompile Include="Math\Tools\Intersection.cpp" />
     <ClCompile Include="Math\Vectors\Vector2.cpp" />
     <ClCompile Include="Math\Vectors\Vector2D.cpp" />
     <ClCompile Include="Math\Vectors\Vector3d.cpp" />

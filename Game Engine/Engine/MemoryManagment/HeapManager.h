@@ -8,6 +8,9 @@ struct Block {
 	bool IsFree;
 };
 
+/* IMP to take constants to make sure 
+* we dont change the underlying value pointed by the pointers.
+*/
 static unsigned const char* head;	 // Head of the Heap (will always point to the 1st Block of the heap)
 static unsigned const char* tail;	// Bottom of the Heap (will always point to the Last Block of the heap)
 static unsigned const char* current; // Points to the current free block while allocating
