@@ -1,9 +1,7 @@
 # SigmaX-Game-Engine
 A Simple Game Engine ( C++ )
 
->> Current Status : 
->> 1) Adding Camera
->> 2) Also planning to create an event system
+
 	 
 >> Last Updated : 10 November, 2019
 
